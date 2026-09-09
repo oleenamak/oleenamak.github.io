@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /assets/og/
+
+Sitemap: https://oleenamak.github.io/sitemap.xml

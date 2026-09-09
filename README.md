@@ -13,6 +13,24 @@ Paths are absolute (`/assets/…`), which is why the repo is named
 project repo (served at `/repo-name/`, where those paths would 404). The same
 holds when a custom domain is added.
 
+### Images
+
+`make-images.py` renders the favicon and the per-page OpenGraph cards with
+headless Chrome, so they use the real Newsreader / JetBrains Mono rather than a
+substitute. Output is committed; re-run only when titles, decks or the mark
+change. Dev only.
+
+### Metadata
+
+`build-pages.py` generates every page's entire `<head>` — title, description,
+canonical, OpenGraph, Twitter card, icons, fonts — plus `sitemap.xml` and
+`robots.txt`. There is nothing hand-maintained in a head, so titles and cards
+cannot drift apart. Entry pages get `og:type: article` and
+`article:published_time`; index pages get `website`.
+
+All of it is absolute against `BASE` at the top of `build-pages.py`. **Changing
+domain is that one line plus a re-run.**
+
 ### To publish a change
 
 ```bash

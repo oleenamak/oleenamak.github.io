@@ -13,6 +13,19 @@ No prose is invented. Re-run after editing entries.js.
 import json, pathlib, subprocess, html, re
 
 ROOT = pathlib.Path(__file__).parent
+
+# The site's own origin. Everything canonical/OpenGraph is absolute, so when
+# oleenamak.ca is pointed here, change this line and re-run.
+BASE = "https://oleenamak.github.io"
+
+# Pages that are not entries. (path, title, description, og image stem)
+STATIC = [
+    ("index.html",          "Oleena Mak", "The index of what Oleena Mak has been thinking about, in public, since 2023.", "default"),
+    ("writing/index.html",  "Writing",    "Essays and playbooks by Oleena Mak.", "default"),
+    ("projects/index.html", "Projects",   "Things Oleena Mak is making and building.", "default"),
+    ("about/index.html",    "About",      "Context for the index: who Oleena Mak is and where the work comes from.", "default"),
+    ("404.html",            "Not found",  "Nothing at this address.", "default"),
+]
 CONTENT = json.loads((ROOT / "content.json").read_text()) if (ROOT / "content.json").exists() else {}
 
 ENTRIES = json.loads(subprocess.run(
@@ -270,6 +283,92 @@ def refresh(path, e):
         path.write_text(out)
     return changed
 
+
+# --- head, sitemap, robots -------------------------------------------------
+
+def url_for(rel):
+    rel = str(rel).replace("index.html", "")
+    return BASE + "/" + rel.lstrip("/")
+
+
+def render_head(title, desc, url, og_stem, date=None):
+    """Every page's <head> is generated, so titles, canonicals and cards can
+    never drift apart. Icons and fonts are identical everywhere."""
+    full = title if title == "Oleena Mak" else f"{title} \u00b7 Oleena Mak"
+    og = f"{BASE}/assets/og/{og_stem}.png"
+    ogtype = "article" if date else "website"
+    pubtime = f'\n<meta property="article:published_time" content="{date}">' if date else ""
+    return f"""<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{html.escape(full)}</title>
+<meta name="description" content="{html.escape(desc)}">
+<link rel="canonical" href="{url}">
+<meta name="theme-color" content="#f5f4f1">
+
+<meta property="og:type" content="{ogtype}">{pubtime}
+<meta property="og:site_name" content="Oleena Mak">
+<meta property="og:title" content="{html.escape(full)}">
+<meta property="og:description" content="{html.escape(desc)}">
+<meta property="og:url" content="{url}">
+<meta property="og:image" content="{og}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{html.escape(title)} \u2014 Oleena Mak">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{html.escape(full)}">
+<meta name="twitter:description" content="{html.escape(desc)}">
+<meta name="twitter:image" content="{og}">
+
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..500&display=swap">
+<link rel="stylesheet" href="/assets/site.css">"""
+
+
+def write_heads():
+    """Replace the whole <head> of every page. Head content is fully derived
+    from entries.js and STATIC, so there is nothing bespoke to preserve."""
+    done = []
+    targets = [(pathlib.Path(f), t, d, o, None) for f, t, d, o in STATIC]
+    for e in ENTRIES:
+        stem = e["slug"].strip("/").split("/")[-1]
+        targets.append((page_path(e).relative_to(ROOT), e["title"],
+                        e.get("deck") or f'{e["kind"]} by Oleena Mak.', stem, e["date"]))
+    for rel, title, desc, og, date in targets:
+        f = ROOT / rel
+        if not f.exists():
+            continue
+        s = f.read_text()
+        head = render_head(title, desc, url_for(rel), og, date)
+        new = re.sub(r"<head>.*?</head>", "<head>\n" + head.replace("\\", "\\\\") + "\n</head>",
+                     s, count=1, flags=re.S)
+        if new != s:
+            f.write_text(new); done.append(str(rel))
+    return done
+
+
+def write_sitemap_and_robots():
+    urls = [(url_for(f), None) for f, *_ in STATIC if f != "404.html"]
+    for e in ENTRIES:
+        urls.append((url_for(page_path(e).relative_to(ROOT)), e["date"]))
+    body = "\n".join(
+        "  <url><loc>{}</loc>{}</url>".format(u, f"<lastmod>{d}</lastmod>" if d else "")
+        for u, d in urls)
+    (ROOT / "sitemap.xml").write_text(
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        f"{body}\n</urlset>\n")
+    (ROOT / "robots.txt").write_text(
+        "User-agent: *\n"
+        "Allow: /\n"
+        "Disallow: /assets/og/\n\n"
+        f"Sitemap: {BASE}/sitemap.xml\n")
+    return len(urls)
+
 made, refreshed, untouched = [], [], []
 for e in ENTRIES:
     p = page_path(e)
@@ -286,3 +385,7 @@ for s_ in made:
     print("  created  ", s_)
 for s_, ch in refreshed:
     print("  refreshed", s_, "(" + ", ".join(ch) + ")")
+
+heads = write_heads()
+n_urls = write_sitemap_and_robots()
+print(f"heads written: {len(heads)}   sitemap urls: {n_urls}   robots.txt written")

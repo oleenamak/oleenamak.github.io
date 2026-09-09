@@ -3,15 +3,42 @@
 Implements concept **1b, "The Index"** from `../DESIGN-SYSTEM.md`, against
 `../Brand.md`, `../Sitemap.md` and the screenshots in `../References/`.
 
-## Run
+## Live
+
+<https://oleenamak.github.io> — GitHub Pages, from `main`, repo root.
+`.nojekyll` disables Jekyll processing.
+
+Paths are absolute (`/assets/…`), which is why the repo is named
+`oleenamak.github.io` (a user site, served at the domain root) rather than a
+project repo (served at `/repo-name/`, where those paths would 404). The same
+holds when a custom domain is added.
+
+### To publish a change
 
 ```bash
-python3 -m http.server 8765 --directory .
+python3 build-pages.py && git add -A && git commit -m "..." && git push
 ```
 
-Static files, no build step and no dependencies. Absolute paths (`/assets/…`)
-mean it must be served from this directory as the document root, not opened
-over `file://`.
+Pages rebuilds automatically, roughly a minute.
+
+### To point oleenamak.ca here
+
+Not done yet — it would take down the existing Framer site at that address.
+The domain is registered at Namecheap with DNS there; `www` currently CNAMEs to
+`sites.framer.app`. When ready: add a `CNAME` file containing `oleenamak.ca`,
+set the apex A records to GitHub's four Pages IPs, and CNAME `www` to
+`oleenamak.github.io`.
+
+## Run locally
+
+```bash
+python3 serve.py
+```
+
+`serve.py` is `http.server` plus no-cache headers, so edits show up on a plain
+reload. Development only — never deployed. Static files, no build step, no
+dependencies; must be served (not opened over `file://`) because paths are
+absolute.
 
 ## Layout
 

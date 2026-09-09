@@ -1,0 +1,662 @@
+{
+ "algorithms-groupthink-and-media": {
+  "title": "On algorithms, groupthink and media",
+  "deck": "A reflection on what controls and manufactures our thoughts",
+  "date": "Oct 14, 2020",
+  "blocks": [
+   {
+    "type": "p",
+    "text": "For the past year, I've been cooped up in the comfort (and privilege) of my home as I watched what seems like, at times, a dystopian world unfold through the screens of my monitors. It has felt as though the world outside of my window was unravelling at warp speed while I was at a standstill, watching the replays fed to me."
+   },
+   {
+    "type": "p",
+    "text": "While confined within the four walls of my room, I've also had the time to reflect within the walls of my mind, only to find that it was filled with manufactured thoughts and lacklustre opinions. I hope we all take the time to digest the impact of not only the content we consume but the danger of who and what controls it. While there are mounting issues plastered on headlines of all the biggest news outlets, the threat of algorithms and large-scale groupthink has been one that seems to remain as the elephant in the room."
+   },
+   {
+    "type": "p",
+    "text": "We talk about it, sometimes even go as far as acknowledge it, but end up being the perpetrators that continue to consent to the consumption. Click one article or like one post, and suddenly your entire feed is subtly infiltrated with an endless scroll of similar content. The division is clear. Check your friend or partner's feed and see just how different it is from your own. The programmed expectations of digital platforms have led us to self-sort and lock ourselves in rooms that resound our own thoughts and beliefs. Particularly in an era where news is now largely consumed on these algorithm-run platforms, our narratives are only magnified and further validated by strangers online."
+   },
+   {
+    "type": "p",
+    "text": "This has led to a division - a fight between groups on what the \"truth\" is. We protest, get into heated debates and use smear tactics to discredit those who don't have the same beliefs or opinions as us by labelling them as \"misinformed\", or \"conspiracists\". Not to go down a philosophical rabbit hole, but what is \"true\" simply seems like what you, as an individual, believe is true."
+   },
+   {
+    "type": "p",
+    "text": "The internet was supposed to expand our access to knowledge and information, which it has. But the sheer volume and spread of it has also been the enemy that has weaponized us against one another. A clipped 10-second video can easily spread like wildfire within hours - misconstrued and taken out of context. It seems as though we are stuck in this endless game of broken telephone, except all those on the same line are likely people who hold the same beliefs as us. We must consider opening up our communication lines and dismantle the idea of one truth for all by actively seeking to challenge what appears on your algorithm than to accept it so easily."
+   },
+   {
+    "type": "p",
+    "text": "But how did we even get here in the first place? Well, who creates these content? The media. Who crafts the narrative we've adopted? The media. Who circulates the content? The media. We have been at the mercy of this monster that tells us what they want us to know. The internet has simply amplified their voice. And though there are many independent voices and journalists that have spurred out of the internet era, it is likely that many will remain unheard because the algorithm will not be in their favour."
+   },
+   {
+    "type": "p",
+    "text": "However this may have landed on your feed, I am thankful that the algorithm has brought you here. Maybe we have similar interests or similar networks. I end off on this note: though we are confined in the walls of our homes, I hope we take this time to not allow our minds and devices to be as well."
+   }
+  ],
+  "words": 609
+ },
+ "on-fragmented-communication": {
+  "title": "On fragmented communication",
+  "deck": "The origin of fragmented communication and building modern-day Towers of Babel",
+  "date": "Jul 30, 2024",
+  "blocks": [
+   {
+    "type": "p",
+    "text": "<em class=\"framer-text\">\u201cCome, let us go down and confuse their language so they will not understand each other.\u201d - Genesis 11:7</em>"
+   },
+   {
+    "type": "h3",
+    "text": "I. The confusion in language began with human ambition."
+   },
+   {
+    "type": "p",
+    "text": "When God first created the earth, He had a vision for a perfect, good and united world free from sin, darkness and chaos. But man rebelled against God\u2019s perfect rule, seeking to be its own gods and corrupting the goodness that once was."
+   },
+   {
+    "type": "p",
+    "text": "The fable of the <a class=\"framer-text framer-styles-preset-1uxcz6r\" href=\"https://biblia.com/bible/esv/genesis/11/1-9\" rel>Tower of Babel</a> in the Book of Genesis is just one of the many depictions of the collapse of humanity. God\u2019s people, originally created of one tongue and one language used the gift of shared communication to build a mighty tower to reach the heavens. But because their ambitions were driven by man\u2019s collective ego to <em class=\"framer-text\">make a name for ourselves</em>, it angered God and His ruling power. As punishment, God introduced the confusion of languages, preventing the once united nation to no longer understand each other and complete the work."
+   },
+   {
+    "type": "p",
+    "text": "The tower was abandoned and the people scattered across the earth, continuing to speak different languages and live in division. The city was later named Babel, meaning <em class=\"framer-text\">confusion</em> in Hebrew, symbolizing the origin of broken communication."
+   },
+   {
+    "type": "h3",
+    "text": "II. The digital era continues to divide us."
+   },
+   {
+    "type": "p",
+    "text": "Today, we are surrounded by modern representations of the Tower of Babel that stand tall in digital cities, echoing the age-old tale of ambition but division. We\u2019ve built towers and towers of alluring and imaginative technology that struggle to be completed or reach their highest potential because of the curse of ineffective communication."
+   },
+   {
+    "type": "p",
+    "text": "For builders, this often manifests as jargon or technical language that alienates the majority. Layered with the modern-day complexity of algorithms and code, messages are often distorted and fail to reach the intended audience in a full and coherent manner."
+   },
+   {
+    "type": "p",
+    "text": "As a result, communication remains fragmented. Code continues to divide. Emerging monuments struggle to progress without a greater community of shared visionaries."
+   },
+   {
+    "type": "p",
+    "text": "There is a blank space in the communication."
+   },
+   {
+    "type": "h3",
+    "text": "III. Builders are hackers and painters."
+   },
+   {
+    "type": "p",
+    "text": "In <a class=\"framer-text framer-styles-preset-1uxcz6r\" href=\"https://paulgraham.com/articles.html\" rel>Paul Graham\u2019s</a> essay collection book, \u2018<em class=\"framer-text\">Hackers & Painter: Big Ideas from the Computer Age</em>\u2019, the renowned technologist draws a parallel between hackers and painters. Just as artists use pens and paint to create masterpieces, hackers use computers and code to create new programs."
+   },
+   {
+    "type": "p",
+    "text": "In fact, the cover of the book also uses the imagery of the Tower of Babel to represent the magnificent ambitions of man-made creations. Hackers and painters both possess the visionary qualities needed to build great towers, but fostering collaboration requires embracing the two roles as one. Builders must think like artists, painting in the blank spaces in communication with meaningful context and stories."
+   },
+   {
+    "type": "p",
+    "text": "By recognizing their works as modern Towers of Babel, builders can identify where communication breaks down and hinders progress. Is it the language used? The presentation? The distribution of messages? Addressing these gaps is essential to advancing their projects."
+   },
+   {
+    "type": "h3",
+    "text": "IV. The blank space is a gift to be filled."
+   },
+   {
+    "type": "p",
+    "text": "While the diversity of languages first existed as a punishment from God, it is also a gift and reminder to leave our egos at the door. The blank space is an opportunity to communicate the magnificence of our creations and connect beyond language. To advance, we must strive to understand one another through shared stories and emotions."
+   },
+   {
+    "type": "p",
+    "text": "But we must also be reminded of the core mission and vision of man-made creations. The Tower of Babel failed not just because of fragmented communication, but because it collided with God's vision for a good and righteous world."
+   },
+   {
+    "type": "p",
+    "text": "What are you building and is it actually good and productive for humanity? If so, how are you communicating it or will it become just another abandoned tower in Babel?"
+   }
+  ],
+  "words": 622
+ },
+ "referrals-retention-in-crypto": {
+  "title": "Referrals + Retention in Crypto",
+  "deck": "Can growth happen without FOMO, airdrops or incentives?",
+  "date": "Sep 24, 2023",
+  "blocks": [
+   {
+    "type": "p",
+    "text": "A few different research articles and reports caught my attention this week. SixDegree Lab provided a look into the effectiveness of protocol airdrop campaigns on wallet acquisition and retention. Let\u2019s take a look."
+   },
+   {
+    "type": "p",
+    "text": "When observing the retention of unique wallet addresses that received an airdrop, the <a class=\"framer-text framer-styles-preset-1uxcz6r\" href=\"https://mirror.xyz/sixdegreelab.eth/nGmyboqdizYHN53lKfKgTi97SCfbogF_2ysu8cMg6zk\" target=\"_blank\" rel=\"noreferrer nofollow\">average churn rate is 80%</a> after four months."
+   },
+   {
+    "type": "img",
+    "src": "https://framerusercontent.com/images/4oIn9q5cMV59HYqT9Y7BLNKvitc.png",
+    "alt": "",
+    "local": "referrals-retention-in-crypto-01.png"
+   },
+   {
+    "type": "p",
+    "text": "There are still a lot of unanswered questions, like what <em class=\"framer-text\">other </em>activities these wallet addresses may have conducted in the same period of time. However, we can at least observe that users are, to no surprise, <em class=\"framer-text\">not</em> holding onto their airdrop tokens"
+   },
+   {
+    "type": "p",
+    "text": "What\u2019s more interesting is the cost of these airdrop campaigns. Based on the number of retained users at month four, the <a class=\"framer-text framer-styles-preset-1uxcz6r\" href=\"https://mirror.xyz/sixdegreelab.eth/cwW_ixKUN0cMmDeJp67r4F2b53H0fMzS_BG22FCapCs\" target=\"_blank\" rel=\"noreferrer nofollow\">average CAC ranges from $1,000 to $10,000</a>. Yes, that\u2019s a big range, but for comparison, tradfi has an average CAC of $50 to $1500."
+   },
+   {
+    "type": "img",
+    "src": "https://framerusercontent.com/images/Myid4xceIY8Lw89gVttjUIvFvxk.png",
+    "alt": "",
+    "local": "referrals-retention-in-crypto-02.png"
+   },
+   {
+    "type": "p",
+    "text": "Airdropping tokens has become a primitive tactic to inject liquidity into protocols and keep users from moving to other chains. But more and more we are seeing just how ineffective this strategy is to grow projects sustainably and retain users."
+   },
+   {
+    "type": "p",
+    "text": "Aside from airdrops, high-yield rates, time/price pressure and promotions are also a form of FOMO marketing to push users to take action. After working on countless rewards and FOMO campaigns at a crypto company in the past year, I can tell you that the desperate attempt to give rewards does little to bring users back to the platform in a <em class=\"framer-text\">meaningful</em> way."
+   },
+   {
+    "type": "p",
+    "text": "This is even more true for DeFi protocols where users are inherently mercenary and driven by profit-optimization. You can nudge users to take certain actions through onchain notifications or incentives, but you can\u2019t change their very nature and intrinsic motivations."
+   },
+   {
+    "type": "p",
+    "text": "So this begs the question: is there a way to recapture DeFi users\u2019 attention without having to rely heavily on unsavory marketing tactics and incentives like airdrops?"
+   },
+   {
+    "type": "p",
+    "text": "I think that rather than trying to get power-DeFi users to change their motivations, perhaps we should focus on optimizing the dollar value amount in referrals they could bring to the platform. But for this to work effectively, these two things must be true:"
+   },
+   {
+    "type": "li",
+    "text": "The product is good and provides a delightful user experience, and"
+   },
+   {
+    "type": "li",
+    "text": "Users can form a strong psychological attachment to the product."
+   },
+   {
+    "type": "h3",
+    "text": "<strong class=\"framer-text\">Genuine referrals are priceless</strong>"
+   },
+   {
+    "type": "p",
+    "text": "If you also work within the blockchain space, you\u2019ve probably experienced this before. You introduce yourself to someone, talk about what you do and be reminded about just how <em class=\"framer-text\">early</em> you are in the industry. For newcomers, the common questions will be \u201chow does crypto work\u201d and \u201chow do I buy my first crypto?\u201d This is where the referral magic happens."
+   },
+   {
+    "type": "p",
+    "text": "Chances are, you\u2019ll recommend them the most easy-to-use platform. Perhaps, it\u2019s the same platform you used when you first started, but not anymore. The point is, somewhere along your crypto journey, you had a pleasant experience with this platform and you are now recommending it to others, despite not being a retained user yourself."
+   },
+   {
+    "type": "p",
+    "text": "It\u2019s subtle, but in a way, you\u2019ve formed a <em class=\"framer-text\">psychological attachment</em> to the platform. An unconscious decision was made that this product is <em class=\"framer-text\">worthy</em> of your recommendation. Perhaps another similar platform may offer better or higher rewards, but your recommendation is easier to use. <strong class=\"framer-text\">In this scenario, the tangible incentive comes second to the feeling of sharing something good that you discovered.</strong>"
+   },
+   {
+    "type": "p",
+    "text": "Though I don\u2019t have the onchain version of this data, traditionally, referred users have a higher retention rate compared to users acquired by other means. Plus, those who refer others signal that they have a higher level of loyalty and satisfaction."
+   },
+   {
+    "type": "p",
+    "text": "<strong class=\"framer-text\">So in relation, referrals don\u2019t just impact acquisition, but it has downstream implications on retention metrics\u2014that is assuming that a majority of users are providing a genuine referral.</strong>"
+   },
+   {
+    "type": "h3",
+    "text": "<strong class=\"framer-text\">Incentivized referrals need constraints</strong>"
+   },
+   {
+    "type": "p",
+    "text": "Optimizing for referrals with incentives is ideal, but it has its challenges as well. When Lido Finance initially launched its referral program, it saw a <a class=\"framer-text framer-styles-preset-1uxcz6r\" href=\"https://blog.ts.finance/referral-programs-in-defi-analyzing-effectiveness-and-strategies-for-success/\" target=\"_blank\" rel=\"noreferrer nofollow\">60% rise</a> in suspicious activity and abuse. Similarly, with Perpetual Protocol, <a class=\"framer-text framer-styles-preset-1uxcz6r\" href=\"https://blog.ts.finance/referral-programs-in-defi-analyzing-effectiveness-and-strategies-for-success/\" target=\"_blank\" rel=\"noreferrer nofollow\">22.8% of referral codes</a> created were deemed suspicious. There will always be ways to gamify and exploit reward programs."
+   },
+   {
+    "type": "p",
+    "text": "For incentivized referrals, or any type of token incentives to work for that matter, constraints must be embedded in the distribution process. Here are some ideas:"
+   },
+   {
+    "type": "li",
+    "text": "<strong class=\"framer-text\">Whitelisting addresses:</strong> only allowing approved addresses to participate"
+   },
+   {
+    "type": "li",
+    "text": "<strong class=\"framer-text\">Allowlists</strong>: setting eligibility criteria to target certain users"
+   },
+   {
+    "type": "li",
+    "text": "<strong class=\"framer-text\">Quality checks</strong>: doing a quality check on referrals before paying out the rewards"
+   },
+   {
+    "type": "li",
+    "text": "<strong class=\"framer-text\">Adding thresholds</strong>: imposing limits, such as on earning amounts"
+   },
+   {
+    "type": "li",
+    "text": "<strong class=\"framer-text\">Time-limited offers</strong>: setting a time limit or goal on a referral program"
+   },
+   {
+    "type": "li",
+    "text": "<strong class=\"framer-text\">Tiered access</strong>: offering tiered access to referral rewards that is contingent on engagement level and loyalty"
+   },
+   {
+    "type": "li",
+    "text": "<strong class=\"framer-text\">Quests: </strong>provide a task to the referred user to complete in order to unlock rewards"
+   },
+   {
+    "type": "h3",
+    "text": "<strong class=\"framer-text\">Ways to drive organic referrals</strong>"
+   },
+   {
+    "type": "p",
+    "text": "Aside from incentivizing referrals, generating organic word-of-mouth is the most genuine way to acquire and retain users. It\u2019s harder to track and measure effectiveness, but some strategies include:"
+   },
+   {
+    "type": "li",
+    "text": "<strong class=\"framer-text\">Branded merch</strong>: swag that provides a sense of belonging or makes the person proud to represent it"
+   },
+   {
+    "type": "li",
+    "text": "<strong class=\"framer-text\">Seamless in-product sharing</strong>: clear and easy call-to-actions to refer or share milestones with friends or your social network"
+   },
+   {
+    "type": "li",
+    "text": "<strong class=\"framer-text\">Engaging educational content</strong>: content that makes people think \u201cthis is cool\u201d and want to share it"
+   },
+   {
+    "type": "li",
+    "text": "<strong class=\"framer-text\">Nurturing the developer community: </strong>fostering the growth of consumer app builders to innovate mainstream applications"
+   },
+   {
+    "type": "p",
+    "text": "However, bringing it back to the points I presented at the beginning, for organic referrals to work, these two things must be true:"
+   },
+   {
+    "type": "li",
+    "text": "The product is good and provides a delightful user experience, and"
+   },
+   {
+    "type": "li",
+    "text": "Users can form a strong psychological attachment to the product."
+   },
+   {
+    "type": "h3",
+    "text": "<strong class=\"framer-text\">Closing Thoughts</strong>"
+   },
+   {
+    "type": "p",
+    "text": "Incentives are powerful, which is why I keep writing about it. But platforms should not be reliant on it to keep their network running. There is a time and place for it, but it should be presented strategically with specific eligibility criteria and constraints."
+   },
+   {
+    "type": "p",
+    "text": "What\u2019s important is that long-term growth tactics should be product-focused, not marketing-focused. Given the interoperable nature of crypto networks, we have to accept that users will come and go like travellers exploring different chains. However, the goal is to always help them find their way back to the most reliable, familiar and comforting place\u2014and hopefully invite others along."
+   },
+   {
+    "type": "h3",
+    "text": "Additional Reads"
+   },
+   {
+    "type": "li",
+    "text": "<a class=\"framer-text framer-styles-preset-1uxcz6r\" href=\"https://blog.ts.finance/referral-programs-in-defi-analyzing-effectiveness-and-strategies-for-success/\" target=\"_blank\" rel=\"noreferrer nofollow\">Referral Programs in DeFi: Analyzing Effectiveness and Strategies for Success</a>. <em class=\"framer-text\">By Term Structure.</em>"
+   },
+   {
+    "type": "li",
+    "text": "<a class=\"framer-text framer-styles-preset-1uxcz6r\" href=\"https://www.decentralised.co/p/retention-in-web3\" target=\"_blank\" rel=\"noreferrer nofollow\">Retention in Web</a>. <em class=\"framer-text\">By </em><a class=\"framer-text framer-styles-preset-1uxcz6r\">Joel John</a>"
+   },
+   {
+    "type": "li",
+    "text": "<a class=\"framer-text framer-styles-preset-1uxcz6r\" href=\"https://li.substack.com/p/building-psychological-attachment\" target=\"_blank\" rel=\"noreferrer nofollow\">Building Psychological Attachment \u2014 Not Just Ownership \u2014 Into Web3</a>. <em class=\"framer-text\">By </em><a class=\"framer-text framer-styles-preset-1uxcz6r\">Li Jin</a>"
+   },
+   {
+    "type": "li",
+    "text": "<a class=\"framer-text framer-styles-preset-1uxcz6r\" href=\"https://mirror.xyz/sixdegreelab.eth/nGmyboqdizYHN53lKfKgTi97SCfbogF_2ysu8cMg6zk\" target=\"_blank\" rel=\"noreferrer nofollow\">Chapter 1: Retention - A review by SixDegree of Airdrop and Liquidity\u00a0Mining</a>. <em class=\"framer-text\">By Six Degree Lab</em>"
+   },
+   {
+    "type": "li",
+    "text": "<a class=\"framer-text framer-styles-preset-1uxcz6r\" href=\"https://mirror.xyz/sixdegreelab.eth/cwW_ixKUN0cMmDeJp67r4F2b53H0fMzS_BG22FCapCs\" target=\"_blank\" rel=\"noreferrer nofollow\">Chapter 2: CAC - A review by SixDegree of Airdrop and Liquidity\u00a0Mining</a>. <em class=\"framer-text\">By Six Degree Lab</em>"
+   }
+  ],
+  "words": 1106
+ },
+ "token-led-growth": {
+  "title": "Token-led Growth",
+  "deck": "A draft playbook for the next era of web3",
+  "date": "Apr 20, 2026",
+  "blocks": [
+   {
+    "type": "p",
+    "text": "Tokens are powerful. More than just a means to trade or store value, they are the heart of engaging users and driving growth in onchain networks."
+   },
+   {
+    "type": "p",
+    "text": "But how do we utilize it effectively in a way that promotes sustained growth and alignment, rather than short-lived novelty and speculation?"
+   },
+   {
+    "type": "p",
+    "text": "Airdrops pioneered by Uniswap and Arbitrum have shown us how <a class=\"framer-text framer-styles-preset-1uxcz6r\" href=\"https://messari.io/report/the-efficacy-of-token-incentive-models\" target=\"_blank\" rel=\"noreferrer nofollow\">effective token incentives</a> can be to stimulate platform usage, but also how challenging it is to sustain user interest and activity."
+   },
+   {
+    "type": "p",
+    "text": "While we have written playbooks for product-led growth and community-led growth, it seems like it\u2019s time to start drafting the next book in the collection - token-led growth."
+   },
+   {
+    "type": "h3",
+    "text": "<strong class=\"framer-text\">What is token-led growth?</strong>"
+   },
+   {
+    "type": "p",
+    "text": "To understand what token-led growth is, let\u2019s first breakdown the concept of what these \u201cx-led growth\u201d playbooks are - beyond their buzzy names."
+   },
+   {
+    "type": "p",
+    "text": "X-led playbooks typically revolve around these few key principles:"
+   },
+   {
+    "type": "li",
+    "text": "<strong class=\"framer-text\">X = the core value prop: </strong>The growth strategy is anchored around the central element - X. This means understanding and leveraging what makes X - whether it\u2019s product, community, token, etc. - unique and valuable to drive growth."
+   },
+   {
+    "type": "li",
+    "text": "<strong class=\"framer-text\">X results should be data-driven and measurable: </strong>Using data to inform strategies, measure success, and make iterative improvements is essential. There must be a way to track and measure the success of X with proven metrics."
+   },
+   {
+    "type": "li",
+    "text": "<strong class=\"framer-text\">X should be sustainable and scalable</strong>: The playbook should promote growth that is not only rapid but also sustainable and scalable over time. This means avoiding short-term hacks in favor of strategies that build long-term value."
+   },
+   {
+    "type": "p",
+    "text": "With this foundational understanding of playbooks, here is my definition of what token-led growth is: A sustainable growth strategy that leverages token incentives to drive practical, long-term growth and distributed ownership for decentralized projects."
+   },
+   {
+    "type": "p",
+    "text": "It is clear that the current state of the industry that promotes irrational airdrops and speculative points farmings has no place in a proper growth playbook."
+   },
+   {
+    "type": "p",
+    "text": "So if we were to start with a new, blank sheet of paper, what would a token-led growth playbook look like?"
+   },
+   {
+    "type": "h3",
+    "text": "<strong class=\"framer-text\">The token value prop</strong>"
+   },
+   {
+    "type": "p",
+    "text": "At the core of it, the troubles with our current model of token distribution roots from the industry\u2019s perception of a token\u2019s value prop. No matter how much we may deny it, speculation is still the primary value of tokens that drives consumer demand."
+   },
+   {
+    "type": "p",
+    "text": "The proof is in the pudding. Blast, the new L2 with native yield has surpassed <a class=\"framer-text framer-styles-preset-1uxcz6r\" href=\"https://dune.com/alec/blast-the-new-eth-l2\" target=\"_blank\" rel=\"noreferrer nofollow\">$300m+ in TVL</a> in a matter of days. At it\u2019s peak, Blur had reached over <a class=\"framer-text framer-styles-preset-1uxcz6r\" href=\"https://defillama.com/protocol/blur\" target=\"_blank\" rel=\"noreferrer nofollow\">$170m+ in TVL</a> and Friendtech has generated over <a class=\"framer-text framer-styles-preset-1uxcz6r\" href=\"https://www.notion.so/Token-Led-Growth-A-Draft-Playbook-13b9329694f741eeb53e86682450bf7b?pvs=21\" target=\"_blank\" rel=\"noreferrer nofollow\">$25m+ in protocol revenue fee</a>."
+   },
+   {
+    "type": "p",
+    "text": "But speculation is just one feature attribute of tokens. It offers much more than that:"
+   },
+   {
+    "type": "li",
+    "text": "<strong class=\"framer-text\">Intrinsic value and utility</strong>: The value of tokens should be derived from their utility in an ecosystem, such as enabling platform access or offering governance rights."
+   },
+   {
+    "type": "li",
+    "text": "<strong class=\"framer-text\">Customizable incentive structures</strong>: Tokens can be programmed via smart contracts to reward specific behaviors aligned with project growth goals."
+   },
+   {
+    "type": "li",
+    "text": "<strong class=\"framer-text\">Transparency and trus</strong>t: The immutable and transparent nature of onchain transactions fosters user trust and fairness."
+   },
+   {
+    "type": "li",
+    "text": "<strong class=\"framer-text\">Shared ownership</strong>: Distributing tokens to users decentralizes ownership and governance."
+   },
+   {
+    "type": "p",
+    "text": "If speculation was a chapter in the token-led growth playbook, it would probably be the first one, titled \u201cwhat not to do\u201d. The rest of the chapters should focus on these other core attributes of tokens and how to best leverage it for sustainable growth."
+   },
+   {
+    "type": "h3",
+    "text": "<strong class=\"framer-text\">A framework by chapter</strong>"
+   },
+   {
+    "type": "img",
+    "src": "https://framerusercontent.com/images/S5i2dY4aW4cWjTlDOY8bf2iCgA.png",
+    "alt": "",
+    "local": "token-led-growth-01.png"
+   },
+   {
+    "type": "p",
+    "text": "There are different stages to a project\u2019s lifecycle, each with unique challenges and priorities to solve. That\u2019s why our mental model for token distribution strategies should align to the different stages of a project:"
+   },
+   {
+    "type": "li",
+    "text": "<strong class=\"framer-text\">The early stages:</strong> The focus is on laying the groundwork for a strong and engaged community. Token distribution tactics should aim to attract initial users and supporters who believe in the project's vision. To do this, strategies should be focused on a smaller set of users and gaining feedback to build a valuable product that users love, apart from the tokens. This could look like incremental and targeted incentive campaigns."
+   },
+   {
+    "type": "li",
+    "text": "<strong class=\"framer-text\">The growth stage: </strong>Once a project finds \u201cearly-PMF\u201d, the playbook shifts towards scaling the user base and enhancing the utility of the platform. Token strategies should be designed to attract a broader audience while retaining the existing community. This could involve nurturing and rewarding early users and incrementally expanding the size and scale of incentive programs. Strategies may include a mix between retroactive and progressive token distribution strategies."
+   },
+   {
+    "type": "li",
+    "text": "<strong class=\"framer-text\">The maturity stage:</strong> At this point, the project should have achieved some form of sustainable onchain revshare model. The token distribution strategy now needs to evolve to support long-term sustainability and ongoing user retention. Implementing <a class=\"framer-text framer-styles-preset-1uxcz6r\" href=\"https://variant.fund/articles/progressive-ownership-model-application-tokens/\" target=\"_blank\" rel=\"noreferrer nofollow\">progressive ownership</a> decentralizes governance and decision-making, ensuring that only the most aligned users are rewarded with greater ownership."
+   },
+   {
+    "type": "p",
+    "text": "With this core understanding of tokens and what is required for each project stage, we can start to map the MVP tool stack to enable sustainable token-led growth strategies."
+   },
+   {
+    "type": "h3",
+    "text": "<strong class=\"framer-text\">The infra for token-led growth</strong>"
+   },
+   {
+    "type": "img",
+    "src": "https://framerusercontent.com/images/hPc7VTenzht43a5sXWkJjcfCrW0.jpeg",
+    "alt": "",
+    "local": "token-led-growth-02.jpg"
+   },
+   {
+    "type": "p",
+    "text": "Whether the token incentive strategy is an airdrop, quest, governance or staking campaign, the distribution model should incorporate the following elements:"
+   },
+   {
+    "type": "li",
+    "text": "<strong class=\"framer-text\">Onchain revenue sharing: </strong>Integral for incentivizing participation, revenue should be shared among all contributors, including the distribution platforms, distributor and developers. This ensures that all ecosystem members are motivated towards collective growth."
+   },
+   {
+    "type": "li",
+    "text": "<strong class=\"framer-text\">Attribution mechanisms</strong>: Contributors, publishers or channels should be attributed for driving the token distribution to measure the effectiveness of the campaign. For instance, perhaps you\u2019re a project that is cross-partnering with a community to distribute incentives. You want to be able to track and tag all onchain activity generated from that channel to measure effectiveness over-time."
+   },
+   {
+    "type": "li",
+    "text": "<strong class=\"framer-text\">Onchain data: </strong>All token distribution should happen onchain via smart contracts to provide easily verifiable data of transactions."
+   },
+   {
+    "type": "li",
+    "text": "<strong class=\"framer-text\">Experimentation</strong>: Continuously test and refine token distribution strategies to optimize user engagement and ecosystem health."
+   },
+   {
+    "type": "p",
+    "text": "With these elements in place, we can start to move towards token distribution strategies that are more measurable and tactful."
+   }
+  ],
+  "words": 982
+ },
+ "web3-mental-models-measuring-performance": {
+  "title": "Web3 Mental Models: Measuring Performance",
+  "deck": "The shift to performance-based web3 metrics",
+  "date": "Apr 20, 2024",
+  "blocks": [
+   {
+    "type": "p",
+    "text": "Two years ago, TVL, the number of Twitter and Discord followers and token price was the north star metric defining a project\u2019s success."
+   },
+   {
+    "type": "p",
+    "text": "Today, we could care less."
+   },
+   {
+    "type": "p",
+    "text": "While these metrics still provide some insight into a project, they definitely hold less weight and importance in a slow market, and they certainly don't capture the nuanced picture of a project's overall health and long-term growth."
+   },
+   {
+    "type": "p",
+    "text": "Instead, we\u2019re starting to see a shift towards more granular and actionable metrics that consider individual user behavior and deeper engagement. But to be able to do this, projects must have some resemblance of a sustainable revenue model, not just through token sales or market speculation. So the fact that we\u2019re beginning to think about new metrics is a good sign because it shows that the crypto market is slowly, but surely maturing."
+   },
+   {
+    "type": "p",
+    "text": "Here\u2019s my current mental model on how I view measuring web3 growth and marketing performance from a top-down vs. bottoms-up approach."
+   },
+   {
+    "type": "img",
+    "src": "https://framerusercontent.com/images/hRftja4hOcR0UTDkwucoFYqQ4.png",
+    "alt": "TOFU vs. BOFU web3 performance metrics",
+    "local": "web3-mental-models-measuring-performance-01.png"
+   },
+   {
+    "type": "h3",
+    "text": "<strong class=\"framer-text\">The top-down approach</strong>"
+   },
+   {
+    "type": "p",
+    "text": "Early crypto projects will typically take a top-down approach to measuring performance for several practical reasons. For one, it\u2019s easier. It relies on aggregate data that is publicly available (TVL, token price, market cap) or simple to track (off chain metrics). The key is that these metrics are easily visible and understood by users, which can create a network effect to continue to attract and signal investors to direct liquidity to the project."
+   },
+   {
+    "type": "p",
+    "text": "Simplicity is key in the early stages when resources are limited and the need to communicate growth to investors and the community is critical. Plus, with the anonymous nature of onchain activity, obtaining granular, user-level data and tracking is not as simple in this cookie-less world."
+   },
+   {
+    "type": "p",
+    "text": "But while a top down approach to measuring performance is practical for an early stage project, it also drives a lot of irrational behavior to quickly boost numbers:"
+   },
+   {
+    "type": "li",
+    "text": "Random airdrops to influential wallets"
+   },
+   {
+    "type": "li",
+    "text": "High, but unsustainable liquidity mining or staking programs"
+   },
+   {
+    "type": "li",
+    "text": "Artificially inflated bot trading volumes"
+   },
+   {
+    "type": "li",
+    "text": "Flashy partnerships and sponsorships"
+   },
+   {
+    "type": "li",
+    "text": "Excessive token burns"
+   },
+   {
+    "type": "li",
+    "text": "Point systems"
+   },
+   {
+    "type": "p",
+    "text": "Not all crypto projects resort to unsavory marketing tactics like those, but it shows that just focusing on top-down metrics won\u2019t paint the whole picture. It lacks the detail required to understand user behavior and engagement fully. As projects mature, there's usually a gradual shift towards more complex bottom-up analytics that can provide deeper insights into user retention, lifetime value, and other indicators that are more indicative of long-term success."
+   },
+   {
+    "type": "h3",
+    "text": "<strong class=\"framer-text\">The bottoms-up approach</strong>"
+   },
+   {
+    "type": "p",
+    "text": "On the flip side, the bottom-up approach in measuring web3 growth focuses on the specifics: what each user does and the direct costs and benefits of their interactions. It\u2019s a detailed look at individual behaviors within a project and involves metrics such as:"
+   },
+   {
+    "type": "li",
+    "text": "<strong class=\"framer-text\">User engagement:</strong> how often and in what ways users engage with a project"
+   },
+   {
+    "type": "li",
+    "text": "<strong class=\"framer-text\">Acquisition</strong> <strong class=\"framer-text\">costs</strong>: the costs to bring in an active user and the value they bring to the project"
+   },
+   {
+    "type": "li",
+    "text": "<strong class=\"framer-text\">Retention and churn:</strong> how many users stick around versus how many leave the project"
+   },
+   {
+    "type": "li",
+    "text": "<strong class=\"framer-text\">Conversion rates:</strong> how many users take a desired onchain action"
+   },
+   {
+    "type": "p",
+    "text": "But to be able to get to this point, there\u2019s more complexity to the tooling and methodology to track, segment and attribute users\u2019 onchain actions. Plus, we add in the blend of offchain activity that happens and network bridging that makes it difficult to take a bottoms-up approach."
+   },
+   {
+    "type": "p",
+    "text": "So how can we get to bottom funnel metrics?"
+   },
+   {
+    "type": "p",
+    "text": "Here\u2019s my structured way to think about how several small, iterative lifts in user behavior can power long-term growth. By looking at the data on a campaign user-level, we can incrementally gain insights on how users are interacting with the platform to optimize and drive sustainable growth."
+   },
+   {
+    "type": "img",
+    "src": "https://framerusercontent.com/images/4XM9gwiZ74ogJF43wYU47HfYPI.png",
+    "alt": "BOFU product growth wheel",
+    "local": "web3-mental-models-measuring-performance-02.png"
+   },
+   {
+    "type": "li",
+    "text": "<strong class=\"framer-text\">Collect granular data:</strong> Collect precise data by using onchain analysis tools to monitor user activity, smart contracts to log actions, and privacy-preserving identifiers to follow individual user interactions."
+   },
+   {
+    "type": "li",
+    "text": "<strong class=\"framer-text\">Analyze data:</strong> Analyze user data by segmenting them into groups, map their journey and identify leaks, and evaluate how token usage influences their behavior."
+   },
+   {
+    "type": "li",
+    "text": "<strong class=\"framer-text\">Apply insights:</strong> Clearly communicate insights to all stakeholders and incorporate community feedback to steer the project's direction based on data analysis."
+   },
+   {
+    "type": "li",
+    "text": "<strong class=\"framer-text\">Incentivize desired behaviors:</strong> Automate rewards to reinforce desired behaviors."
+   },
+   {
+    "type": "li",
+    "text": "<strong class=\"framer-text\">Continuous iteration and optimization:</strong> Continuously enhance the platform by integrating user feedback and data."
+   },
+   {
+    "type": "p",
+    "text": "For long-term growth in web3, focusing on the details of how people use platforms (the bottom-up approach) can be more helpful. It allows projects to see what keeps users coming back and helps them make better decisions for the future."
+   },
+   {
+    "type": "p",
+    "text": "That means that we need to implement more effective tactics to drive and measure bottom-funnel activity:"
+   },
+   {
+    "type": "li",
+    "text": "Continuous and conditional airdrops (<a class=\"framer-text framer-styles-preset-1uxcz6r\" href=\"https://terminal.rabbithole.gg/\" target=\"_blank\" rel=\"noreferrer nofollow\">Quest Protocol</a>)"
+   },
+   {
+    "type": "li",
+    "text": "Guided or interactive quests"
+   },
+   {
+    "type": "li",
+    "text": "Engaging web3 ads"
+   },
+   {
+    "type": "li",
+    "text": "Referral or loyalty programs"
+   },
+   {
+    "type": "li",
+    "text": "Incentivizing governance"
+   },
+   {
+    "type": "p",
+    "text": "Note that the common denominator in all of these tactics are incentives. But more on that another time."
+   },
+   {
+    "type": "h3",
+    "text": "<strong class=\"framer-text\">Conclusion</strong>"
+   },
+   {
+    "type": "p",
+    "text": "As the web3 industry evolves, so do our methods for gauging success. Instead of relying on broad, easily skewed metrics, there's a shift towards valuing each user's contribution and fostering long-term connections. Clever, performance-driven tactics will guide projects to refine their features and engage their communities more effectively to drive long-term growth."
+   },
+   {
+    "type": "p",
+    "text": "A slow market is the perfect time to rethink our mental models around measuring performance to help understand and answer the question: what makes a project sustainable? That is\u2026until the next bull cycle returns."
+   }
+  ],
+  "words": 887
+ }
+}

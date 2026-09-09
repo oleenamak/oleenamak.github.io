@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About · Oleena Mak</title>
+<meta name="description" content="Context for the index: who Oleena Mak is and where the work comes from.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..500&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<div class="frame">
+
+  <header class="site-header">
+    <a class="wordmark" href="/">Oleena Mak</a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="/writing/">Writing</a>
+      <a href="/projects/">Projects</a>
+      <a href="/about/">About</a>
+      <span class="hint" title="Press / to filter the index">/ search</span>
+    </nav>
+    <!-- Native <details> so the mobile nav works without JavaScript.
+         `display: contents` at <=720px lets the panel wrap to its own
+         full-width row inside the header. -->
+    <details class="menu">
+      <summary class="menu-toggle">menu</summary>
+      <nav class="menu-panel" aria-label="Primary, mobile">
+        <a href="/writing/">Writing</a>
+        <a href="/projects/">Projects</a>
+        <a href="/about/">About</a>
+      </nav>
+    </details>
+  </header>
+
+  <!-- About reuses the article template. No new visual treatment. -->
+  <div class="layout layout--article">
+
+    <aside class="rail">
+      <!-- Keys longer than the 52px coordinate column, so these use the
+           labelled rail-list component instead. TODO: real destinations. -->
+      <div class="block">
+        <h2 class="label">Elsewhere</h2>
+        <div class="rail-list">
+          <a href="https://www.linkedin.com/in/oleenamak/" rel="me noopener">linkedin</a>
+          <a href="https://x.com/ohmaak_" rel="me noopener">x</a>
+          <a href="https://omak.substack.com/" rel="me noopener">newsletter</a>
+        </div>
+      </div>
+    </aside>
+
+    <main class="column">
+      <article class="column">
+        <div class="masthead">
+          <h1 class="title">About</h1>
+          <p class="deck">Operator and marketer.</p>
+        </div>
+
+        <div class="prose">
+          <p>This is the index of what I've been thinking about, in public, since 2023.</p>
+        </div>
+
+        <!-- Quiet, factual, and deliberately not a homepage feature. Sitemap §8.
+             Dates and employers are data, so they are set in mono. -->
+        <section class="block block--ruled">
+          <h2 class="label">Professional history</h2>
+          <dl class="coords">
+            <dt>2025&ndash;26</dt><dd>American Operator</dd>
+            <dt>2023&ndash;24</dt><dd>Boost Protocol</dd>
+            <dt>2021&ndash;23</dt><dd>Celsius</dd>
+            <dt>2019&ndash;21</dt><dd>Kira Systems</dd>
+            <dt>2018&ndash;19</dt><dd>Finn AI</dd>
+          </dl>
+        </section>
+      </article>
+    </main>
+
+  </div>
+
+  <footer class="site-footer">
+    <a href="https://www.linkedin.com/in/oleenamak/" rel="me noopener">linkedin</a><span class="sep"> &middot; </span><a href="https://x.com/ohmaak_" rel="me noopener">x</a><span class="sep"> &middot; </span><a href="https://omak.substack.com/" rel="me noopener">newsletter</a>
+  </footer>
+
+</div>
+<script src="/assets/chrome.js"></script>
+</body>
+</html>

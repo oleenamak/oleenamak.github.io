@@ -1,0 +1,617 @@
+/* ============================================================
+   OleenaMak.ca — design system
+   Implemented from DESIGN-SYSTEM.md (concept 1b, "The Index").
+   Every value here traces to that document or to the reference
+   screenshots in /References. Do not add tokens ad hoc.
+   ============================================================ */
+
+/* --- Tokens ------------------------------------------------ */
+
+:root {
+  color-scheme: light;              /* no dark mode: DESIGN-SYSTEM §4 defines one palette */
+
+  /* Colour — §4. Six values plus rules. No accent. */
+  --paper:      #f5f4f1;
+  --ink:        #17181a;
+  --ink-body:   #1f1f22;
+  --ink-2:      #3a3a3d;
+  --muted:      #5a5a56;
+  --muted-2:    #6f6e69;
+  --meta:       #8f8e88;
+  --faint:      #a3a29c;
+  --rule-hard:  #17181a;
+  --rule-soft:  #dcdad4;
+  --rule-hair:  #e4e2dc;
+  --row-hover:  #ecebe6;
+  --plate:      #e5e3dc;
+  --quote-rule: #c4c3bc;            /* §10, pull-quote border; not in the §4 table */
+
+  /* Type — §1. Two families, no third. */
+  --serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --mono:  "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* Spacing — §3. 6px base; only this set is permitted. */
+  --s6: 6px;   --s10: 10px; --s12: 12px; --s18: 18px; --s20: 20px;
+  --s22: 22px; --s26: 26px; --s30: 30px; --s34: 34px; --s40: 40px; --s44: 44px;
+
+  /* Grid — §2 */
+  --rail: 190px;
+  --gutter: var(--s40);
+}
+
+/* --- Reset ------------------------------------------------- */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink-body);
+  font-family: var(--serif);
+  font-size: 18px;
+  line-height: 1.75;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, p, dl, dd, figure, ol, ul { margin: 0; padding: 0; }
+ol, ul { list-style: none; }
+
+/* Links — §6. Inherit colour, no underline at rest, underline on hover.
+   That is the entire link vocabulary. */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+a:focus-visible {
+  outline: 1px solid var(--ink);
+  outline-offset: 2px;
+}
+
+/* --- Frame — §2, and the 1px border confirmed in the reference --- */
+
+.frame {
+  max-width: 982px;                 /* 1px border + 40 gutter + 900 content + 40 gutter + 1px border */
+  margin: 0 auto;
+  min-height: 100vh;
+  border: 1px solid var(--rule-soft);
+  padding: var(--s34) var(--s40) var(--s44);
+}
+
+/* At or below the design width the frame fills the viewport and its 1px rule
+   sits at the screen edge — the reference mockups are cropped to exactly this
+   width, which is the only place that border was ever seen. Wider than that,
+   the same rule draws a box around a centred column: the floating container
+   BRAND.md §15 rejects. So above the design width it goes, and the content
+   keeps its 900px measure as an ordinary centred column on paper. */
+@media (min-width: 983px) {
+  .frame {
+    max-width: 980px;               /* no border to account for; content stays 900 */
+    border: 0;
+  }
+}
+
+/* --- Header / nav — §7 ------------------------------------- */
+
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s20);
+  padding-bottom: var(--s12);
+  border-bottom: 1px solid var(--rule-hard);   /* structural rule */
+}
+
+.wordmark {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.site-nav {
+  display: flex;
+  gap: var(--s20);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* "/ search" is a hint for the `/` shortcut (§12), not a destination. */
+.site-nav .hint {
+  color: var(--faint);
+  cursor: default;
+}
+
+.menu { display: none; }
+
+.menu-toggle {
+  font: 400 10.5px/1 var(--mono);
+  letter-spacing: .10em;
+  color: var(--muted);
+  cursor: pointer;
+  list-style: none;
+}
+.menu-toggle::-webkit-details-marker { display: none; }
+.menu-toggle:hover { text-decoration: underline; text-underline-offset: 3px; }
+.menu[open] .menu-toggle::after { content: " \2014"; }
+
+.menu-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s10);
+  padding: var(--s12) 0;
+  border-bottom: 1px solid var(--rule-soft);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* --- Master grid — §2. Identical on every template. --------- */
+
+.layout {
+  display: grid;
+  grid-template-columns: var(--rail) 1fr;
+  gap: var(--gutter);
+  padding-top: var(--s30);
+}
+.layout--article { padding-top: var(--s34); }   /* §3: 34px on an article */
+
+.rail    { display: flex; flex-direction: column; gap: var(--s30); }
+.column  { display: flex; flex-direction: column; gap: var(--s26); min-width: 0; }
+
+/* --- Section label — §1. Uppercase mono = a heading. -------- */
+
+.label {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--meta);
+}
+
+/* A labelled block: label, then 10px, then content. §3 */
+.block { display: flex; flex-direction: column; gap: var(--s10); }
+
+/* A block opened by a sectional rule. §5 */
+.block--ruled {
+  border-top: 1px solid var(--rule-soft);
+  padding-top: var(--s18);
+}
+
+/* --- Rail: orientation prose — §1 -------------------------- */
+
+.orientation {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-body);
+}
+
+/* --- Rail: facets — §8 ------------------------------------- */
+
+.facets { display: flex; flex-direction: column; gap: var(--s22); }
+
+.facet-list { display: flex; flex-direction: column; }
+
+.facet {
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.9;
+  color: var(--ink-2);
+  align-self: flex-start;
+  cursor: pointer;
+}
+
+/* Active facet is inverted, never bolded. §6 */
+.facet[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0 5px;
+}
+
+/* Year is one wrapped line with `·` separators. §8 */
+.facet-list--inline {
+  display: block;
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.9;
+  color: var(--ink-2);
+}
+.facet-list--inline .sep { color: var(--ink-2); }
+
+button.facet {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-family: inherit;
+  text-align: left;
+}
+button.facet:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* --- Rail: coordinates — §2, §10 --------------------------- */
+
+.coords {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: var(--s6) var(--s10);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  line-height: 1.5;
+}
+.coords dt { color: var(--meta); }
+.coords dd { color: var(--ink-2); }
+
+/* An aside list in the rail — reference shows a ruled block, not a left border. */
+.rail-list {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  line-height: 1.9;
+  color: var(--ink-2);
+}
+.rail-list a { align-self: flex-start; }
+
+/* --- Query header — §8 ------------------------------------- */
+
+.query-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s20);
+  padding-bottom: var(--s6);
+  border-bottom: 1px solid var(--rule-hard);   /* structural: opens the list */
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--meta);
+}
+.query-header .query { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.query-header .count { flex: none; letter-spacing: normal; text-transform: none; }
+
+/* --- The list — §8. One row pattern, used everywhere. ------- */
+
+.entries { display: block; }
+
+.entry {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 150px;
+  gap: var(--s6) 16px;
+  padding: var(--s12) 0;
+  border-bottom: 1px solid var(--rule-hair);   /* enumerative rule */
+  color: inherit;
+}
+.entry:hover { text-decoration: none; }
+
+/* Full-bleed row tint. No transition, no lift, no border change. §12 */
+.entry::before {
+  content: "";
+  position: absolute;
+  inset: 0 -10px;
+  background: var(--row-hover);
+  opacity: 0;
+  pointer-events: none;
+}
+.entry:hover::before,
+.entry.is-focused::before { opacity: 1; }
+
+/* Keyboard focus adds a 1px ink left edge on top of the tint. §12 */
+.entry::after {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0; left: -10px;
+  width: 1px;
+  background: var(--ink);
+  opacity: 0;
+}
+.entry.is-focused::after { opacity: 1; }
+.entry:focus { outline: none; }
+.entry:focus-visible::before { opacity: 1; }
+.entry:focus-visible::after  { opacity: 1; }
+
+.entry > * { position: relative; }
+
+.entry-title {
+  grid-column: 1;
+  grid-row: 1;
+  font-size: 19px;
+  line-height: 1.3;
+  font-weight: 400;
+}
+.entry:hover .entry-title { text-decoration: underline; text-underline-offset: 3px; }
+
+.entry-meta {
+  grid-column: 2;
+  grid-row: 1;
+  text-align: right;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  line-height: 1.9;
+  text-transform: uppercase;
+  color: var(--meta);
+}
+
+.entry-subj {
+  grid-column: 1;
+  grid-row: 2;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  line-height: 1.4;
+  color: var(--muted-2);
+}
+/* Third-order metadata: ctx:, series:, status. §8 */
+.entry-subj .third { color: var(--faint); }
+
+.entry-line { display: none; }   /* mobile-only combined metadata line */
+
+.empty {
+  padding: var(--s12) 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--meta);
+}
+
+/* --- Pagination — §8 --------------------------------------- */
+
+.pagination {
+  padding-top: var(--s12);
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-2);
+}
+.pagination[hidden] { display: none; }
+
+
+/* --- Article / project prose — §10 ------------------------- */
+
+.title {
+  font-size: 32px;
+  line-height: 1.15;
+  font-weight: 400;
+  letter-spacing: -.01em;
+  color: var(--ink-body);
+}
+.title--project { font-size: 30px; }
+
+.deck {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+.prose {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s20);
+  max-width: 60ch;
+  font-size: 18px;
+  line-height: 1.75;
+  color: var(--ink-body);
+}
+.prose--project { max-width: 62ch; }
+.prose em { font-style: italic; }        /* emphasis is italic only; no bold in prose */
+
+/* --- Derived treatments ------------------------------------
+   The reference article is a short field note: plain paragraphs, one
+   pull quote, nothing else. The real essays carry subheads, lists and
+   real images, which DESIGN-SYSTEM §10 never had to define. All three
+   are built from the existing scale and components rather than new
+   ideas — but they ARE derivations, not specified rules. */
+
+/* Subhead: the system's own heading device — uppercase mono. §1 makes
+   this load-bearing ("uppercase = a heading, lowercase = data you can
+   click"), so an essay section break uses the same .label component as
+   PLATES and WHERE THIS SITS, with space above it instead of weight. */
+.subhead {
+  padding-top: var(--s18);
+}
+
+/* List: body prose, indented. No bullet glyph — the system has no
+   marker vocabulary and `·` is reserved as a separator (§1). */
+.prose-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s10);
+  padding-left: var(--s20);
+}
+
+.pullquote {
+  border-left: 2px solid var(--quote-rule);
+  padding-left: var(--s20);
+  font-size: 18px;
+  line-height: 1.7;
+  font-style: italic;
+  color: var(--ink-2);
+}
+
+.masthead { display: flex; flex-direction: column; gap: var(--s10); }
+
+/* --- Plates — §9 ------------------------------------------- */
+
+.plates { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.plates--full { grid-template-columns: 1fr; }
+
+.plate-figure { display: flex; flex-direction: column; gap: var(--s6); }
+
+.plate {
+  height: 130px;
+  border: 1px solid var(--rule-soft);
+  background: repeating-linear-gradient(45deg, var(--plate) 0 6px, transparent 6px 12px);
+}
+
+/* A real scan keeps its natural aspect ratio (§9); the 1px rule and the
+   caption are unchanged. The stripe fill stays as the placeholder for
+   plates that have no image yet. */
+.plates img.plate,
+.plates--full img.plate {
+  height: auto;                     /* outranks the fixed placeholder heights */
+  width: 100%;
+  display: block;
+  background: none;
+}
+.plates--full .plate { height: 210px; }
+
+.plate-caption {
+  font-family: var(--mono);
+  font-size: 10px;
+  line-height: 1.5;
+  color: var(--muted-2);
+}
+
+/* --- Where this sits — §10. Every article ends in the index. --- */
+
+.coordinates-out {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s6) 24px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+/* Cross-references: serif links on one line, separated by ` · `. §6 */
+.crossrefs { font-size: 17px; line-height: 1.6; }
+.crossrefs .sep { color: var(--muted-2); }
+
+/* --- Footer ------------------------------------------------
+   Not drawn in any reference. Built only from existing vocabulary
+   (sectional rule + mono row) because BRAND §1 requires contact,
+   elsewhere and newsletter to be findable, and §10 places
+   subscription in the footer only. */
+
+.site-footer {
+  margin-top: var(--s44);
+  border-top: 1px solid var(--rule-soft);
+  padding-top: var(--s18);
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--muted-2);
+}
+.site-footer .sep { color: var(--faint); }
+
+/* --- Mobile facet strip — §11 ------------------------------ */
+
+.facet-strip { display: none; }
+
+/* ============================================================
+   Mobile — §11. Breakpoint 720px. The rail converts, it never
+   simply disappears.
+   ============================================================ */
+
+@media (max-width: 720px) {
+
+  .frame { padding: var(--s22); }
+
+  .wordmark { font-size: 10.5px; }
+  .site-nav { display: none; }
+  .menu { display: block; }
+
+  /* The panel drops full-width directly under the header's hard rule.
+     Same mono list, same soft rule, paper ground — no new treatment. */
+  .site-header { position: relative; }
+  .menu-panel {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    background: var(--paper);
+  }
+  .menu:not([open]) .menu-panel { display: none; }
+
+  /* Kind facets become one horizontally-scrolling mono line pinned
+     under the header. Subject and year move behind the index screen. */
+  .facet-strip {
+    display: flex;
+    gap: var(--s12);
+    align-items: baseline;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: var(--paper);
+    padding: var(--s10) 0;
+    border-bottom: 1px solid var(--rule-soft);
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+  .facet-strip::-webkit-scrollbar { display: none; }
+  .facet-strip .facet { flex: none; font-size: 12px; line-height: 1.6; }
+  .facet-strip .truncation { flex: none; color: var(--faint); font-family: var(--mono); font-size: 12px; }
+
+  .layout {
+    display: block;
+    padding-top: var(--s22);
+  }
+  .layout--article { padding-top: var(--s22); }
+
+  .rail { gap: var(--s22); }
+  .column { gap: var(--s22); margin-top: var(--s22); }
+
+  /* Desktop facet groups are replaced by the strip. */
+  .rail .facets { display: none; }
+
+  /* No query header on mobile: the strip already carries the live query and
+     its count, and §11 rules the first row off from the intro with its own
+     border-top — which only works if nothing sits between them. */
+  .query-header { display: none; }
+
+  /* Article: the coordinate rail sits above the title, full width, 11px. */
+  .coords { font-size: 11px; grid-template-columns: 52px 1fr; }
+
+  /* List rows go two-line, ruled with border-top so the first row is
+     ruled off from the intro. Tap target >= 48px. */
+  .entry {
+    display: block;
+    min-height: 48px;
+    padding: 13px 0;
+    border-bottom: 0;
+    border-top: 1px solid var(--rule-hair);
+  }
+  .entry-title { font-size: 18px; }
+  .entry-meta, .entry-subj { display: none; }
+  .entry-line {
+    display: block;
+    margin-top: var(--s6);
+    font-family: var(--mono);
+    font-size: 10px;
+    line-height: 1.5;
+    color: var(--meta);
+  }
+  .entry-line .subjects { color: var(--muted-2); }
+
+  .prose {
+    max-width: none;
+    font-size: 17px;
+    line-height: 1.7;
+  }
+  .title { font-size: 28px; }
+  .title--project { font-size: 27px; }
+
+  .plates { grid-template-columns: 1fr; }
+  .plates .plate { height: 190px; }
+
+  .coordinates-out { grid-template-columns: 1fr; }
+  .coordinates-out { gap: var(--s6); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}

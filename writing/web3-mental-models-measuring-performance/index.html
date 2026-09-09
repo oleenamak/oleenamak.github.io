@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Web3 Mental Models: Measuring Performance &middot; Oleena Mak</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..500&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<div class="frame">
+
+  <header class="site-header">
+    <a class="wordmark" href="/">Oleena Mak</a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="/writing/">Writing</a>
+      <a href="/projects/">Projects</a>
+      <a href="/about/">About</a>
+      <span class="hint" title="Press / to filter the index">/ search</span>
+    </nav>
+    <!-- Native <details> so the mobile nav works without JavaScript.
+         `display: contents` at <=720px lets the panel wrap to its own
+         full-width row inside the header. -->
+    <details class="menu">
+      <summary class="menu-toggle">menu</summary>
+      <nav class="menu-panel" aria-label="Primary, mobile">
+        <a href="/writing/">Writing</a>
+        <a href="/projects/">Projects</a>
+        <a href="/about/">About</a>
+      </nav>
+    </details>
+  </header>
+
+  <div class="layout layout--article">
+
+    <aside class="rail">
+      <dl class="coords">
+        <dt>kind</dt><dd><a href="/?kind=essay">essay</a></dd>
+        <dt>date</dt><dd>2024-04-20</dd>
+        <dt>subj</dt><dd><a href="/?subj=crypto">crypto</a>, <a href="/?subj=growth">growth</a>, <a href="/?subj=systems">systems</a></dd>
+      </dl>
+    </aside>
+
+    <main class="column">
+      <article class="column">
+        <!-- auto:body -->
+        <div class="masthead">
+          <h1 class="title">Web3 Mental Models: Measuring Performance</h1>
+          <p class="deck">The shift to performance-based web3 metrics</p>
+        </div>
+
+        <div class="prose">
+          <p>Two years ago, TVL, the number of Twitter and Discord followers and token price was the north star metric defining a project’s success.</p>
+          <p>Today, we could care less.</p>
+          <p>While these metrics still provide some insight into a project, they definitely hold less weight and importance in a slow market, and they certainly don't capture the nuanced picture of a project's overall health and long-term growth.</p>
+          <p>Instead, we’re starting to see a shift towards more granular and actionable metrics that consider individual user behavior and deeper engagement. But to be able to do this, projects must have some resemblance of a sustainable revenue model, not just through token sales or market speculation. So the fact that we’re beginning to think about new metrics is a good sign because it shows that the crypto market is slowly, but surely maturing.</p>
+          <p>Here’s my current mental model on how I view measuring web3 growth and marketing performance from a top-down vs. bottoms-up approach.</p>
+          <figure class="plates plates--full">
+            <div class="plate-figure">
+              <img class="plate" src="/assets/img/web3-mental-models-measuring-performance-01.png" alt="TOFU vs. BOFU web3 performance metrics" loading="lazy">
+              <figcaption class="plate-caption">01 &middot; TOFU vs. BOFU web3 performance metrics</figcaption>
+            </div>
+          </figure>
+          <h2 class="label subhead"><em>The top-down approach</em></h2>
+          <p>Early crypto projects will typically take a top-down approach to measuring performance for several practical reasons. For one, it’s easier. It relies on aggregate data that is publicly available (TVL, token price, market cap) or simple to track (off chain metrics). The key is that these metrics are easily visible and understood by users, which can create a network effect to continue to attract and signal investors to direct liquidity to the project.</p>
+          <p>Simplicity is key in the early stages when resources are limited and the need to communicate growth to investors and the community is critical. Plus, with the anonymous nature of onchain activity, obtaining granular, user-level data and tracking is not as simple in this cookie-less world.</p>
+          <p>But while a top down approach to measuring performance is practical for an early stage project, it also drives a lot of irrational behavior to quickly boost numbers:</p>
+          <ul class="prose-list">
+            <li>Random airdrops to influential wallets</li>
+            <li>High, but unsustainable liquidity mining or staking programs</li>
+            <li>Artificially inflated bot trading volumes</li>
+            <li>Flashy partnerships and sponsorships</li>
+            <li>Excessive token burns</li>
+            <li>Point systems</li>
+          </ul>
+          <p>Not all crypto projects resort to unsavory marketing tactics like those, but it shows that just focusing on top-down metrics won’t paint the whole picture. It lacks the detail required to understand user behavior and engagement fully. As projects mature, there's usually a gradual shift towards more complex bottom-up analytics that can provide deeper insights into user retention, lifetime value, and other indicators that are more indicative of long-term success.</p>
+          <h2 class="label subhead"><em>The bottoms-up approach</em></h2>
+          <p>On the flip side, the bottom-up approach in measuring web3 growth focuses on the specifics: what each user does and the direct costs and benefits of their interactions. It’s a detailed look at individual behaviors within a project and involves metrics such as:</p>
+          <ul class="prose-list">
+            <li><em>User engagement:</em> how often and in what ways users engage with a project</li>
+            <li><em>Acquisition</em> <em>costs</em>: the costs to bring in an active user and the value they bring to the project</li>
+            <li><em>Retention and churn:</em> how many users stick around versus how many leave the project</li>
+            <li><em>Conversion rates:</em> how many users take a desired onchain action</li>
+          </ul>
+          <p>But to be able to get to this point, there’s more complexity to the tooling and methodology to track, segment and attribute users’ onchain actions. Plus, we add in the blend of offchain activity that happens and network bridging that makes it difficult to take a bottoms-up approach.</p>
+          <p>So how can we get to bottom funnel metrics?</p>
+          <p>Here’s my structured way to think about how several small, iterative lifts in user behavior can power long-term growth. By looking at the data on a campaign user-level, we can incrementally gain insights on how users are interacting with the platform to optimize and drive sustainable growth.</p>
+          <figure class="plates plates--full">
+            <div class="plate-figure">
+              <img class="plate" src="/assets/img/web3-mental-models-measuring-performance-02.png" alt="BOFU product growth wheel" loading="lazy">
+              <figcaption class="plate-caption">02 &middot; BOFU product growth wheel</figcaption>
+            </div>
+          </figure>
+          <ul class="prose-list">
+            <li><em>Collect granular data:</em> Collect precise data by using onchain analysis tools to monitor user activity, smart contracts to log actions, and privacy-preserving identifiers to follow individual user interactions.</li>
+            <li><em>Analyze data:</em> Analyze user data by segmenting them into groups, map their journey and identify leaks, and evaluate how token usage influences their behavior.</li>
+            <li><em>Apply insights:</em> Clearly communicate insights to all stakeholders and incorporate community feedback to steer the project's direction based on data analysis.</li>
+            <li><em>Incentivize desired behaviors:</em> Automate rewards to reinforce desired behaviors.</li>
+            <li><em>Continuous iteration and optimization:</em> Continuously enhance the platform by integrating user feedback and data.</li>
+          </ul>
+          <p>For long-term growth in web3, focusing on the details of how people use platforms (the bottom-up approach) can be more helpful. It allows projects to see what keeps users coming back and helps them make better decisions for the future.</p>
+          <p>That means that we need to implement more effective tactics to drive and measure bottom-funnel activity:</p>
+          <ul class="prose-list">
+            <li>Continuous and conditional airdrops (<a href="https://terminal.rabbithole.gg/" rel="noopener">Quest Protocol</a>)</li>
+            <li>Guided or interactive quests</li>
+            <li>Engaging web3 ads</li>
+            <li>Referral or loyalty programs</li>
+            <li>Incentivizing governance</li>
+          </ul>
+          <p>Note that the common denominator in all of these tactics are incentives. But more on that another time.</p>
+          <h2 class="label subhead"><em>Conclusion</em></h2>
+          <p>As the web3 industry evolves, so do our methods for gauging success. Instead of relying on broad, easily skewed metrics, there's a shift towards valuing each user's contribution and fostering long-term connections. Clever, performance-driven tactics will guide projects to refine their features and engage their communities more effectively to drive long-term growth.</p>
+          <p>A slow market is the perfect time to rethink our mental models around measuring performance to help understand and answer the question: what makes a project sustainable? That is…until the next bull cycle returns.</p>
+        </div>
+        <!-- /auto:body -->
+
+        <!-- auto:where -->
+        <footer class="block block--ruled">
+          <h2 class="label">Where this sits</h2>
+          <div class="coordinates-out">
+            <a href="/?subj=crypto">2 other entries under crypto &rarr;</a>
+            <a href="/writing/referrals-retention-in-crypto/">previous essay &larr;</a>
+            <a href="/writing/on-fragmented-communication/">next essay &rarr;</a>
+          </div>
+        </footer>
+        <!-- /auto:where -->
+      </article>
+    </main>
+
+  </div>
+
+  <footer class="site-footer">
+    <a href="https://www.linkedin.com/in/oleenamak/" rel="me noopener">linkedin</a><span class="sep"> &middot; </span><a href="https://x.com/ohmaak_" rel="me noopener">x</a><span class="sep"> &middot; </span><a href="https://omak.substack.com/" rel="me noopener">newsletter</a>
+  </footer>
+
+</div>
+<script src="/assets/chrome.js"></script>
+</body>
+</html>

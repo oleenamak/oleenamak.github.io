@@ -20,11 +20,14 @@ BASE = "https://oleenamak.github.io"
 
 # Pages that are not entries. (path, title, description, og image stem)
 STATIC = [
-    ("index.html",          "Oleena Mak", "The index of what Oleena Mak has been thinking about, in public, since 2023.", "default"),
-    ("writing/index.html",  "Writing",    "Essays and playbooks by Oleena Mak.", "default"),
-    ("projects/index.html", "Projects",   "Things Oleena Mak is making and building.", "default"),
-    ("about/index.html",    "About",      "Context for the index: who Oleena Mak is and where the work comes from.", "default"),
-    ("404.html",            "Not found",  "Nothing at this address.", "default"),
+    ("index.html",          "Oleena Mak", "The index of what Oleena Mak has been thinking about, in public, since 2023.", "default", False),
+    ("writing/index.html",  "Writing",    "Essays and playbooks by Oleena Mak.", "default", False),
+    # Hidden from nav and sitemap until there is a project to show
+    # (Sitemap.md §18: "avoid creating empty rooms in advance"). The page
+    # still resolves; set hidden=False and restore the nav link to bring back.
+    ("projects/index.html", "Projects",   "Things Oleena Mak is making and building.", "default", True),
+    ("about/index.html",    "About",      "Context for the index: who Oleena Mak is and where the work comes from.", "default", False),
+    ("404.html",            "Not found",  "Nothing at this address.", "default", False),
 ]
 CONTENT = json.loads((ROOT / "content.json").read_text()) if (ROOT / "content.json").exists() else {}
 
@@ -37,7 +40,6 @@ NAV = '''  <header class="site-header">
     <a class="wordmark" href="/">Oleena Mak</a>
     <nav class="site-nav" aria-label="Primary">
       <a href="/writing/">Writing</a>
-      <a href="/projects/">Projects</a>
       <a href="/about/">About</a>
       <span class="hint" title="Press / to filter the index">/ search</span>
     </nav>
@@ -48,7 +50,6 @@ NAV = '''  <header class="site-header">
       <summary class="menu-toggle">menu</summary>
       <nav class="menu-panel" aria-label="Primary, mobile">
         <a href="/writing/">Writing</a>
-        <a href="/projects/">Projects</a>
         <a href="/about/">About</a>
       </nav>
     </details>
@@ -291,19 +292,20 @@ def url_for(rel):
     return BASE + "/" + rel.lstrip("/")
 
 
-def render_head(title, desc, url, og_stem, date=None):
+def render_head(title, desc, url, og_stem, date=None, hidden=False):
     """Every page's <head> is generated, so titles, canonicals and cards can
     never drift apart. Icons and fonts are identical everywhere."""
     full = title if title == "Oleena Mak" else f"{title} \u00b7 Oleena Mak"
     og = f"{BASE}/assets/og/{og_stem}.png"
     ogtype = "article" if date else "website"
     pubtime = f'\n<meta property="article:published_time" content="{date}">' if date else ""
+    norobots = '\n<meta name="robots" content="noindex">' if hidden else ""
     return f"""<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{html.escape(full)}</title>
 <meta name="description" content="{html.escape(desc)}">
 <link rel="canonical" href="{url}">
-<meta name="theme-color" content="#f5f4f1">
+<meta name="theme-color" content="#f5f4f1">{norobots}
 
 <meta property="og:type" content="{ogtype}">{pubtime}
 <meta property="og:site_name" content="Oleena Mak">
@@ -333,17 +335,17 @@ def write_heads():
     """Replace the whole <head> of every page. Head content is fully derived
     from entries.js and STATIC, so there is nothing bespoke to preserve."""
     done = []
-    targets = [(pathlib.Path(f), t, d, o, None) for f, t, d, o in STATIC]
+    targets = [(pathlib.Path(f), t, d, o, None, h) for f, t, d, o, h in STATIC]
     for e in ENTRIES:
         stem = e["slug"].strip("/").split("/")[-1]
         targets.append((page_path(e).relative_to(ROOT), e["title"],
-                        e.get("deck") or f'{e["kind"]} by Oleena Mak.', stem, e["date"]))
-    for rel, title, desc, og, date in targets:
+                        e.get("deck") or f'{e["kind"]} by Oleena Mak.', stem, e["date"], False))
+    for rel, title, desc, og, date, hidden in targets:
         f = ROOT / rel
         if not f.exists():
             continue
         s = f.read_text()
-        head = render_head(title, desc, url_for(rel), og, date)
+        head = render_head(title, desc, url_for(rel), og, date, hidden)
         new = re.sub(r"<head>.*?</head>", "<head>\n" + head.replace("\\", "\\\\") + "\n</head>",
                      s, count=1, flags=re.S)
         if new != s:
@@ -352,7 +354,8 @@ def write_heads():
 
 
 def write_sitemap_and_robots():
-    urls = [(url_for(f), None) for f, *_ in STATIC if f != "404.html"]
+    urls = [(url_for(f), None) for f, *rest in STATIC
+            if f != "404.html" and not rest[-1]]
     for e in ENTRIES:
         urls.append((url_for(page_path(e).relative_to(ROOT)), e["date"]))
     body = "\n".join(

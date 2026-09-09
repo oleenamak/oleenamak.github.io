@@ -5,7 +5,8 @@ Implements concept **1b, "The Index"** from `../DESIGN-SYSTEM.md`, against
 
 ## Live
 
-<https://oleenamak.github.io> — GitHub Pages, from `main`, repo root.
+<https://oleenamak.ca> — GitHub Pages, from `main`, repo root.
+`CNAME` claims the domain; `www` redirects to the apex.
 `.nojekyll` disables Jekyll processing.
 
 Paths are absolute (`/assets/…`), which is why the repo is named
@@ -39,13 +40,12 @@ python3 build-pages.py && git add -A && git commit -m "..." && git push
 
 Pages rebuilds automatically, roughly a minute.
 
-### To point oleenamak.ca here
+### Domain
 
-Not done yet — it would take down the existing Framer site at that address.
-The domain is registered at Namecheap with DNS there; `www` currently CNAMEs to
-`sites.framer.app`. When ready: add a `CNAME` file containing `oleenamak.ca`,
-set the apex A records to GitHub's four Pages IPs, and CNAME `www` to
-`oleenamak.github.io`.
+Switched from Framer 2026-09-09. Namecheap holds DNS: apex A records point at
+GitHub's four Pages IPs, `www` CNAMEs to `oleenamak.github.io`.
+
+The old Framer site's `/bookshelf` is not migrated and no longer resolves.
 
 ## Run locally
 

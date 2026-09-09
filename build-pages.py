@@ -16,7 +16,7 @@ ROOT = pathlib.Path(__file__).parent
 
 # The site's own origin. Everything canonical/OpenGraph is absolute, so when
 # oleenamak.ca is pointed here, change this line and re-run.
-BASE = "https://oleenamak.github.io"
+BASE = "https://oleenamak.ca"
 
 # Pages that are not entries. (path, title, description, og image stem)
 STATIC = [

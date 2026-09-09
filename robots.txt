@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /assets/og/
 
-Sitemap: https://oleenamak.github.io/sitemap.xml
+Sitemap: https://oleenamak.ca/sitemap.xml

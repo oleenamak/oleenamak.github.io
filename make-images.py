@@ -13,7 +13,8 @@ ROOT = pathlib.Path(__file__).parent
 CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 FONTS = ('<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
          '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?'
-         'family=JetBrains+Mono:wght@400&family=Newsreader:opsz,wght@6..72,400&display=swap">')
+         'family=JetBrains+Mono:wght@400&display=swap">')
+SANS = "system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif"
 
 ENTRIES = json.loads(subprocess.run(
     ["node", "-e", "global.window={};require('./assets/entries.js');"
@@ -43,13 +44,13 @@ def og_card(title, deck, meta):
 <style>
  html,body{{margin:0;padding:0}}
  body{{width:1200px;height:630px;background:#f5f4f1;color:#1f1f22;
-   font-family:Newsreader,Georgia,serif;box-sizing:border-box;padding:64px 72px;
+   font-family:{SANS};box-sizing:border-box;padding:64px 72px;
    display:flex;flex-direction:column}}
  .wordmark{{font-family:'JetBrains Mono',monospace;font-size:20px;letter-spacing:.14em;
    text-transform:uppercase;color:#17181a}}
  .rule{{border-bottom:2px solid #17181a;margin-top:22px}}
  .mid{{flex:1;display:flex;flex-direction:column;justify-content:center;gap:24px}}
- h1{{font-size:72px;line-height:1.1;font-weight:400;margin:0;letter-spacing:-.01em;
+ h1{{font-size:66px;line-height:1.12;font-weight:500;margin:0;letter-spacing:-.01em;
    max-width:19ch}}
  .deck{{font-size:30px;line-height:1.5;color:#3a3a3d;margin:0;max-width:34ch}}
  .meta{{font-family:'JetBrains Mono',monospace;font-size:18px;color:#8f8e88;

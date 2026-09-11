@@ -147,7 +147,7 @@ def render_body(c, key):
             out.append(f"          <p>{inline(b['text'])}</p>")
             i += 1
         elif b["type"] == "h3":
-            out.append(f"          <h2 class=\"label subhead\">{inline(b['text'])}</h2>")
+            out.append(f"          <h2 class=\"subhead\">{inline(b['text'])}</h2>")
             i += 1
         elif b["type"] == "li":
             items = []
@@ -204,7 +204,7 @@ def page(e):
 <title>{title} &middot; Oleena Mak</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
@@ -327,7 +327,7 @@ def render_head(title, desc, url, og_stem, date=None, hidden=False):
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="/assets/site.css">"""
 
 

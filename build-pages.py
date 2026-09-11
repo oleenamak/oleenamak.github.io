@@ -321,14 +321,31 @@ def render_head(title, desc, url, og_stem, date=None, hidden=False):
 <meta name="twitter:description" content="{html.escape(desc)}">
 <meta name="twitter:image" content="{og}">
 
-<link rel="icon" href="/favicon.ico" sizes="32x32">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="16x16 32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="/assets/site.css">"""
+
+
+def write_scoped_indexes():
+    """/writing/ and /projects/ are the homepage template with a different
+    default query. Generated, never hand-maintained — they were previously
+    standalone files and got destroyed by a careless delete."""
+    home = (ROOT / "index.html").read_text()
+    made = []
+    for path, scope in (("writing/index.html", "writing"),
+                        ("projects/index.html", "projects")):
+        s = home.replace('data-scope="all"', f'data-scope="{scope}"')
+        # no orientation copy exists for these pages; omit rather than invent
+        s = re.sub(r'\n *<p class="orientation">.*?</p>', '', s, flags=re.S)
+        f = ROOT / path
+        f.parent.mkdir(parents=True, exist_ok=True)
+        if not f.exists() or f.read_text() != s:
+            f.write_text(s); made.append(path)
+    return made
 
 
 def write_heads():
@@ -340,16 +357,20 @@ def write_heads():
         stem = e["slug"].strip("/").split("/")[-1]
         targets.append((page_path(e).relative_to(ROOT), e["title"],
                         e.get("deck") or f'{e["kind"]} by Oleena Mak.', stem, e["date"], False))
+    missing = []
     for rel, title, desc, og, date, hidden in targets:
         f = ROOT / rel
         if not f.exists():
-            continue
+            missing.append(str(rel)); continue
         s = f.read_text()
         head = render_head(title, desc, url_for(rel), og, date, hidden)
         new = re.sub(r"<head>.*?</head>", "<head>\n" + head.replace("\\", "\\\\") + "\n</head>",
                      s, count=1, flags=re.S)
         if new != s:
             f.write_text(new); done.append(str(rel))
+    if missing:
+        raise SystemExit("MISSING PAGES (every entry in STATIC must exist): "
+                         + ", ".join(missing))
     return done
 
 
@@ -389,6 +410,9 @@ for s_ in made:
 for s_, ch in refreshed:
     print("  refreshed", s_, "(" + ", ".join(ch) + ")")
 
+scoped = write_scoped_indexes()
+for s_ in scoped:
+    print("  rebuilt  ", s_)
 heads = write_heads()
 n_urls = write_sitemap_and_robots()
 print(f"heads written: {len(heads)}   sitemap urls: {n_urls}   robots.txt written")

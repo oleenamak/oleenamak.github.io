@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Renders the favicon and per-page OpenGraph cards with headless Chrome, so they
+Renders the per-page OpenGraph cards with headless Chrome, so they
 use the real Newsreader / JetBrains Mono and the real palette. Nothing here is
 a new visual treatment: paper ground, ink wordmark, hard rule, serif title,
 mono metadata — the same parts as a page header.
@@ -62,19 +62,7 @@ def og_card(title, deck, meta):
 <div class="meta">{html.escape(meta)}</div>"""
 
 
-FAVICON = """<!doctype html><meta charset="utf-8">""" + FONTS + """
-<style>
- html,body{margin:0;padding:0}
- body{width:512px;height:512px;background:#17181a;display:flex;
-   align-items:center;justify-content:center}
- span{font-family:'JetBrains Mono',monospace;font-size:250px;color:#f5f4f1;
-   line-height:1}
-</style><span>om</span>"""
-
 if __name__ == "__main__":
-    print("favicon")
-    shot(FAVICON, str(ROOT / "assets/og/_icon512.png"), 512, 512)
-
     print("og: default")
     shot(og_card("Oleena Mak",
                  "Operator and marketer. This is the index of what I've been "

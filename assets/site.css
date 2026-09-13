@@ -232,11 +232,13 @@ button.facet:hover { text-decoration: underline; text-underline-offset: 3px; }
 .coords dd { color: var(--ink-2); }
 
 /* An aside list in the rail — reference shows a ruled block, not a left border. */
+/* Stacked links in the rail — identical to a facet list, so every group in
+   the column reads as the same instrument. */
 .rail-list {
   display: flex;
   flex-direction: column;
   font-family: var(--mono);
-  font-size: 11.5px;
+  font-size: 12px;
   line-height: 1.9;
   color: var(--ink-2);
 }
@@ -484,23 +486,10 @@ button.facet:hover { text-decoration: underline; text-underline-offset: 3px; }
 .crossrefs { font-size: 14px; line-height: 1.55; }
 .crossrefs .sep { color: var(--muted-2); }
 
-/* --- Footer ------------------------------------------------
-   Not drawn in any reference. Built only from existing vocabulary
-   (sectional rule + mono row) because BRAND §1 requires contact,
-   elsewhere and newsletter to be findable, and §10 places
-   subscription in the footer only. */
-
-/* Sits at the foot of the left rail, not the page. The rail's own flex gap
-   provides the space above it, so no margin here. */
-.site-footer {
-  border-top: 1px solid var(--rule-soft);
-  padding-top: var(--s18);
-  font-family: var(--mono);
-  font-size: 11px;
-  line-height: 1.6;
-  color: var(--muted-2);
-}
-.site-footer .sep { color: var(--faint); }
+/* --- Elsewhere — foot of the rail ---------------------------
+   Uses the rail's own parts: a mono label and a stacked .rail-list, the
+   same shapes as the facet groups above it. Only the sectional rule
+   separates it, since these links leave the site rather than filter it. */
 
 /* --- Mobile facet strip — §11 ------------------------------ */
 

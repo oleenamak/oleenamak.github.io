@@ -40,8 +40,13 @@ NAV = '''  <header class="site-header">
     <a class="wordmark" href="/">Oleena Mak</a>
   </header>'''
 
-FOOT = '''      <footer class="site-footer">
-    <a href="https://www.linkedin.com/in/oleenamak/" rel="me noopener">linkedin</a><span class="sep"> &middot; </span><a href="https://x.com/ohmaak_" rel="me noopener">x</a><span class="sep"> &middot; </span><a href="https://omak.substack.com/" rel="me noopener">newsletter</a>
+FOOT = '''<footer class="block block--ruled site-footer">
+        <h2 class="label">Elsewhere</h2>
+        <div class="rail-list">
+          <a href="https://www.linkedin.com/in/oleenamak/" rel="me noopener">linkedin</a>
+          <a href="https://x.com/ohmaak_" rel="me noopener">x</a>
+          <a href="https://omak.substack.com/" rel="me noopener">newsletter</a>
+        </div>
       </footer>'''
 
 def q(s):

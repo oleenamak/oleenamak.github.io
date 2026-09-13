@@ -38,6 +38,9 @@
      Previously only .prose was constrained, so titles and decks overhung it. */
   --measure: 403px;
 
+  /* Full width of the content column: 900 frame - 190 rail - 40 gutter. */
+  --column: 670px;
+
   /* Spacing — §3. 6px base; only this set is permitted. */
   --s6: 6px;   --s10: 10px; --s12: 12px; --s18: 18px; --s20: 20px;
   --s22: 22px; --s26: 26px; --s30: 30px; --s34: 34px; --s40: 40px; --s44: 44px;
@@ -233,8 +236,8 @@ button.facet:hover { text-decoration: underline; text-underline-offset: 3px; }
   display: grid;
   grid-template-columns: 52px 1fr;
   gap: var(--s6) var(--s10);
-  font-family: var(--mono);
-  font-size: 11.5px;
+  font-family: var(--reading);
+  font-size: 12px;
   line-height: 1.5;
 }
 .coords dt { color: var(--meta); }
@@ -445,7 +448,11 @@ button.facet:hover { text-decoration: underline; text-underline-offset: 3px; }
 .column > article > .block--ruled,
 .crossrefs,
 .coordinates-out { max-width: var(--measure); }
+/* Figures run wider than the text. They sit inside .prose, so they inherit its
+   measure unless given an explicit width — a chart or table squeezed to a
+   403px line is unreadable. */
 .plates, .plates--full { max-width: none; }
+.prose .plates { width: var(--column); }
 
 /* --- Plates — §9 ------------------------------------------- */
 
@@ -595,6 +602,7 @@ button.facet:hover { text-decoration: underline; text-underline-offset: 3px; }
   .entry-title { font-size: 16px; }
 
   .plates { grid-template-columns: 1fr; }
+  .prose .plates { width: auto; }
   .plates .plate { height: 190px; }
 
   .coordinates-out { grid-template-columns: 1fr; }

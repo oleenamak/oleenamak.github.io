@@ -204,7 +204,7 @@ def page(e):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="/assets/site.css?v={css_v}">
+<link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
 <div class="frame">

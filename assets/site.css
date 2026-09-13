@@ -38,9 +38,6 @@
      Previously only .prose was constrained, so titles and decks overhung it. */
   --measure: 403px;
 
-  /* Full width of the content column: 900 frame - 190 rail - 40 gutter. */
-  --column: 670px;
-
   /* Spacing — §3. 6px base; only this set is permitted. */
   --s6: 6px;   --s10: 10px; --s12: 12px; --s18: 18px; --s20: 20px;
   --s22: 22px; --s26: 26px; --s30: 30px; --s34: 34px; --s40: 40px; --s44: 44px;
@@ -389,12 +386,20 @@ button.facet:hover { text-decoration: underline; text-underline-offset: 3px; }
   display: flex;
   flex-direction: column;
   gap: var(--s18);
-  max-width: var(--measure);
   font-size: 14px;
   line-height: 1.55;
   color: var(--ink-body);
 }
-.prose--project { max-width: var(--measure); }
+
+/* The reading measure applies to text, not to the block. .prose itself fills
+   the column so a figure can be 100% of a fluid column — pinning the figure to
+   a fixed 670px overflowed the page on any window under 982px. */
+.prose > p,
+.prose > .prose-list,
+.prose > .subhead,
+.prose > .pullquote { max-width: var(--measure); }
+.prose > .plates { width: 100%; max-width: none; }
+
 .prose em { font-style: italic; }        /* emphasis is italic only; no bold in prose */
 
 /* --- Derived treatments ------------------------------------
@@ -452,7 +457,7 @@ button.facet:hover { text-decoration: underline; text-underline-offset: 3px; }
    measure unless given an explicit width — a chart or table squeezed to a
    403px line is unreadable. */
 .plates, .plates--full { max-width: none; }
-.prose .plates { width: var(--column); }
+
 
 /* --- Plates — §9 ------------------------------------------- */
 
@@ -592,7 +597,9 @@ button.facet:hover { text-decoration: underline; text-underline-offset: 3px; }
 
   /* 14px is below comfortable reading size on a phone, so mobile steps up
      one notch. The measure is the viewport there anyway. */
-  .prose { max-width: none; font-size: 15px; line-height: 1.6; }
+  .prose { font-size: 15px; line-height: 1.6; }
+  .prose > p, .prose > .prose-list,
+  .prose > .subhead, .prose > .pullquote { max-width: none; }
   .masthead, .column > article > .block--ruled,
   .crossrefs, .coordinates-out { max-width: none; }
   .title { font-size: 23px; }
@@ -602,7 +609,7 @@ button.facet:hover { text-decoration: underline; text-underline-offset: 3px; }
   .entry-title { font-size: 16px; }
 
   .plates { grid-template-columns: 1fr; }
-  .prose .plates { width: auto; }
+
   .plates .plate { height: 190px; }
 
   .coordinates-out { grid-template-columns: 1fr; }

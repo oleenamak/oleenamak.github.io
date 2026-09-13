@@ -40,9 +40,9 @@ NAV = '''  <header class="site-header">
     <a class="wordmark" href="/">Oleena Mak</a>
   </header>'''
 
-FOOT = '''  <footer class="site-footer">
+FOOT = '''      <footer class="site-footer">
     <a href="https://www.linkedin.com/in/oleenamak/" rel="me noopener">linkedin</a><span class="sep"> &middot; </span><a href="https://x.com/ohmaak_" rel="me noopener">x</a><span class="sep"> &middot; </span><a href="https://omak.substack.com/" rel="me noopener">newsletter</a>
-  </footer>'''
+      </footer>'''
 
 def q(s):
     return s.replace(" ", "%20")
@@ -132,7 +132,10 @@ def render_body(c, key):
             out.append(f"          <p>{inline(b['text'])}</p>")
             i += 1
         elif b["type"] == "h3":
-            out.append(f"          <h2 class=\"subhead\">{inline(b['text'])}</h2>")
+            # Source headings were bold; that bold is structural, not emphasis,
+            # so it must not become <em> the way body-copy bold does.
+            head = re.sub(r"</?em>", "", inline(b["text"]))
+            out.append(f"          <h2 class=\"subhead\">{head}</h2>")
             i += 1
         elif b["type"] == "li":
             items = []
@@ -201,6 +204,7 @@ def page(e):
 
     <aside class="rail">
 {rail}
+{FOOT}
     </aside>
 
     <main class="column">
@@ -220,8 +224,6 @@ def page(e):
     </main>
 
   </div>
-
-{FOOT}
 
 </div>
 <script src="/assets/chrome.js"></script>

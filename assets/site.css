@@ -405,14 +405,17 @@ button.facet:hover { text-decoration: underline; text-underline-offset: 3px; }
   padding-top: var(--s18);
 }
 
-/* List: body prose, indented. No bullet glyph — the system has no
-   marker vocabulary and `·` is reserved as a separator (§1). */
+/* List: body prose with real bullets. `display:flex` suppresses list
+   markers, which is why they were missing — back to list layout. The marker
+   is muted so it reads as structure, not content. */
 .prose-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--s10);
-  padding-left: var(--s20);
+  display: block;
+  list-style: disc outside;
+  padding-left: var(--s18);
 }
+.prose-list li { margin: 0 0 var(--s10); }
+.prose-list li:last-child { margin-bottom: 0; }
+.prose-list li::marker { color: var(--muted-2); }
 
 .pullquote {
   border-left: 2px solid var(--quote-rule);
@@ -487,8 +490,9 @@ button.facet:hover { text-decoration: underline; text-underline-offset: 3px; }
    elsewhere and newsletter to be findable, and §10 places
    subscription in the footer only. */
 
+/* Sits at the foot of the left rail, not the page. The rail's own flex gap
+   provides the space above it, so no margin here. */
 .site-footer {
-  margin-top: var(--s44);
   border-top: 1px solid var(--rule-soft);
   padding-top: var(--s18);
   font-family: var(--mono);
@@ -533,10 +537,18 @@ button.facet:hover { text-decoration: underline; text-underline-offset: 3px; }
   .facet-strip .facet { flex: none; font-size: 12px; line-height: 1.6; }
   .facet-strip .truncation { flex: none; color: var(--faint); font-family: var(--mono); font-size: 12px; }
 
+  /* The rail stacks above the content on mobile, so a footer inside it would
+     surface at the top of the page. `display:contents` promotes the rail's
+     children into the layout's flex flow, letting the footer order last while
+     the article's coordinate pairs stay above the title (§11). */
   .layout {
-    display: block;
+    display: flex;
+    flex-direction: column;
     padding-top: var(--s22);
   }
+  .rail { display: contents; }
+  .column { order: 10; }
+  .site-footer { order: 99; margin-top: var(--s30); }
   .layout--article { padding-top: var(--s22); }
 
   .rail { gap: var(--s22); }

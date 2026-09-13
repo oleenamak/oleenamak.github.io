@@ -339,7 +339,9 @@ def write_scoped_indexes():
     for path, scope in (("writing/index.html", "writing"),
                         ("projects/index.html", "projects")):
         s = home.replace('data-scope="all"', f'data-scope="{scope}"')
-        # no orientation copy exists for these pages; omit rather than invent
+        # The bio belongs to the homepage only; /writing/ and /projects/ are
+        # pre-filtered index states, not a second front page.
+        s = re.sub(r'\n *<div class="bio">.*?</div>\n', '', s, flags=re.S)
         s = re.sub(r'\n *<p class="orientation">.*?</p>', '', s, flags=re.S)
         f = ROOT / path
         f.parent.mkdir(parents=True, exist_ok=True)

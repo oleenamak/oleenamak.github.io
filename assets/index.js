@@ -221,23 +221,6 @@
     subjBlock.appendChild(subjList);
     container.appendChild(subjBlock);
 
-    /* YEAR — one wrapped line with `·` separators. §8 */
-    var years = [];
-    universe.forEach(function (e) {
-      var y = e.date.slice(0, 4);
-      if (years.indexOf(y) === -1) years.push(y);
-    });
-    years.sort().reverse();
-
-    var yearBlock = el("div", "block");
-    yearBlock.appendChild(el("div", "label", "Year"));
-    var yearList = el("div", "facet-list--inline");
-    years.forEach(function (y, i) {
-      if (i) yearList.appendChild(el("span", "sep", " · "));
-      yearList.appendChild(facetButton("year", y, y, null, query.year === y));
-    });
-    yearBlock.appendChild(yearList);
-    container.appendChild(yearBlock);
   }
 
   /* Mobile strip — §11: kind facets only, truncated with `…`. */

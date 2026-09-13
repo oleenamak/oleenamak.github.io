@@ -200,13 +200,19 @@ a:focus-visible {
   padding-top: var(--s18);
 }
 
-/* --- Rail: orientation prose — §1 -------------------------- */
+/* --- Bio — first block of the content column on the homepage ----
+   Runs the full width of the column (670px). Wider than the article
+   measure by design: it is a short standfirst, not long-form reading. */
 
-.orientation {
+.bio {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s12);
   font-size: 14px;
   line-height: 1.55;
   color: var(--ink-body);
 }
+.bio p { margin: 0; }
 
 /* --- Rail: facets — §8 ------------------------------------- */
 

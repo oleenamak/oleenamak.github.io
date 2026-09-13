@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 670 222" width="670" height="222"
+     font-family="system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">
+  <style>
+    .box   { fill: none; stroke: #17181a; stroke-width: 1; }
+    .stage { font-size: 12.5px; font-weight: 500; fill: #17181a; }
+    .lead  { font-size: 11px; font-weight: 500; fill: #1f1f22; }
+    .item  { font-size: 11px; fill: #1f1f22; }
+    .dot   { fill: #6f6e69; }
+    .arrow { stroke: #17181a; stroke-width: 1.25; fill: none; }
+  </style>
+
+  <!-- Early -->
+  <rect class="box" x="0.5" y="0.5" width="190" height="221"/>
+  <text class="stage" x="16" y="28">Early Stage</text>
+  <text class="lead"  x="16" y="54">Objective:</text>
+  <circle class="dot" cx="20" cy="68" r="1.6"/><text class="item" x="28" y="72">Find an attract initial loyal</text>
+  <text class="item" x="28" y="87">users</text>
+  <circle class="dot" cx="20" cy="98" r="1.6"/><text class="item" x="28" y="102">Product feedback</text>
+  <text class="lead"  x="16" y="128">Strategies:</text>
+  <circle class="dot" cx="20" cy="142" r="1.6"/><text class="item" x="28" y="146">Target size: limited and</text>
+  <text class="item" x="28" y="161">focused</text>
+  <circle class="dot" cx="20" cy="172" r="1.6"/><text class="item" x="28" y="176">Distribution tactic:</text>
+  <text class="item" x="28" y="191">targeted mini campaigns;</text>
+  <text class="item" x="28" y="206">iterative</text>
+
+  <!-- Growth -->
+  <rect class="box" x="240.5" y="0.5" width="190" height="221"/>
+  <text class="stage" x="256" y="28">Growth Stage</text>
+  <text class="lead"  x="256" y="54">Objective:</text>
+  <circle class="dot" cx="260" cy="68" r="1.6"/><text class="item" x="268" y="72">Scale userbase</text>
+  <circle class="dot" cx="260" cy="83" r="1.6"/><text class="item" x="268" y="87">Enhance platform utility</text>
+  <text class="lead"  x="256" y="113">Strategies:</text>
+  <circle class="dot" cx="260" cy="127" r="1.6"/><text class="item" x="268" y="131">Target size: incrementally</text>
+  <text class="item" x="268" y="146">increased</text>
+  <circle class="dot" cx="260" cy="157" r="1.6"/><text class="item" x="268" y="161">Distribution tactic:</text>
+  <text class="item" x="268" y="176">retroactive nurture</text>
+  <text class="item" x="268" y="191">campaigns; progressive</text>
+  <text class="item" x="268" y="206">incentive programs</text>
+
+  <!-- Maturity -->
+  <rect class="box" x="480.5" y="0.5" width="189" height="221"/>
+  <text class="stage" x="496" y="28">Maturity Stage</text>
+  <text class="lead"  x="496" y="54">Objective:</text>
+  <circle class="dot" cx="500" cy="68" r="1.6"/><text class="item" x="508" y="72">Long-term sustainability</text>
+  <circle class="dot" cx="500" cy="83" r="1.6"/><text class="item" x="508" y="87">Decentralized community</text>
+  <text class="item" x="508" y="102">governance</text>
+  <text class="lead"  x="496" y="128">Strategies:</text>
+  <circle class="dot" cx="500" cy="142" r="1.6"/><text class="item" x="508" y="146">Target size: wider-scale</text>
+  <text class="item" x="508" y="161">targeted and focused</text>
+  <circle class="dot" cx="500" cy="172" r="1.6"/><text class="item" x="508" y="176">Distribution tactic:</text>
+  <text class="item" x="508" y="191">progressive ownership;</text>
+  <text class="item" x="508" y="206">loyalty programs</text>
+
+  <!-- flow -->
+  <path class="arrow" d="M198 111 H231"/><path class="arrow" d="M231 106 l6 5 -6 5" stroke-linejoin="miter"/>
+  <path class="arrow" d="M438 111 H471"/><path class="arrow" d="M471 106 l6 5 -6 5" stroke-linejoin="miter"/>
+</svg>

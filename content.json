@@ -146,7 +146,7 @@
     "type": "img",
     "src": "https://framerusercontent.com/images/Myid4xceIY8Lw89gVttjUIvFvxk.png",
     "alt": "airdrop size and cost per retained user, five protocols",
-    "local": "referrals-retention-in-crypto-02.png"
+    "local": "referrals-retention-in-crypto-02.svg"
    },
    {
     "type": "p",
@@ -504,7 +504,7 @@
     "type": "img",
     "src": "https://framerusercontent.com/images/hRftja4hOcR0UTDkwucoFYqQ4.png",
     "alt": "TOFU vs. BOFU web3 performance metrics",
-    "local": "web3-mental-models-measuring-performance-01.png"
+    "local": "web3-mental-models-measuring-performance-01.svg"
    },
    {
     "type": "h3",
@@ -590,7 +590,7 @@
     "type": "img",
     "src": "https://framerusercontent.com/images/4XM9gwiZ74ogJF43wYU47HfYPI.png",
     "alt": "BOFU product growth wheel",
-    "local": "web3-mental-models-measuring-performance-02.png"
+    "local": "web3-mental-models-measuring-performance-02.svg"
    },
    {
     "type": "li",

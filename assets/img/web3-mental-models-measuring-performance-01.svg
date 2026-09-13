@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 670 436" width="670" height="436"
+     font-family="system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">
+  <style>
+    .tri  { fill: none; stroke: #17181a; stroke-width: 1; }
+    .bar  { fill: none; stroke: #17181a; stroke-width: 1; }
+    .m    { font-size: 11px; fill: #1f1f22; text-anchor: middle; }
+    .bt   { font-size: 13px; font-weight: 500; fill: #17181a; text-anchor: middle; }
+    .ax   { stroke: #6f6e69; stroke-width: 1; fill: none; }
+    .head { fill: #6f6e69; }
+    .ad   { font-size: 10.5px; fill: #6f6e69; text-anchor: middle; }
+  </style>
+  <polygon class="tri" points="55,75 345,75 200,375"/>
+  <polygon class="tri" points="325,375 615,375 470,75"/>
+  <text class="m" x="200" y="105">Social media followers</text>
+  <text class="m" x="200" y="128">Number of transactions</text>
+  <text class="m" x="200" y="151">Partner integrations</text>
+  <text class="m" x="200" y="174">New wallets created</text>
+  <text class="m" x="200" y="197">Transaction volume</text>
+  <text class="m" x="200" y="220">Total value locked</text>
+  <text class="m" x="200" y="243">Engagement clicks</text>
+  <text class="m" x="200" y="266">Token price</text>
+  <text class="m" x="200" y="289">Market cap</text>
+  <text class="m" x="200" y="312">DAU/MAU</text>
+  <text class="m" x="470" y="133">LTV</text>
+  <text class="m" x="470" y="158">CPA</text>
+  <text class="m" x="470" y="183">NPS</text>
+  <text class="m" x="470" y="208">CAC</text>
+  <text class="m" x="470" y="233">ROAS</text>
+  <text class="m" x="470" y="258">Churn rate</text>
+  <text class="m" x="470" y="283">Retention rate</text>
+  <text class="m" x="470" y="308">Conversion rates</text>
+  <text class="m" x="470" y="333">Gas fees generated</text>
+  <rect class="bar" x="55.5" y="20.5" width="289" height="34"/>
+  <text class="bt" x="200" y="42">Top Down Metrics</text>
+  <rect class="bar" x="325.5" y="392.5" width="289" height="34"/>
+  <text class="bt" x="470" y="414">Bottoms Up Metrics</text>
+  <path class="ax" d="M28 75 V368"/><path class="head" d="M23 368 h10 l-5 8 z"/>
+  <text class="ad" x="18" y="225" transform="rotate(-90 18 225)">Vanity-driven</text>
+  <path class="ax" d="M642 375 V82"/><path class="head" d="M637 82 h10 l-5 -8 z"/>
+  <text class="ad" x="652" y="225" transform="rotate(90 652 225)">Action-driven</text>
+</svg>

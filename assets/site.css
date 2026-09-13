@@ -209,11 +209,15 @@ a:focus-visible {
 }
 .facet-list--inline .sep { color: var(--ink-2); }
 
+/* `font-family: inherit` here used to be harmless, because the body was the
+   reading face and facets looked mono anyway. Once the body became sans it
+   silently pulled the facets with it, breaking §1: a kind or a count is data
+   and must be mono. Set it explicitly so the body face can never leak in. */
 button.facet {
   background: none;
   border: 0;
   padding: 0;
-  font-family: inherit;
+  font-family: var(--mono);
   text-align: left;
 }
 button.facet:hover { text-decoration: underline; text-underline-offset: 3px; }

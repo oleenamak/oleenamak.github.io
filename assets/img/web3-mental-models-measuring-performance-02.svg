@@ -1,34 +1,34 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 400" width="670" height="638"
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 670 418" width="670" height="418"
      font-family="system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif">
   <style>
     .node { fill: none; stroke: #17181a; stroke-width: 1; }
-    .t    { font-size: 12.5px; fill: #1f1f22; text-anchor: middle; }
+    .t    { font-size: 13px; fill: #1f1f22; text-anchor: middle; }
     .arc  { fill: none; stroke: #17181a; stroke-width: 1; }
     .head { fill: #17181a; }
   </style>
-  <circle class="node" cx="210.0" cy="62.0" r="48"/>
-  <text class="t" x="210.0" y="60.0">Collect</text>
-  <text class="t" x="210.0" y="75.0">granular data</text>
-  <circle class="node" cx="341.2" cy="157.4" r="48"/>
-  <text class="t" x="341.2" y="155.4">Analyze</text>
-  <text class="t" x="341.2" y="170.4">data</text>
-  <circle class="node" cx="291.1" cy="311.6" r="48"/>
-  <text class="t" x="291.1" y="309.6">Apply</text>
-  <text class="t" x="291.1" y="324.6">insights</text>
-  <circle class="node" cx="128.9" cy="311.6" r="48"/>
-  <text class="t" x="128.9" y="309.6">Incentivize</text>
-  <text class="t" x="128.9" y="324.6">actions</text>
-  <circle class="node" cx="78.8" cy="157.4" r="48"/>
-  <text class="t" x="78.8" y="155.4">Iterate &amp;</text>
-  <text class="t" x="78.8" y="170.4">optimize</text>
-  <path class="arc" d="M268.0 74.8 A138 138 0 0 1 311.2 106.1"/>
-  <path class="head" d="M316.6 112.0 L306.3 105.2 L310.6 101.2 z"/>
-  <path class="arc" d="M347.0 216.5 A138 138 0 0 1 330.5 267.2"/>
-  <path class="head" d="M326.6 274.2 L329.9 262.3 L335.1 265.2 z"/>
-  <path class="arc" d="M236.7 335.4 A138 138 0 0 1 183.3 335.4"/>
-  <path class="head" d="M175.5 333.8 L187.8 333.2 L186.7 339.1 z"/>
-  <path class="arc" d="M89.5 267.2 A138 138 0 0 1 73.0 216.5"/>
-  <path class="head" d="M72.0 208.5 L76.4 220.1 L70.5 220.8 z"/>
-  <path class="arc" d="M108.8 106.1 A138 138 0 0 1 152.0 74.8"/>
-  <path class="head" d="M159.3 71.4 L149.6 79.2 L147.1 73.7 z"/>
+  <circle class="node" cx="335.0" cy="83.0" r="58"/>
+  <text class="t" x="335.0" y="81.0">Collect</text>
+  <text class="t" x="335.0" y="97.0">granular data</text>
+  <circle class="node" cx="466.2" cy="178.4" r="58"/>
+  <text class="t" x="466.2" y="176.4">Analyze</text>
+  <text class="t" x="466.2" y="192.4">data</text>
+  <circle class="node" cx="416.1" cy="332.6" r="58"/>
+  <text class="t" x="416.1" y="330.6">Apply</text>
+  <text class="t" x="416.1" y="346.6">insights</text>
+  <circle class="node" cx="253.9" cy="332.6" r="58"/>
+  <text class="t" x="253.9" y="330.6">Incentivize</text>
+  <text class="t" x="253.9" y="346.6">actions</text>
+  <circle class="node" cx="203.8" cy="178.4" r="58"/>
+  <text class="t" x="203.8" y="176.4">Iterate &amp;</text>
+  <text class="t" x="203.8" y="192.4">optimize</text>
+  <path class="arc" d="M404.0 101.5 A138 138 0 0 1 427.3 118.4"/>
+  <path class="head" d="M433.3 123.8 L422.4 118.0 L426.4 113.5 z"/>
+  <path class="arc" d="M470.0 249.7 A138 138 0 0 1 461.1 277.1"/>
+  <path class="head" d="M457.8 284.4 L460.0 272.3 L465.4 274.7 z"/>
+  <path class="arc" d="M349.4 358.2 A138 138 0 0 1 320.6 358.2"/>
+  <path class="head" d="M312.6 357.4 L324.9 355.7 L324.2 361.6 z"/>
+  <path class="arc" d="M208.9 277.1 A138 138 0 0 1 200.0 249.7"/>
+  <path class="head" d="M198.4 241.9 L203.8 253.0 L197.9 254.2 z"/>
+  <path class="arc" d="M242.7 118.4 A138 138 0 0 1 266.0 101.5"/>
+  <path class="head" d="M272.9 97.5 L264.0 106.1 L261.0 100.9 z"/>
 </svg>

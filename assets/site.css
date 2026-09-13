@@ -116,10 +116,14 @@ a:focus-visible {
   border-bottom: 1px solid var(--rule-hard);   /* structural rule */
 }
 
+/* The wordmark is an identity mark, not a heading — sans, and larger than the
+   metadata around it. Tracking eases off as the size grows; .14em at 18px
+   would read as very wide. */
 .wordmark {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: .14em;
+  font-family: var(--reading);
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: .08em;
   text-transform: uppercase;
   color: var(--ink);
 }
@@ -509,7 +513,7 @@ button.facet:hover { text-decoration: underline; text-underline-offset: 3px; }
 
   .frame { padding: var(--s22); }
 
-  .wordmark { font-size: 10.5px; }
+  .wordmark { font-size: 16px; }
 
   /* Kind facets become one horizontally-scrolling mono line pinned
      under the header. Subject and year move behind the index screen. */

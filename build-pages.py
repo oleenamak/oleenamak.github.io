@@ -157,11 +157,14 @@ def render_body(c, key):
         elif b["type"] == "img":
             plate_n += 1
             cap = b.get("alt") or ""
+            # a figure may declare a display width narrower than the column
+            # inline style, since the CSS `width:auto` outranks a width attribute
+            dim = f' style="width:{b["width"]}px"' if b.get("width") else ""
             caption = f"{plate_n:02d} &middot; {cap}" if cap else f"{plate_n:02d}"
             out.append(
                 '          <figure class="plates plates--full">\n'
                 '            <div class="plate-figure">\n'
-                f'              <img class="plate" src="/assets/img/{b["local"]}" alt="{cap}" loading="lazy">\n'
+                f'              <img class="plate" src="/assets/img/{b["local"]}" alt="{cap}"{dim} loading="lazy">\n'
                 f'              <figcaption class="plate-caption">{caption}</figcaption>\n'
                 '            </div>\n'
                 '          </figure>')

@@ -10,7 +10,7 @@ No prose is invented. Re-run after editing entries.js.
 
     python3 build-pages.py
 """
-import json, pathlib, subprocess, html, re
+import json, pathlib, subprocess, html, re, hashlib
 
 ROOT = pathlib.Path(__file__).parent
 
@@ -48,6 +48,12 @@ FOOT = '''<footer class="block block--ruled site-footer">
           <a href="https://omak.substack.com/" rel="me noopener">newsletter</a>
         </div>
       </footer>'''
+
+def asset_version(rel):
+    """Short content hash, used to bust the 10-minute browser cache that
+    GitHub Pages sets on assets."""
+    return hashlib.sha1((ROOT / rel).read_bytes()).hexdigest()[:8]
+
 
 def q(s):
     return s.replace(" ", "%20")
@@ -198,7 +204,7 @@ def page(e):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/site.css?v={css_v}">
 </head>
 <body>
 <div class="frame">
@@ -292,6 +298,7 @@ def render_head(title, desc, url, og_stem, date=None, hidden=False):
     ogtype = "article" if date else "website"
     pubtime = f'\n<meta property="article:published_time" content="{date}">' if date else ""
     norobots = '\n<meta name="robots" content="noindex">' if hidden else ""
+    css_v = asset_version("assets/site.css")
     return f"""<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{html.escape(full)}</title>
@@ -319,7 +326,7 @@ def render_head(title, desc, url, og_stem, date=None, hidden=False):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="/assets/site.css">"""
+<link rel="stylesheet" href="/assets/site.css?v={css_v}">"""
 
 
 def write_scoped_indexes():
@@ -368,6 +375,31 @@ def write_heads():
     return done
 
 
+def version_assets():
+    """Append a content hash to every asset URL.
+
+    GitHub Pages serves assets with `cache-control: max-age=600`, so after a
+    deploy a browser could keep showing the old CSS or JS for ten minutes.
+    A hash in the query string changes the URL whenever the file changes, so
+    the new version is fetched immediately and unchanged files stay cached."""
+    assets = ["assets/site.css", "assets/index.js",
+              "assets/entries.js", "assets/chrome.js"]
+    vers = {a: hashlib.sha1((ROOT / a).read_bytes()).hexdigest()[:8]
+            for a in assets if (ROOT / a).exists()}
+    touched = []
+    for f in ROOT.rglob("*.html"):
+        if "preview" in str(f):
+            continue
+        s = orig = f.read_text()
+        for rel, v in vers.items():
+            s = re.sub(r'/' + re.escape(rel) + r'(\?v=[0-9a-f]+)?',
+                       '/' + rel + '?v=' + v, s)
+        if s != orig:
+            f.write_text(s)
+            touched.append(str(f.relative_to(ROOT)))
+    return vers, touched
+
+
 def write_sitemap_and_robots():
     urls = [(url_for(f), None) for f, *rest in STATIC
             if f != "404.html" and not rest[-1]]
@@ -409,4 +441,8 @@ for s_ in scoped:
     print("  rebuilt  ", s_)
 heads = write_heads()
 n_urls = write_sitemap_and_robots()
+vers, touched = version_assets()
+print("  asset versions: " + ", ".join(f"{k.split('/')[-1]}={v}" for k, v in vers.items()))
+if touched:
+    print(f"  asset URLs refreshed on {len(touched)} pages")
 print(f"heads written: {len(heads)}   sitemap urls: {n_urls}   robots.txt written")

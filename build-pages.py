@@ -332,6 +332,22 @@ def render_head(title, desc, url, og_stem, date=None, hidden=False):
 <link rel="stylesheet" href="/assets/site.css?v={css_v}">"""
 
 
+def first_sentence(slug, limit=155):
+    """Meta description for a piece with no deck: its own opening sentence,
+    rather than a generic "essay by Oleena Mak"."""
+    c = CONTENT.get(slug)
+    if not c:
+        return None
+    for b in c["blocks"]:
+        if b["type"] != "p":
+            continue
+        txt = re.sub(r"<[^>]+>", "", b["text"]).strip()
+        m = re.match(r"(.+?[.?!])(\s|$)", txt)
+        out = (m.group(1) if m else txt)
+        return out if len(out) <= limit else out[:limit].rsplit(" ", 1)[0] + "\u2026"
+    return None
+
+
 def write_scoped_indexes():
     """/writing/ and /projects/ are the homepage template with a different
     default query. Generated, never hand-maintained — they were previously
@@ -359,8 +375,10 @@ def write_heads():
     targets = [(pathlib.Path(f), t, d, o, None, h) for f, t, d, o, h in STATIC]
     for e in ENTRIES:
         stem = e["slug"].strip("/").split("/")[-1]
+        desc = (e.get("deck") or first_sentence(stem)
+                or f'{e["kind"]} by Oleena Mak.')
         targets.append((page_path(e).relative_to(ROOT), e["title"],
-                        e.get("deck") or f'{e["kind"]} by Oleena Mak.', stem, e["date"], False))
+                        desc, stem, e["date"], False))
     missing = []
     for rel, title, desc, og, date, hidden in targets:
         f = ROOT / rel

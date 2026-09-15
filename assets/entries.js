@@ -19,10 +19,18 @@
    here are appended by count. */
 window.TAXONOMY = {
   kinds:    ["essay", "note", "field note", "playbook", "project", "drawing"],
-  subjects: ["crypto", "growth", "culture", "systems", "faith"]
+  subjects: ["crypto", "growth", "craft", "culture", "systems", "faith"]
 };
 
 window.ENTRIES = [
+  {
+    slug: "/writing/practicing-legibility/",
+    title: "Practicing legibility",
+    kind: "essay",
+    date: "2026-09-14",
+    subjects: ["craft", "culture"],
+    plates: 0
+  },
   {
     slug: "/writing/token-led-growth/",
     title: "Token-led Growth",

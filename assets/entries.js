@@ -18,24 +18,24 @@
 /* Facet display order — authored, not derived. Values not listed
    here are appended by count. */
 window.TAXONOMY = {
-  kinds:    ["essay", "note", "field note", "memo", "playbook", "project", "drawing"],
-  subjects: ["crypto", "growth", "craft", "culture", "systems", "faith"]
+  kinds:    ["note", "field note", "memo", "work", "playbook", "project", "drawing"],
+  subjects: ["crypto", "growth", "operator", "craft", "culture", "systems", "faith"]
 };
 
 window.ENTRIES = [
   {
     slug: "/writing/practicing-legibility/",
-    title: "Practicing legibility",
+    title: "Improving legibility",
     kind: "memo",
     date: "2026-09-14",
-    subjects: ["craft", "culture"],
+    subjects: ["operator", "craft", "culture"],
     plates: 0
   },
   {
     slug: "/writing/token-led-growth/",
-    title: "Token-led Growth",
+    title: "Token-led growth",
     deck: "A draft playbook for the next era of web3",
-    kind: "playbook",
+    kind: "work",
     date: "2026-04-20",
     subjects: ["crypto", "growth"],
     plates: 2
@@ -44,25 +44,25 @@ window.ENTRIES = [
     slug: "/writing/on-fragmented-communication/",
     title: "On fragmented communication",
     deck: "The origin of fragmented communication and building modern-day Towers of Babel",
-    kind: "essay",
+    kind: "memo",
     date: "2024-07-30",
     subjects: ["culture", "faith"],
     plates: 0
   },
   {
     slug: "/writing/web3-mental-models-measuring-performance/",
-    title: "Web3 Mental Models: Measuring Performance",
+    title: "Web3 mental models: measuring performance",
     deck: "The shift to performance-based web3 metrics",
-    kind: "essay",
+    kind: "work",
     date: "2024-04-20",
     subjects: ["crypto", "growth", "systems"],
     plates: 2
   },
   {
     slug: "/writing/referrals-retention-in-crypto/",
-    title: "Referrals + Retention in Crypto",
+    title: "Referrals + retention in crypto",
     deck: "Can growth happen without FOMO, airdrops or incentives?",
-    kind: "essay",
+    kind: "work",
     date: "2023-09-24",
     subjects: ["crypto", "growth"],
     plates: 2
@@ -71,7 +71,7 @@ window.ENTRIES = [
     slug: "/writing/algorithms-groupthink-and-media/",
     title: "On algorithms, groupthink and media",
     deck: "A reflection on what controls and manufactures our thoughts",
-    kind: "essay",
+    kind: "memo",
     date: "2020-10-14",
     subjects: ["culture"],
     plates: 0

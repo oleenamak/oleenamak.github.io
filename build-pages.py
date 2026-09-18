@@ -435,8 +435,10 @@ def write_sitemap_and_robots():
         f"{body}\n</urlset>\n")
     (ROOT / "robots.txt").write_text(
         "User-agent: *\n"
-        "Allow: /\n"
-        "Disallow: /assets/og/\n\n"
+        "Allow: /\n\n"
+        # No Disallow on /assets/og/: LinkedIn, Slack and X honour robots.txt
+        # when fetching a preview image, so blocking it silently stripped the
+        # image from every shared link.
         f"Sitemap: {BASE}/sitemap.xml\n")
     return len(urls)
 

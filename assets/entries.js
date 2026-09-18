@@ -18,7 +18,7 @@
 /* Facet display order — authored, not derived. Values not listed
    here are appended by count. */
 window.TAXONOMY = {
-  kinds:    ["essay", "note", "field note", "playbook", "project", "drawing"],
+  kinds:    ["essay", "note", "field note", "memo", "playbook", "project", "drawing"],
   subjects: ["crypto", "growth", "craft", "culture", "systems", "faith"]
 };
 
@@ -26,7 +26,7 @@ window.ENTRIES = [
   {
     slug: "/writing/practicing-legibility/",
     title: "Practicing legibility",
-    kind: "essay",
+    kind: "memo",
     date: "2026-09-14",
     subjects: ["craft", "culture"],
     plates: 0

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Token-led growth · Oleena Mak</title>
+  <meta name="description" content="A draft playbook for the next era of web3.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Geist:wght@400;500&family=Kalam:wght@300;400&display=swap">
+  <link rel="stylesheet" href="../style.css">
+  <script src="../theme.js"></script>
+</head>
+<body>
+<svg class="pencil-defs" width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="sk1" filterUnits="userSpaceOnUse" x="-100" y="-100" width="1000" height="800"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="3"/></filter>
+    <filter id="sk2" filterUnits="userSpaceOnUse" x="-100" y="-100" width="1000" height="800"><feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="11" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.2"/></filter>
+    <pattern id="hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(40)"><line x1="0" y1="0" x2="0" y2="5" stroke="var(--fg)" stroke-width=".7" opacity=".3"/></pattern>
+    <pattern id="hatch-dense" width="3.5" height="3.5" patternUnits="userSpaceOnUse" patternTransform="rotate(40)"><line x1="0" y1="0" x2="0" y2="3.5" stroke="var(--fg)" stroke-width=".7" opacity=".45"/></pattern>
+    <pattern id="hatch-orange" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(40)"><line x1="0" y1="0" x2="0" y2="4" stroke="var(--accent)" stroke-width=".9" opacity=".6"/></pattern>
+  </defs>
+</svg>
+<div class="page">
+  <header class="site-header">
+    <a href="../index.html" aria-label="Oleena Mak, home">
+      <svg class="avatar" viewBox="5 5 90 62" aria-hidden="true">
+        <defs><clipPath id="peek"><rect x="0" y="0" width="100" height="64"/></clipPath></defs>
+        <g clip-path="url(#peek)">
+          <g class="cat-head">
+            <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 100 C 17 72 25 42 33.5 14 L 41 23.5 L 64 27 L 71.5 17 L 75.5 31 C 83 36 87.5 47 87 58 C 86.6 66 83.4 70.5 79 72.5 L 80.5 74.5 C 82 83 83 92 83.5 100"/>
+              <path d="M50 27.6 L50.6 31.8 M54.5 28.1 L55 32.3 M58.9 28.7 L59.2 32.6"/>
+              <path d="M46 48.6 C 49.5 45.4 57 45.4 60.6 48.6 M73 48.8 C 76 45.8 82 45.8 85 48.6" stroke-width="3.2"/>
+              <path d="M46.8 50.2 C 50 53 57 53 60 50.2 M73.6 50.3 C 76.2 52.8 81.6 52.8 84.4 50.3"/>
+              <path d="M66.6 50.6 L66.6 54.6 M64.2 56.8 L66.6 54.6 L69 56.8"/>
+            </g>
+            <g fill="currentColor">
+              <circle cx="53.6" cy="50.4" r="1.9"/><circle cx="78.6" cy="50.4" r="1.9"/>
+              <circle cx="53" cy="59" r="1.1"/><circle cx="56.4" cy="58.4" r="1.1"/><circle cx="55" cy="61.4" r="1.1"/>
+              <circle cx="77.4" cy="59.2" r="1.1"/><circle cx="80.6" cy="58.6" r="1.1"/><circle cx="79.2" cy="61.6" r="1.1"/>
+            </g>
+          </g>
+        </g>
+        <path d="M8 64 H 92" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+      </svg>
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="../notes.html" aria-current="page">writing</a>
+      <a href="https://omak.substack.com/" target="_blank" rel="noopener">blog ↗</a>
+      <button class="theme" type="button" id="theme-toggle" aria-label="Switch light or dark theme">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><circle cx="8" cy="8" r="3.2"/><path d="M8 1v1.6M8 13.4V15M1 8h1.6M13.4 8H15M3 3l1.1 1.1M11.9 11.9 13 13M3 13l1.1-1.1M11.9 4.1 13 3"/></svg>
+      </button>
+    </nav>
+  </header>
+
+  <main style="display:grid; gap:2.25rem">
+    <a class="back" href="../notes.html">← All writing</a>
+    <header class="article-head">
+      <p class="meta"><span>Crypto</span><span>Apr 20, 2026</span><span>4 min read</span></p>
+      <h1>Token-led growth</h1>
+      <p class="dek">A draft playbook for the next era of web3.</p>
+    </header>
+
+    <article class="prose">
+      <p>Tokens are powerful. More than just a means to trade or store value, they are the heart of engaging users and driving growth in onchain networks.</p>
+      <p>But how do we utilize it effectively in a way that promotes sustained growth and alignment, rather than short-lived novelty and speculation?</p>
+      <p>Airdrops pioneered by Uniswap and Arbitrum have shown us how <a href="https://messari.io/report/the-efficacy-of-token-incentive-models" target="_blank" rel="noopener">effective token incentives</a> can be to stimulate platform usage, but also how challenging it is to sustain user interest and activity.</p>
+      <p>While we have written playbooks for product-led growth and community-led growth, it seems like it’s time to start drafting the next book in the collection - token-led growth.</p>
+
+      <h2>What is token-led growth?</h2>
+      <p>To understand what token-led growth is, let’s first breakdown the concept of what these “x-led growth” playbooks are - beyond their buzzy names.</p>
+      <p>X-led playbooks typically revolve around these few key principles:</p>
+      <p><em>X = the core value prop:</em> The growth strategy is anchored around the central element - X. This means understanding and leveraging what makes X - whether it’s product, community, token, etc. - unique and valuable to drive growth.</p>
+      <p><em>X results should be data-driven and measurable:</em> Using data to inform strategies, measure success, and make iterative improvements is essential. There must be a way to track and measure the success of X with proven metrics.</p>
+      <p><em>X should be sustainable and scalable:</em> The playbook should promote growth that is not only rapid but also sustainable and scalable over time. This means avoiding short-term hacks in favor of strategies that build long-term value.</p>
+      <p>With this foundational understanding of playbooks, here is my definition of what token-led growth is: A sustainable growth strategy that leverages token incentives to drive practical, long-term growth and distributed ownership for decentralized projects.</p>
+      <p>It is clear that the current state of the industry that promotes irrational airdrops and speculative points farmings has no place in a proper growth playbook.</p>
+      <p>So if we were to start with a new, blank sheet of paper, what would a token-led growth playbook look like?</p>
+
+      <h2>The token value prop</h2>
+      <p>At the core of it, the troubles with our current model of token distribution roots from the industry’s perception of a token’s value prop. No matter how much we may deny it, speculation is still the primary value of tokens that drives consumer demand.</p>
+      <p>The proof is in the pudding. Blast, the new L2 with native yield has surpassed <a href="https://dune.com/alec/blast-the-new-eth-l2" target="_blank" rel="noopener">$300m+ in TVL</a> in a matter of days. At it’s peak, Blur had reached over <a href="https://defillama.com/protocol/blur" target="_blank" rel="noopener">$170m+ in TVL</a> and Friendtech has generated over $25m+ in protocol revenue fee.</p>
+      <p>But speculation is just one feature attribute of tokens. It offers much more than that:</p>
+      <p><em>Intrinsic value and utility:</em> The value of tokens should be derived from their utility in an ecosystem, such as enabling platform access or offering governance rights.</p>
+      <p><em>Customizable incentive structures:</em> Tokens can be programmed via smart contracts to reward specific behaviors aligned with project growth goals.</p>
+      <p><em>Transparency and trust:</em> The immutable and transparent nature of onchain transactions fosters user trust and fairness.</p>
+      <p><em>Shared ownership:</em> Distributing tokens to users decentralizes ownership and governance.</p>
+      <p>If speculation was a chapter in the token-led growth playbook, it would probably be the first one, titled “what not to do”. The rest of the chapters should focus on these other core attributes of tokens and how to best leverage it for sustainable growth.</p>
+
+      <h2>A framework by chapter</h2>
+      <figure class="fig">
+        <div class="fig-body"><svg role="img" aria-label="Three stages, early, growth and maturity, with objectives and strategies for each" viewBox="0 0 670 222" width="100%" style="display:block;height:auto;overflow:visible"><g class="pass2" aria-hidden="true"> <rect x="0.5" y="0.5" width="190" height="221" fill="var(--tint)" stroke="var(--fg)" stroke-width="1.2"></rect>   <circle cx="20" cy="68" r="1.6" fill="var(--c-brown)"></circle>  <circle cx="20" cy="98" r="1.6" fill="var(--c-brown)"></circle>  <circle cx="20" cy="142" r="1.6" fill="var(--c-brown)"></circle>  <circle cx="20" cy="172" r="1.6" fill="var(--c-brown)"></circle>   <rect x="240.5" y="0.5" width="190" height="221" fill="var(--tint)" stroke="var(--fg)" stroke-width="1.2"></rect>   <circle cx="260" cy="68" r="1.6" fill="var(--c-brown)"></circle> <circle cx="260" cy="83" r="1.6" fill="var(--c-brown)"></circle>  <circle cx="260" cy="127" r="1.6" fill="var(--c-brown)"></circle>  <circle cx="260" cy="157" r="1.6" fill="var(--c-brown)"></circle>    <rect x="480.5" y="0.5" width="189" height="221" fill="var(--tint)" stroke="var(--fg)" stroke-width="1.2"></rect>   <circle cx="500" cy="68" r="1.6" fill="var(--c-brown)"></circle> <circle cx="500" cy="83" r="1.6" fill="var(--c-brown)"></circle>   <circle cx="500" cy="142" r="1.6" fill="var(--c-brown)"></circle>  <circle cx="500" cy="172" r="1.6" fill="var(--c-brown)"></circle>   <path d="M198 111 H231" fill="none" stroke="var(--fg)" stroke-width="1.5"></path><path d="M231 106 l6 5 -6 5" stroke-linejoin="miter" fill="none" stroke="var(--fg)" stroke-width="1.5"></path> <path d="M438 111 H471" fill="none" stroke="var(--fg)" stroke-width="1.5"></path><path d="M471 106 l6 5 -6 5" stroke-linejoin="miter" fill="none" stroke="var(--fg)" stroke-width="1.5"></path> </g><g class="pass1"> <rect x="0.5" y="0.5" width="190" height="221" fill="var(--tint)" stroke="var(--fg)" stroke-width="1.2"></rect> <text x="16" y="28" class="s" font-size="17" fill="var(--fg)">Early Stage</text> <text x="16" y="54" class="m u" font-size="8.5" font-weight="500" fill="var(--c-brown)">Objective:</text> <circle cx="20" cy="68" r="1.6" fill="var(--c-brown)"></circle><text x="28" y="72" class="s" font-size="11" fill="var(--fg)">Find and attract initial loyal</text> <text x="28" y="87" class="s" font-size="11" fill="var(--fg)">users</text> <circle cx="20" cy="98" r="1.6" fill="var(--c-brown)"></circle><text x="28" y="102" class="s" font-size="11" fill="var(--fg)">Product feedback</text> <text x="16" y="128" class="m u" font-size="8.5" font-weight="500" fill="var(--c-brown)">Strategies:</text> <circle cx="20" cy="142" r="1.6" fill="var(--c-brown)"></circle><text x="28" y="146" class="s" font-size="11" fill="var(--fg)">Target size: limited and</text> <text x="28" y="161" class="s" font-size="11" fill="var(--fg)">focused</text> <circle cx="20" cy="172" r="1.6" fill="var(--c-brown)"></circle><text x="28" y="176" class="s" font-size="11" fill="var(--fg)">Distribution tactic:</text> <text x="28" y="191" class="s" font-size="11" fill="var(--fg)">targeted mini campaigns;</text> <text x="28" y="206" class="s" font-size="11" fill="var(--fg)">iterative</text> <rect x="240.5" y="0.5" width="190" height="221" fill="var(--tint)" stroke="var(--fg)" stroke-width="1.2"></rect> <text x="256" y="28" class="s" font-size="17" fill="var(--fg)">Growth Stage</text> <text x="256" y="54" class="m u" font-size="8.5" font-weight="500" fill="var(--c-brown)">Objective:</text> <circle cx="260" cy="68" r="1.6" fill="var(--c-brown)"></circle><text x="268" y="72" class="s" font-size="11" fill="var(--fg)">Scale userbase</text> <circle cx="260" cy="83" r="1.6" fill="var(--c-brown)"></circle><text x="268" y="87" class="s" font-size="11" fill="var(--fg)">Enhance platform utility</text> <text x="256" y="113" class="m u" font-size="8.5" font-weight="500" fill="var(--c-brown)">Strategies:</text> <circle cx="260" cy="127" r="1.6" fill="var(--c-brown)"></circle><text x="268" y="131" class="s" font-size="11" fill="var(--fg)">Target size: incrementally</text> <text x="268" y="146" class="s" font-size="11" fill="var(--fg)">increased</text> <circle cx="260" cy="157" r="1.6" fill="var(--c-brown)"></circle><text x="268" y="161" class="s" font-size="11" fill="var(--fg)">Distribution tactic:</text> <text x="268" y="176" class="s" font-size="11" fill="var(--fg)">retroactive nurture</text> <text x="268" y="191" class="s" font-size="11" fill="var(--fg)">campaigns; progressive</text> <text x="268" y="206" class="s" font-size="11" fill="var(--fg)">incentive programs</text> <rect x="480.5" y="0.5" width="189" height="221" fill="var(--tint)" stroke="var(--fg)" stroke-width="1.2"></rect> <text x="496" y="28" class="s" font-size="17" fill="var(--fg)">Maturity Stage</text> <text x="496" y="54" class="m u" font-size="8.5" font-weight="500" fill="var(--c-brown)">Objective:</text> <circle cx="500" cy="68" r="1.6" fill="var(--c-brown)"></circle><text x="508" y="72" class="s" font-size="11" fill="var(--fg)">Long-term sustainability</text> <circle cx="500" cy="83" r="1.6" fill="var(--c-brown)"></circle><text x="508" y="87" class="s" font-size="11" fill="var(--fg)">Decentralized community</text> <text x="508" y="102" class="s" font-size="11" fill="var(--fg)">governance</text> <text x="496" y="128" class="m u" font-size="8.5" font-weight="500" fill="var(--c-brown)">Strategies:</text> <circle cx="500" cy="142" r="1.6" fill="var(--c-brown)"></circle><text x="508" y="146" class="s" font-size="11" fill="var(--fg)">Target size: wider-scale</text> <text x="508" y="161" class="s" font-size="11" fill="var(--fg)">targeted and focused</text> <circle cx="500" cy="172" r="1.6" fill="var(--c-brown)"></circle><text x="508" y="176" class="s" font-size="11" fill="var(--fg)">Distribution tactic:</text> <text x="508" y="191" class="s" font-size="11" fill="var(--fg)">progressive ownership;</text> <text x="508" y="206" class="s" font-size="11" fill="var(--fg)">loyalty programs</text> <path d="M198 111 H231" fill="none" stroke="var(--fg)" stroke-width="1.5"></path><path d="M231 106 l6 5 -6 5" stroke-linejoin="miter" fill="none" stroke="var(--fg)" stroke-width="1.5"></path> <path d="M438 111 H471" fill="none" stroke="var(--fg)" stroke-width="1.5"></path><path d="M471 106 l6 5 -6 5" stroke-linejoin="miter" fill="none" stroke="var(--fg)" stroke-width="1.5"></path> </g></svg></div>
+        <figcaption><span>Fig. 1</span> A rough framework for token distribution by project lifecycle</figcaption>
+      </figure>
+      <p>There are different stages to a project’s lifecycle, each with unique challenges and priorities to solve. That’s why our mental model for token distribution strategies should align to the different stages of a project:</p>
+      <p><em>The early stages:</em> The focus is on laying the groundwork for a strong and engaged community. Token distribution tactics should aim to attract initial users and supporters who believe in the project's vision. To do this, strategies should be focused on a smaller set of users and gaining feedback to build a valuable product that users love, apart from the tokens. This could look like incremental and targeted incentive campaigns.</p>
+      <p><em>The growth stage:</em> Once a project finds “early-PMF”, the playbook shifts towards scaling the user base and enhancing the utility of the platform. Token strategies should be designed to attract a broader audience while retaining the existing community. This could involve nurturing and rewarding early users and incrementally expanding the size and scale of incentive programs. Strategies may include a mix between retroactive and progressive token distribution strategies.</p>
+      <p><em>The maturity stage:</em> At this point, the project should have achieved some form of sustainable onchain revshare model. The token distribution strategy now needs to evolve to support long-term sustainability and ongoing user retention. Implementing <a href="https://variant.fund/articles/progressive-ownership-model-application-tokens/" target="_blank" rel="noopener">progressive ownership</a> decentralizes governance and decision-making, ensuring that only the most aligned users are rewarded with greater ownership.</p>
+      <p>With this core understanding of tokens and what is required for each project stage, we can start to map the MVP tool stack to enable sustainable token-led growth strategies.</p>
+
+      <h2>The infra for token-led growth</h2>
+      <figure class="fig">
+        <div class="fig-body"><svg role="img" aria-label="Flow from project through targeting, smart contract campaign and distributors to users, with attribution and onchain data analysis feeding back" viewBox="0 0 670 262" width="100%" style="display:block;height:auto;overflow:visible"><g class="pass2" aria-hidden="true"> <rect x="428.5" y="20.5" width="115" height="40" fill="var(--bg)" stroke="var(--fg)" stroke-width="1.2"></rect>  <path d="M486 61 V92" fill="none" stroke="var(--fg)" stroke-width="1.5"></path><path d="M481 92 h10 l-5 6 z" fill="var(--fg)"></path> <rect x="0.5" y="98.5" width="75" height="46" fill="var(--tint-strong)" stroke="var(--fg)" stroke-width="1.2"></rect>  <rect x="116.5" y="98.5" width="115" height="46" fill="var(--bg)" stroke="var(--fg)" stroke-width="1.2"></rect>  <rect x="272.5" y="98.5" width="115" height="46" fill="var(--bg)" stroke="var(--fg)" stroke-width="1.2"></rect>  <rect x="428.5" y="98.5" width="115" height="46" fill="var(--bg)" stroke="var(--fg)" stroke-width="1.2"></rect>  <rect x="584.5" y="98.5" width="85" height="46" fill="var(--tint-strong)" stroke="var(--fg)" stroke-width="1.2"></rect>  <path d="M76 121.5 H110" fill="none" stroke="var(--fg)" stroke-width="1.5"></path><path d="M110 116.5 v10 l6 -5 z" fill="var(--fg)"></path> <path d="M232 121.5 H266" fill="none" stroke="var(--fg)" stroke-width="1.5"></path><path d="M266 116.5 v10 l6 -5 z" fill="var(--fg)"></path> <path d="M388 121.5 H422" fill="none" stroke="var(--fg)" stroke-width="1.5"></path><path d="M422 116.5 v10 l6 -5 z" fill="var(--fg)"></path> <path d="M544 121.5 H578" fill="none" stroke="var(--fg)" stroke-width="1.5"></path><path d="M578 116.5 v10 l6 -5 z" fill="var(--fg)"></path> <rect x="380.5" y="200.5" width="150" height="42" fill="var(--bg)" stroke="var(--fg)" stroke-width="1.2"></rect>  <path d="M627 145 V221.5 H536" fill="none" stroke="var(--fg)" stroke-width="1.5"></path><path d="M536 216.5 v10 l-6 -5 z" fill="var(--fg)"></path> <path d="M380 221.5 H174 V151" fill="none" stroke="var(--fg)" stroke-width="1.5"></path><path d="M169 151 h10 l-5 -6 z" fill="var(--fg)"></path> </g><g class="pass1"> <rect x="428.5" y="20.5" width="115" height="40" fill="var(--bg)" stroke="var(--fg)" stroke-width="1.2"></rect> <text x="486" y="45" class="s" font-size="11" fill="var(--fg)" text-anchor="middle">Attribution</text> <path d="M486 61 V92" fill="none" stroke="var(--fg)" stroke-width="1.5"></path><path d="M481 92 h10 l-5 6 z" fill="var(--fg)"></path> <rect x="0.5" y="98.5" width="75" height="46" fill="var(--tint-strong)" stroke="var(--fg)" stroke-width="1.2"></rect> <text x="38" y="126" class="s" font-size="11" fill="var(--fg)" text-anchor="middle">Project</text> <rect x="116.5" y="98.5" width="115" height="46" fill="var(--bg)" stroke="var(--fg)" stroke-width="1.2"></rect> <text x="174" y="118" class="s" font-size="11" fill="var(--fg)" text-anchor="middle">Targeting/</text><text x="174" y="133" class="s" font-size="11" fill="var(--fg)" text-anchor="middle">Segmentation</text> <rect x="272.5" y="98.5" width="115" height="46" fill="var(--bg)" stroke="var(--fg)" stroke-width="1.2"></rect> <text x="330" y="118" class="s" font-size="11" fill="var(--fg)" text-anchor="middle">Smart Contract/</text><text x="330" y="133" class="s" font-size="11" fill="var(--fg)" text-anchor="middle">Campaign</text> <rect x="428.5" y="98.5" width="115" height="46" fill="var(--bg)" stroke="var(--fg)" stroke-width="1.2"></rect> <text x="486" y="118" class="s" font-size="11" fill="var(--fg)" text-anchor="middle">Distributors/</text><text x="486" y="133" class="s" font-size="11" fill="var(--fg)" text-anchor="middle">Channels</text> <rect x="584.5" y="98.5" width="85" height="46" fill="var(--tint-strong)" stroke="var(--fg)" stroke-width="1.2"></rect> <text x="627" y="126" class="s" font-size="11" fill="var(--fg)" text-anchor="middle">Users</text> <path d="M76 121.5 H110" fill="none" stroke="var(--fg)" stroke-width="1.5"></path><path d="M110 116.5 v10 l6 -5 z" fill="var(--fg)"></path> <path d="M232 121.5 H266" fill="none" stroke="var(--fg)" stroke-width="1.5"></path><path d="M266 116.5 v10 l6 -5 z" fill="var(--fg)"></path> <path d="M388 121.5 H422" fill="none" stroke="var(--fg)" stroke-width="1.5"></path><path d="M422 116.5 v10 l6 -5 z" fill="var(--fg)"></path> <path d="M544 121.5 H578" fill="none" stroke="var(--fg)" stroke-width="1.5"></path><path d="M578 116.5 v10 l6 -5 z" fill="var(--fg)"></path> <rect x="380.5" y="200.5" width="150" height="42" fill="var(--bg)" stroke="var(--fg)" stroke-width="1.2"></rect> <text x="455" y="226" class="s" font-size="11" fill="var(--fg)" text-anchor="middle">Onchain data analysis</text> <path d="M627 145 V221.5 H536" fill="none" stroke="var(--fg)" stroke-width="1.5"></path><path d="M536 216.5 v10 l-6 -5 z" fill="var(--fg)"></path> <path d="M380 221.5 H174 V151" fill="none" stroke="var(--fg)" stroke-width="1.5"></path><path d="M169 151 h10 l-5 -6 z" fill="var(--fg)"></path> </g></svg></div>
+        <figcaption><span>Fig. 2</span> A rough sketch of token distribution infra</figcaption>
+      </figure>
+      <p>Whether the token incentive strategy is an airdrop, quest, governance or staking campaign, the distribution model should incorporate the following elements:</p>
+      <p><em>Onchain revenue sharing:</em> Integral for incentivizing participation, revenue should be shared among all contributors, including the distribution platforms, distributor and developers. This ensures that all ecosystem members are motivated towards collective growth.</p>
+      <p><em>Attribution mechanisms:</em> Contributors, publishers or channels should be attributed for driving the token distribution to measure the effectiveness of the campaign. For instance, perhaps you’re a project that is cross-partnering with a community to distribute incentives. You want to be able to track and tag all onchain activity generated from that channel to measure effectiveness over-time.</p>
+      <p><em>Onchain data:</em> All token distribution should happen onchain via smart contracts to provide easily verifiable data of transactions.</p>
+      <p><em>Experimentation:</em> Continuously test and refine token distribution strategies to optimize user engagement and ecosystem health.</p>
+      <p>With these elements in place, we can start to move towards token distribution strategies that are more measurable and tactful.</p>
+    </article>
+
+    <nav class="pager" aria-label="More writing">
+      <a href="practicing-legibility.html"><span class="k">← Newer</span><span class="v">Practicing legibility</span></a>
+      <a class="next" href="on-fragmented-communication.html"><span class="k">Older →</span><span class="v">On fragmented communication</span></a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <span>© 2026 Oleena Mak</span>
+    <div class="links">
+      <a href="https://www.linkedin.com/in/oleenamak/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://x.com/ohmaak_" target="_blank" rel="noopener">X</a>
+      <a href="https://omak.substack.com/" target="_blank" rel="noopener">Substack</a>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

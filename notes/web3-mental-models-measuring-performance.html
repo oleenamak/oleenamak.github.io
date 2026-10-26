@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Web3 mental models: measuring performance · Oleena Mak</title>
+  <meta name="description" content="The shift to performance-based web3 metrics.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Geist:wght@400;500&family=Kalam:wght@300;400&display=swap">
+  <link rel="stylesheet" href="../style.css">
+  <script src="../theme.js"></script>
+</head>
+<body>
+<svg class="pencil-defs" width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="sk1" filterUnits="userSpaceOnUse" x="-100" y="-100" width="1000" height="800"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="3"/></filter>
+    <filter id="sk2" filterUnits="userSpaceOnUse" x="-100" y="-100" width="1000" height="800"><feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="11" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.2"/></filter>
+    <pattern id="hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(40)"><line x1="0" y1="0" x2="0" y2="5" stroke="var(--fg)" stroke-width=".7" opacity=".3"/></pattern>
+    <pattern id="hatch-dense" width="3.5" height="3.5" patternUnits="userSpaceOnUse" patternTransform="rotate(40)"><line x1="0" y1="0" x2="0" y2="3.5" stroke="var(--fg)" stroke-width=".7" opacity=".45"/></pattern>
+    <pattern id="hatch-orange" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(40)"><line x1="0" y1="0" x2="0" y2="4" stroke="var(--accent)" stroke-width=".9" opacity=".6"/></pattern>
+  </defs>
+</svg>
+<div class="page">
+  <header class="site-header">
+    <a href="../index.html" aria-label="Oleena Mak, home">
+      <svg class="avatar" viewBox="5 5 90 62" aria-hidden="true">
+        <defs><clipPath id="peek"><rect x="0" y="0" width="100" height="64"/></clipPath></defs>
+        <g clip-path="url(#peek)">
+          <g class="cat-head">
+            <g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 100 C 17 72 25 42 33.5 14 L 41 23.5 L 64 27 L 71.5 17 L 75.5 31 C 83 36 87.5 47 87 58 C 86.6 66 83.4 70.5 79 72.5 L 80.5 74.5 C 82 83 83 92 83.5 100"/>
+              <path d="M50 27.6 L50.6 31.8 M54.5 28.1 L55 32.3 M58.9 28.7 L59.2 32.6"/>
+              <path d="M46 48.6 C 49.5 45.4 57 45.4 60.6 48.6 M73 48.8 C 76 45.8 82 45.8 85 48.6" stroke-width="3.2"/>
+              <path d="M46.8 50.2 C 50 53 57 53 60 50.2 M73.6 50.3 C 76.2 52.8 81.6 52.8 84.4 50.3"/>
+              <path d="M66.6 50.6 L66.6 54.6 M64.2 56.8 L66.6 54.6 L69 56.8"/>
+            </g>
+            <g fill="currentColor">
+              <circle cx="53.6" cy="50.4" r="1.9"/><circle cx="78.6" cy="50.4" r="1.9"/>
+              <circle cx="53" cy="59" r="1.1"/><circle cx="56.4" cy="58.4" r="1.1"/><circle cx="55" cy="61.4" r="1.1"/>
+              <circle cx="77.4" cy="59.2" r="1.1"/><circle cx="80.6" cy="58.6" r="1.1"/><circle cx="79.2" cy="61.6" r="1.1"/>
+            </g>
+          </g>
+        </g>
+        <path d="M8 64 H 92" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+      </svg>
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="../notes.html" aria-current="page">writing</a>
+      <a href="https://omak.substack.com/" target="_blank" rel="noopener">blog ↗</a>
+      <button class="theme" type="button" id="theme-toggle" aria-label="Switch light or dark theme">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><circle cx="8" cy="8" r="3.2"/><path d="M8 1v1.6M8 13.4V15M1 8h1.6M13.4 8H15M3 3l1.1 1.1M11.9 11.9 13 13M3 13l1.1-1.1M11.9 4.1 13 3"/></svg>
+      </button>
+    </nav>
+  </header>
+
+  <main style="display:grid; gap:2.25rem">
+    <a class="back" href="../notes.html">← All writing</a>
+    <header class="article-head">
+      <p class="meta"><span>Growth</span><span>Apr 20, 2024</span><span>4 min read</span></p>
+      <h1>Web3 mental models: measuring performance</h1>
+      <p class="dek">The shift to performance-based web3 metrics.</p>
+    </header>
+
+    <article class="prose">
+      <p>Two years ago, TVL, the number of Twitter and Discord followers and token price was the north star metric defining a project’s success.</p>
+      <p>Today, we could care less.</p>
+      <p>While these metrics still provide some insight into a project, they definitely hold less weight and importance in a slow market, and they certainly don't capture the nuanced picture of a project's overall health and long-term growth.</p>
+      <p>Instead, we’re starting to see a shift towards more granular and actionable metrics that consider individual user behavior and deeper engagement. But to be able to do this, projects must have some resemblance of a sustainable revenue model, not just through token sales or market speculation. So the fact that we’re beginning to think about new metrics is a good sign because it shows that the crypto market is slowly, but surely maturing.</p>
+      <p>Here’s my current mental model on how I view measuring web3 growth and marketing performance from a top-down vs. bottoms-up approach.</p>
+      <figure class="fig">
+        <div class="fig-body"><svg role="img" aria-label="Top-down vanity metrics compared with bottoms-up action-driven metrics" viewBox="0 0 670 436" width="100%" style="display:block;height:auto;overflow:visible"><g class="pass2" aria-hidden="true"> <polygon fill="var(--tint-warm)" points="55,75 345,75 200,375" stroke="var(--fg)" stroke-width="1.2"></polygon> <polygon fill="var(--tint)" points="325,375 615,375 470,75" stroke="var(--fg)" stroke-width="1.2"></polygon>                    <rect x="55.5" y="20.5" width="289" height="34" fill="var(--fg)" stroke="var(--fg)" stroke-width="1"></rect>  <rect x="325.5" y="392.5" width="289" height="34" fill="var(--fg)" stroke="var(--fg)" stroke-width="1"></rect>  <path d="M28 75 V368" fill="none" stroke="var(--muted)" stroke-width="1.2"></path><path d="M23 368 h10 l-5 8 z" fill="var(--muted)"></path>  <path d="M642 375 V82" fill="none" stroke="var(--muted)" stroke-width="1.2"></path><path d="M637 82 h10 l-5 -8 z" fill="var(--muted)"></path>  </g><g class="pass1"> <polygon fill="var(--tint-warm)" points="55,75 345,75 200,375" stroke="var(--fg)" stroke-width="1.2"></polygon> <polygon fill="var(--tint)" points="325,375 615,375 470,75" stroke="var(--fg)" stroke-width="1.2"></polygon> <text x="200" y="105" class="s" font-size="11" fill="var(--fg)" text-anchor="middle">Social media followers</text> <text x="200" y="128" class="s" font-size="11" fill="var(--fg)" text-anchor="middle">Number of transactions</text> <text x="200" y="151" class="s" font-size="11" fill="var(--fg)" text-anchor="middle">Partner integrations</text> <text x="200" y="174" class="s" font-size="11" fill="var(--fg)" text-anchor="middle">New wallets created</text> <text x="200" y="197" class="s" font-size="11" fill="var(--fg)" text-anchor="middle">Transaction volume</text> <text x="200" y="220" class="s" font-size="11" fill="var(--fg)" text-anchor="middle">Total value locked</text> <text x="200" y="243" class="s" font-size="11" fill="var(--fg)" text-anchor="middle">Engagement clicks</text> <text x="200" y="266" class="s" font-size="11" fill="var(--fg)" text-anchor="middle">Token price</text> <text x="200" y="289" class="s" font-size="11" fill="var(--fg)" text-anchor="middle">Market cap</text> <text x="200" y="312" class="s" font-size="11" fill="var(--fg)" text-anchor="middle">DAU/MAU</text> <text x="470" y="133" class="s" font-size="11" fill="var(--fg)" text-anchor="middle">LTV</text> <text x="470" y="158" class="s" font-size="11" fill="var(--fg)" text-anchor="middle">CPA</text> <text x="470" y="183" class="s" font-size="11" fill="var(--fg)" text-anchor="middle">NPS</text> <text x="470" y="208" class="s" font-size="11" fill="var(--fg)" text-anchor="middle">CAC</text> <text x="470" y="233" class="s" font-size="11" fill="var(--fg)" text-anchor="middle">ROAS</text> <text x="470" y="258" class="s" font-size="11" fill="var(--fg)" text-anchor="middle">Churn rate</text> <text x="470" y="283" class="s" font-size="11" fill="var(--fg)" text-anchor="middle">Retention rate</text> <text x="470" y="308" class="s" font-size="11" fill="var(--fg)" text-anchor="middle">Conversion rates</text> <text x="470" y="333" class="s" font-size="11" fill="var(--fg)" text-anchor="middle">Gas fees generated</text> <rect x="55.5" y="20.5" width="289" height="34" fill="var(--fg)" stroke="var(--fg)" stroke-width="1"></rect> <text x="200" y="42" class="s" font-size="16" fill="var(--bg)" text-anchor="middle">Top Down Metrics</text> <rect x="325.5" y="392.5" width="289" height="34" fill="var(--fg)" stroke="var(--fg)" stroke-width="1"></rect> <text x="470" y="414" class="s" font-size="16" fill="var(--bg)" text-anchor="middle">Bottoms Up Metrics</text> <path d="M28 75 V368" fill="none" stroke="var(--muted)" stroke-width="1.2"></path><path d="M23 368 h10 l-5 8 z" fill="var(--muted)"></path> <text x="18" y="225" transform="rotate(-90 18 225)" class="m u" font-size="9" font-weight="500" fill="var(--muted)" text-anchor="middle">Vanity-driven</text> <path d="M642 375 V82" fill="none" stroke="var(--muted)" stroke-width="1.2"></path><path d="M637 82 h10 l-5 -8 z" fill="var(--muted)"></path> <text x="652" y="225" transform="rotate(90 652 225)" class="m u" font-size="9" font-weight="500" fill="var(--muted)" text-anchor="middle">Action-driven</text> </g></svg></div>
+        <figcaption><span>Fig. 1</span> TOFU vs. BOFU web3 performance metrics</figcaption>
+      </figure>
+
+      <h2>The top-down approach</h2>
+      <p>Early crypto projects will typically take a top-down approach to measuring performance for several practical reasons. For one, it’s easier. It relies on aggregate data that is publicly available (TVL, token price, market cap) or simple to track (off chain metrics). The key is that these metrics are easily visible and understood by users, which can create a network effect to continue to attract and signal investors to direct liquidity to the project.</p>
+      <p>Simplicity is key in the early stages when resources are limited and the need to communicate growth to investors and the community is critical. Plus, with the anonymous nature of onchain activity, obtaining granular, user-level data and tracking is not as simple in this cookie-less world.</p>
+      <p>But while a top down approach to measuring performance is practical for an early stage project, it also drives a lot of irrational behavior to quickly boost numbers:</p>
+      <ul>
+        <li>Random airdrops to influential wallets</li>
+        <li>High, but unsustainable liquidity mining or staking programs</li>
+        <li>Artificially inflated bot trading volumes</li>
+        <li>Flashy partnerships and sponsorships</li>
+        <li>Excessive token burns</li>
+        <li>Point systems</li>
+      </ul>
+      <p>Not all crypto projects resort to unsavory marketing tactics like those, but it shows that just focusing on top-down metrics won’t paint the whole picture. It lacks the detail required to understand user behavior and engagement fully. As projects mature, there's usually a gradual shift towards more complex bottom-up analytics that can provide deeper insights into user retention, lifetime value, and other indicators that are more indicative of long-term success.</p>
+
+      <h2>The bottoms-up approach</h2>
+      <p>On the flip side, the bottom-up approach in measuring web3 growth focuses on the specifics: what each user does and the direct costs and benefits of their interactions. It’s a detailed look at individual behaviors within a project and involves metrics such as:</p>
+      <ul>
+        <li><em>User engagement:</em> how often and in what ways users engage with a project</li>
+        <li><em>Acquisition costs:</em> the costs to bring in an active user and the value they bring to the project</li>
+        <li><em>Retention and churn:</em> how many users stick around versus how many leave the project</li>
+        <li><em>Conversion rates:</em> how many users take a desired onchain action</li>
+      </ul>
+      <p>But to be able to get to this point, there’s more complexity to the tooling and methodology to track, segment and attribute users’ onchain actions. Plus, we add in the blend of offchain activity that happens and network bridging that makes it difficult to take a bottoms-up approach.</p>
+      <p>So how can we get to bottom funnel metrics?</p>
+      <p>Here’s my structured way to think about how several small, iterative lifts in user behavior can power long-term growth. By looking at the data on a campaign user-level, we can incrementally gain insights on how users are interacting with the platform to optimize and drive sustainable growth.</p>
+      <figure class="fig">
+        <div class="fig-body"><svg role="img" aria-label="A five-step cycle: collect granular data, analyze data, apply insights, incentivize actions, iterate and optimize" viewBox="0 0 670 418" width="100%" style="display:block;height:auto;overflow:visible"><g class="pass2" aria-hidden="true"> <circle cx="335.0" cy="83.0" r="58" fill="var(--tint)" stroke="var(--fg)" stroke-width="1.2"></circle>   <circle cx="466.2" cy="178.4" r="58" fill="var(--tint)" stroke="var(--fg)" stroke-width="1.2"></circle>   <circle cx="416.1" cy="332.6" r="58" fill="var(--tint)" stroke="var(--fg)" stroke-width="1.2"></circle>   <circle cx="253.9" cy="332.6" r="58" fill="var(--tint)" stroke="var(--fg)" stroke-width="1.2"></circle>   <circle cx="203.8" cy="178.4" r="58" fill="var(--tint)" stroke="var(--fg)" stroke-width="1.2"></circle>   <path d="M404.0 101.5 A138 138 0 0 1 427.3 118.4" fill="none" stroke="var(--fg)" stroke-width="1.5"></path> <path d="M433.3 123.8 L422.4 118.0 L426.4 113.5 z" fill="var(--fg)"></path> <path d="M470.0 249.7 A138 138 0 0 1 461.1 277.1" fill="none" stroke="var(--fg)" stroke-width="1.5"></path> <path d="M457.8 284.4 L460.0 272.3 L465.4 274.7 z" fill="var(--fg)"></path> <path d="M349.4 358.2 A138 138 0 0 1 320.6 358.2" fill="none" stroke="var(--fg)" stroke-width="1.5"></path> <path d="M312.6 357.4 L324.9 355.7 L324.2 361.6 z" fill="var(--fg)"></path> <path d="M208.9 277.1 A138 138 0 0 1 200.0 249.7" fill="none" stroke="var(--fg)" stroke-width="1.5"></path> <path d="M198.4 241.9 L203.8 253.0 L197.9 254.2 z" fill="var(--fg)"></path> <path d="M242.7 118.4 A138 138 0 0 1 266.0 101.5" fill="none" stroke="var(--fg)" stroke-width="1.5"></path> <path d="M272.9 97.5 L264.0 106.1 L261.0 100.9 z" fill="var(--fg)"></path> </g><g class="pass1"> <circle cx="335.0" cy="83.0" r="58" fill="var(--tint)" stroke="var(--fg)" stroke-width="1.2"></circle> <text x="335.0" y="81.0" class="s" font-size="13" fill="var(--fg)" text-anchor="middle">Collect</text> <text x="335.0" y="97.0" class="s" font-size="13" fill="var(--fg)" text-anchor="middle">granular data</text> <circle cx="466.2" cy="178.4" r="58" fill="var(--tint)" stroke="var(--fg)" stroke-width="1.2"></circle> <text x="466.2" y="176.4" class="s" font-size="13" fill="var(--fg)" text-anchor="middle">Analyze</text> <text x="466.2" y="192.4" class="s" font-size="13" fill="var(--fg)" text-anchor="middle">data</text> <circle cx="416.1" cy="332.6" r="58" fill="var(--tint)" stroke="var(--fg)" stroke-width="1.2"></circle> <text x="416.1" y="330.6" class="s" font-size="13" fill="var(--fg)" text-anchor="middle">Apply</text> <text x="416.1" y="346.6" class="s" font-size="13" fill="var(--fg)" text-anchor="middle">insights</text> <circle cx="253.9" cy="332.6" r="58" fill="var(--tint)" stroke="var(--fg)" stroke-width="1.2"></circle> <text x="253.9" y="330.6" class="s" font-size="13" fill="var(--fg)" text-anchor="middle">Incentivize</text> <text x="253.9" y="346.6" class="s" font-size="13" fill="var(--fg)" text-anchor="middle">actions</text> <circle cx="203.8" cy="178.4" r="58" fill="var(--tint)" stroke="var(--fg)" stroke-width="1.2"></circle> <text x="203.8" y="176.4" class="s" font-size="13" fill="var(--fg)" text-anchor="middle">Iterate &amp;</text> <text x="203.8" y="192.4" class="s" font-size="13" fill="var(--fg)" text-anchor="middle">optimize</text> <path d="M404.0 101.5 A138 138 0 0 1 427.3 118.4" fill="none" stroke="var(--fg)" stroke-width="1.5"></path> <path d="M433.3 123.8 L422.4 118.0 L426.4 113.5 z" fill="var(--fg)"></path> <path d="M470.0 249.7 A138 138 0 0 1 461.1 277.1" fill="none" stroke="var(--fg)" stroke-width="1.5"></path> <path d="M457.8 284.4 L460.0 272.3 L465.4 274.7 z" fill="var(--fg)"></path> <path d="M349.4 358.2 A138 138 0 0 1 320.6 358.2" fill="none" stroke="var(--fg)" stroke-width="1.5"></path> <path d="M312.6 357.4 L324.9 355.7 L324.2 361.6 z" fill="var(--fg)"></path> <path d="M208.9 277.1 A138 138 0 0 1 200.0 249.7" fill="none" stroke="var(--fg)" stroke-width="1.5"></path> <path d="M198.4 241.9 L203.8 253.0 L197.9 254.2 z" fill="var(--fg)"></path> <path d="M242.7 118.4 A138 138 0 0 1 266.0 101.5" fill="none" stroke="var(--fg)" stroke-width="1.5"></path> <path d="M272.9 97.5 L264.0 106.1 L261.0 100.9 z" fill="var(--fg)"></path> </g></svg></div>
+        <figcaption><span>Fig. 2</span> BOFU product growth wheel</figcaption>
+      </figure>
+      <p><em>Collect granular data:</em> Collect precise data by using onchain analysis tools to monitor user activity, smart contracts to log actions, and privacy-preserving identifiers to follow individual user interactions.</p>
+      <p><em>Analyze data:</em> Analyze user data by segmenting them into groups, map their journey and identify leaks, and evaluate how token usage influences their behavior.</p>
+      <p><em>Apply insights:</em> Clearly communicate insights to all stakeholders and incorporate community feedback to steer the project's direction based on data analysis.</p>
+      <p><em>Incentivize desired behaviors:</em> Automate rewards to reinforce desired behaviors.</p>
+      <p><em>Continuous iteration and optimization:</em> Continuously enhance the platform by integrating user feedback and data.</p>
+      <p>For long-term growth in web3, focusing on the details of how people use platforms (the bottom-up approach) can be more helpful. It allows projects to see what keeps users coming back and helps them make better decisions for the future.</p>
+      <p>That means that we need to implement more effective tactics to drive and measure bottom-funnel activity:</p>
+      <ul>
+        <li>Continuous and conditional airdrops (<a href="https://terminal.rabbithole.gg/" target="_blank" rel="noopener">Quest Protocol</a>)</li>
+        <li>Guided or interactive quests</li>
+        <li>Engaging web3 ads</li>
+        <li>Referral or loyalty programs</li>
+        <li>Incentivizing governance</li>
+      </ul>
+      <p>Note that the common denominator in all of these tactics are incentives. But more on that another time.</p>
+
+      <h2>Conclusion</h2>
+      <p>As the web3 industry evolves, so do our methods for gauging success. Instead of relying on broad, easily skewed metrics, there's a shift towards valuing each user's contribution and fostering long-term connections. Clever, performance-driven tactics will guide projects to refine their features and engage their communities more effectively to drive long-term growth.</p>
+      <p>A slow market is the perfect time to rethink our mental models around measuring performance to help understand and answer the question: what makes a project sustainable? That is…until the next bull cycle returns.</p>
+    </article>
+
+    <nav class="pager" aria-label="More writing">
+      <a href="on-fragmented-communication.html"><span class="k">← Newer</span><span class="v">On fragmented communication</span></a>
+      <a class="next" href="referrals-retention-in-crypto.html"><span class="k">Older →</span><span class="v">Referrals + retention in crypto</span></a>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <span>© 2026 Oleena Mak</span>
+    <div class="links">
+      <a href="https://www.linkedin.com/in/oleenamak/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://x.com/ohmaak_" target="_blank" rel="noopener">X</a>
+      <a href="https://omak.substack.com/" target="_blank" rel="noopener">Substack</a>
+    </div>
+  </footer>
+</div>
+</body>
+</html>

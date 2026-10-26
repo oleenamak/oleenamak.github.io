@@ -99,11 +99,11 @@ section { display: grid; gap: .75rem; }
 .article-head { display: grid; gap: .75rem; }
 .meta { font-size: .8125rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: .25rem .6rem; }
 .meta span + span::before { content: "·"; margin-right: .6rem; }
-.article-head h1 { font-family: var(--f-serif); font-size: clamp(1.9rem, 5vw, 2.4rem); line-height: 1.15; letter-spacing: -.01em; }
+.article-head h1 { font-family: var(--f-sans); font-weight: 500; font-size: clamp(1.9rem, 5vw, 2.4rem); line-height: 1.15; letter-spacing: -.02em; }
 .article-head .dek { color: var(--muted); font-size: 1.0625rem; }
 
 .prose { font-family: var(--f-sans); font-size: 1rem; line-height: 1.7; display: grid; gap: 1.15rem; }
-.prose h2 { font-family: var(--f-sans); font-size: 1rem; font-weight: 500; margin-top: 1.25rem; }
+.prose h2, .prose h3 { font-family: var(--f-sans); font-size: 1.143rem; font-weight: 500; line-height: 1.4; margin-top: 1.25rem; } /* 16px */
 .prose a { text-decoration: underline; text-decoration-color: var(--rule); text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
 .prose a:hover { text-decoration-color: var(--accent); }
 .prose ul { margin: 0; padding-left: 1.25rem; display: grid; gap: .4rem; }

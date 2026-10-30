@@ -169,45 +169,27 @@ section { display: grid; gap: .75rem; }
 .site-footer a:hover { color: var(--fg); }
 
 
-/* Daily builds: a month calendar, one drawing per day, click for the spec */
-.builds { display: grid; gap: 2.5rem; }
-.why summary { cursor: pointer; color: var(--muted); font-size: .9375rem; list-style: none; width: fit-content; }
-.why summary::-webkit-details-marker { display: none; }
-.why summary::before { content: "+"; display: inline-block; width: 1rem; color: var(--accent); }
-.why[open] summary::before { content: "−"; }
-.why summary:hover { color: var(--fg); }
-.why ul { margin: .9rem 0 0; padding-left: 1.25rem; display: grid; gap: .5rem; }
-.why li::marker { color: var(--muted); }
-.why strong { font-weight: 500; }
-.streak { font-size: .8125rem; color: var(--muted); font-variant-numeric: tabular-nums; margin-top: -1.25rem; }
-
-.month { gap: .6rem; }
-.month .hint { font-family: "Kalam", cursive; font-size: .9375rem; color: var(--muted); }
-.cal-head, .cal { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); }
-.cal-head li { font-size: .75rem; color: var(--muted); padding: 0 0 .35rem .4rem; }
-.cal { padding: 1px 0 0 1px; }
-/* Shared 1px lines between cells; leading blank days stay borderless */
-.cell { position: relative; aspect-ratio: 1 / 1.08; min-width: 0; box-shadow: 1px 0 0 var(--rule), 0 1px 0 var(--rule), 1px 1px 0 var(--rule), inset 1px 0 0 var(--rule), inset 0 1px 0 var(--rule); }
-.cell .n { position: absolute; top: .35rem; left: .45rem; font-size: .75rem; color: var(--muted); font-variant-numeric: tabular-nums; }
-.cell.before .n { opacity: .4; }
-.cell.blank { box-shadow: none; }
-.cell.future { background: repeating-linear-gradient(-45deg, transparent 0 6px, var(--tint) 6px 7px); }
-.cell.today .n { color: var(--accent); font-weight: 500; }
-.cell button { all: unset; box-sizing: border-box; position: absolute; inset: 0; cursor: pointer; display: grid; place-items: center; padding: 1.1rem .3rem 1.2rem; }
-.cell button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
-.cell button:hover { background: var(--tint); }
-.cell button img { width: 100%; height: auto; max-height: 100%; object-fit: contain; filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .12)); transition: transform .25s cubic-bezier(.4, 0, .2, 1); }
-.cell button:hover img { transform: translateY(-2px) scale(1.05); }
-.cell .plus { position: absolute; top: .2rem; right: .45rem; font-size: 1rem; line-height: 1.3; color: var(--fg); }
-.cell .cap { position: absolute; left: .3rem; right: .3rem; bottom: .3rem; font-family: "Kalam", cursive; font-size: .75rem; line-height: 1.1; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-@media (max-width: 460px) { .cell .cap, .cal-head li { font-size: .625rem; } .cell .n { font-size: .6875rem; top: .2rem; left: .3rem; } .cell .plus { top: 0; right: .3rem; } }
+/* Projects: a list of things I've built, click one for the spec */
+.projects { display: grid; gap: 2rem; }
+.project-list { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
+.project-list button { all: unset; box-sizing: border-box; width: 100%; cursor: pointer; display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 1rem; align-items: center; padding: .6rem; margin: 0 -.6rem; border-radius: 8px; }
+.project-list button:hover { background: var(--tint); }
+.project-list button:focus-visible { outline: 2px solid var(--accent); outline-offset: 0; }
+.project-list .thumb { display: grid; place-items: center; aspect-ratio: 5 / 4; }
+.project-list .thumb img { width: 100%; height: auto; filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .12)); transition: transform .25s cubic-bezier(.4, 0, .2, 1); }
+.project-list button:hover .thumb img { transform: translateY(-2px) scale(1.04); }
+.project-list .body { display: grid; gap: .2rem; }
+.project-list .t { font-weight: 500; }
+.project-list button:hover .t { text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 3px; }
+.project-list .x { color: var(--muted); font-size: .9375rem; }
+.project-list .m { color: var(--muted); font-size: .8125rem; }
 
 /* Spec window */
 .spec { padding: 0; border: 1px solid var(--rule); border-radius: 12px; background: var(--bg); color: var(--fg); width: min(720px, calc(100vw - 32px)); max-height: calc(100dvh - 48px); box-shadow: 0 18px 50px rgba(0, 0, 0, .18); }
 .spec::backdrop { background: rgba(26, 25, 23, .4); }
 .spec[open] { animation: pop .22s cubic-bezier(.2, .8, .3, 1); }
 @keyframes pop { from { opacity: 0; transform: translateY(8px) scale(.98); } }
-@media (prefers-reduced-motion: reduce) { .spec[open] { animation: none; } .cell button img { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .spec[open] { animation: none; } .project-list .thumb img { transition: none; } }
 .spec-card { display: grid; grid-template-columns: 340px minmax(0, 1fr); }
 .spec-art { background: #EEEBE4; display: grid; place-items: center; border-radius: 11px 0 0 11px; }
 .spec-art img { display: block; width: 100%; height: auto; }

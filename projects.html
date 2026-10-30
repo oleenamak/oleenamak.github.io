@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Daily builds · Oleena Mak</title>
-  <meta name="description" content="Something new, built every day, in public.">
+  <title>Projects · Oleena Mak</title>
+  <meta name="description" content="Things I’ve built, small and half-baked included.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Geist:wght@400;500&family=Kalam:wght@400&display=swap">
@@ -13,8 +13,8 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="stylesheet" href="style.css">
   <script src="theme.js"></script>
-  <script src="builds.js" defer></script>
-  <script src="builds-page.js" defer></script>
+  <script src="projects.js" defer></script>
+  <script src="projects-page.js" defer></script>
 </head>
 <body>
 <div class="page">
@@ -42,7 +42,7 @@
       </svg>
     </a>
     <nav class="site-nav" aria-label="Main">
-      <a href="builds.html" aria-current="page">builds</a>
+      <a href="projects.html" aria-current="page">projects</a>
       <a href="notes.html">writing</a>
       <a href="https://omak.substack.com/" target="_blank" rel="noopener">blog ↗</a>
       <button class="theme" type="button" id="theme-toggle" aria-label="Switch light or dark theme">
@@ -51,27 +51,14 @@
     </nav>
   </header>
 
-  <main class="builds">
+  <main class="projects">
     <div class="archive-head">
-      <h1>Daily builds</h1>
-      <p>One new thing every day, starting October 28, 2026. Some will be tiny, most will be half-baked, and all of them ship anyway.</p>
+      <h1>Projects</h1>
+      <p>Things I’ve built, small and half-baked included.</p>
     </div>
 
-    <details class="why">
-      <summary>Why I'm doing this</summary>
-      <ul>
-        <li><strong>Build in public.</strong> Show even the smallest things I make, unfinished ones included, because that's where the learning is.</li>
-        <li><strong>Train the instinct.</strong> Get better at spotting problems worth solving, and at turning them into something real.</li>
-        <li><strong>Become AI-native.</strong> Work with AI every day until building with it feels natural, and keep getting better at it.</li>
-        <li><strong>Get more ambitious.</strong> Watch the builds grow over time and see how much bigger I'm willing to go.</li>
-        <li><strong>Never run dry.</strong> Force a new idea every single day, then just build it.</li>
-      </ul>
-    </details>
-
-    <p class="streak" id="streak"></p>
-
-    <div id="months"></div>
-    <noscript><p class="streak">Turn on JavaScript to see the calendar.</p></noscript>
+    <ul class="project-list" id="projects"></ul>
+    <noscript><p>Turn on JavaScript to see the projects.</p></noscript>
   </main>
 
   <footer class="site-footer">

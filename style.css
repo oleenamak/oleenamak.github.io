@@ -41,7 +41,7 @@ h1, h2, h3 { margin: 0; font-weight: 400; text-wrap: balance; }
 
 /* Header */
 .site-header { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding-top: 2.5rem; flex-wrap: wrap; }
-.avatar { width: 64px; height: auto; display: block; color: var(--fg); }
+.avatar { width: 52px; height: auto; display: block; color: var(--fg); }
 /* Cat ducks behind its line and peeks back up on hover */
 .cat-head { transform-box: view-box; }
 a:hover .cat-head, a:focus-visible .cat-head { animation: peek .9s cubic-bezier(.4, 0, .2, 1); }

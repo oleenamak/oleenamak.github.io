@@ -109,6 +109,7 @@ section { display: grid; gap: .75rem; }
 .prose ul { margin: 0; padding-left: 1.25rem; display: grid; gap: .4rem; }
 .prose li::marker { color: var(--muted); }
 .prose blockquote { margin: 0; padding-left: 1rem; border-left: 2px solid var(--rule); color: var(--muted); font-style: italic; }
+.prose hr { border: 0; height: 1px; width: 3rem; margin: 1rem auto; background: var(--rule); }
 .prose .reads p { font-size: 1rem; }
 
 /* Figures: charts and tables inside articles, drawn in pencil */

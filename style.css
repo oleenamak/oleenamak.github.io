@@ -23,7 +23,7 @@
 :root[data-theme="dark"] { --bg: #1A1917; --fg: #ECE8E0; --muted: #9B968C; --rule: #33312D; --accent: #EE9A5E; --c-brown: #9B968C; --c-olive: #9B968C; --c-tan: #EE9A5E; --c-tan-text: #EE9A5E; --tint: rgba(236, 232, 224, .04); --tint-strong: rgba(236, 232, 224, .1); --tint-warm: rgba(238, 154, 94, .16); color-scheme: dark; }
 
 * { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; font-size: 87.5%; } /* 14px base; every rem size scales with it */
+html { -webkit-text-size-adjust: 100%; font-size: 75%; } /* 12px base; every rem size scales with it */
 body {
   margin: 0;
   background: var(--bg); color: var(--fg);

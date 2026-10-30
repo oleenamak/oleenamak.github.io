@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Daily builds · Oleena Mak</title>
+  <meta name="description" content="Something new, built every day, in public.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Geist:wght@400;500&family=Kalam:wght@400&display=swap">
+  <link rel="icon" href="favicon.ico" sizes="32x32">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="style.css">
+  <script src="theme.js"></script>
+  <script src="builds.js" defer></script>
+  <script src="builds-page.js" defer></script>
+</head>
+<body>
+<div class="page">
+  <header class="site-header">
+    <a href="index.html" aria-label="Oleena Mak, home">
+      <svg class="avatar" viewBox="5 5 90 62" aria-hidden="true">
+        <defs><clipPath id="peek"><rect x="0" y="0" width="100" height="64"/></clipPath></defs>
+        <g clip-path="url(#peek)">
+          <g class="cat-head">
+            <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 100 C 17 72 25 42 33.5 14 L 41 23.5 L 64 27 L 71.5 17 L 75.5 31 C 83 36 87.5 47 87 58 C 86.6 66 83.4 70.5 79 72.5 L 80.5 74.5 C 82 83 83 92 83.5 100"/>
+              <path d="M50 27.6 L50.6 31.8 M54.5 28.1 L55 32.3 M58.9 28.7 L59.2 32.6"/>
+              <path d="M46 48.6 C 49.5 45.4 57 45.4 60.6 48.6 M73 48.8 C 76 45.8 82 45.8 85 48.6" stroke-width="2.7"/>
+              <path d="M46.8 50.2 C 50 53 57 53 60 50.2 M73.6 50.3 C 76.2 52.8 81.6 52.8 84.4 50.3"/>
+              <path d="M66.6 50.6 L66.6 54.6 M64.2 56.8 L66.6 54.6 L69 56.8"/>
+            </g>
+            <g fill="currentColor">
+              <circle cx="53.6" cy="50.4" r="1.9"/><circle cx="78.6" cy="50.4" r="1.9"/>
+              <circle cx="53" cy="59" r="1.1"/><circle cx="56.4" cy="58.4" r="1.1"/><circle cx="55" cy="61.4" r="1.1"/>
+              <circle cx="77.4" cy="59.2" r="1.1"/><circle cx="80.6" cy="58.6" r="1.1"/><circle cx="79.2" cy="61.6" r="1.1"/>
+            </g>
+          </g>
+        </g>
+        <path d="M8 64 H 92" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="builds.html" aria-current="page">builds</a>
+      <a href="notes.html">writing</a>
+      <a href="https://omak.substack.com/" target="_blank" rel="noopener">blog ↗</a>
+      <button class="theme" type="button" id="theme-toggle" aria-label="Switch light or dark theme">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"><circle cx="8" cy="8" r="3.2"/><path d="M8 1v1.6M8 13.4V15M1 8h1.6M13.4 8H15M3 3l1.1 1.1M11.9 11.9 13 13M3 13l1.1-1.1M11.9 4.1 13 3"/></svg>
+      </button>
+    </nav>
+  </header>
+
+  <main class="builds">
+    <div class="archive-head">
+      <h1>Daily builds</h1>
+      <p>One new thing every day, starting October 28, 2026. Some will be tiny, most will be half-baked, and all of them ship anyway.</p>
+    </div>
+
+    <details class="why">
+      <summary>Why I'm doing this</summary>
+      <ul>
+        <li><strong>Build in public.</strong> Show even the smallest things I make, unfinished ones included, because that's where the learning is.</li>
+        <li><strong>Train the instinct.</strong> Get better at spotting problems worth solving, and at turning them into something real.</li>
+        <li><strong>Become AI-native.</strong> Work with AI every day until building with it feels natural, and keep getting better at it.</li>
+        <li><strong>Get more ambitious.</strong> Watch the builds grow over time and see how much bigger I'm willing to go.</li>
+        <li><strong>Never run dry.</strong> Force a new idea every single day, then just build it.</li>
+      </ul>
+    </details>
+
+    <p class="streak" id="streak"></p>
+
+    <div id="months"></div>
+    <noscript><p class="streak">Turn on JavaScript to see the calendar.</p></noscript>
+  </main>
+
+  <footer class="site-footer">
+    <span>© 2026 Oleena Mak</span>
+    <div class="links">
+      <a href="https://www.linkedin.com/in/oleenamak/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://x.com/ohmaak_" target="_blank" rel="noopener">X</a>
+      <a href="https://omak.substack.com/" target="_blank" rel="noopener">Substack</a>
+    </div>
+  </footer>
+</div>
+
+<dialog class="spec" id="spec" aria-labelledby="spec-title">
+<div class="spec-card">
+  <div class="spec-art" id="spec-art"></div>
+  <div class="spec-text">
+  <div class="spec-bar">
+    <span class="spec-day" id="spec-day"></span>
+    <button type="button" class="spec-close" id="spec-close" aria-label="Close">×</button>
+  </div>
+  <h2 id="spec-title"></h2>
+  <dl id="spec-body"></dl>
+  <a class="spec-link" id="spec-link" target="_blank" rel="noopener"></a>
+  </div>
+</div>
+</dialog>
+</body>
+</html>

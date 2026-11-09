@@ -171,3 +171,13 @@ dd p + p { margin-top: 12px; }
 .intro h1 small { display: block; margin-top: 3px; font: 11px/1.2 var(--sans); color: var(--muted); }
 
 .soon { margin-top: 22px; padding-top: 14px; border-top: 1px dotted #bbb; font: 12px/1.5 var(--sans); color: var(--muted); }
+
+/* ---- First arrival: nothing selected yet ---- */
+.home { display: none; }
+.js .home.open {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 6px; min-height: calc(100vh - 122px); padding: 40px; text-align: center;
+}
+.home .bot { width: 88px; height: 88px; margin-bottom: 14px; }
+.home-title { font-size: 18px; line-height: 1.3; }
+.home-hint { font: 12px/1.5 var(--sans); color: var(--muted); }

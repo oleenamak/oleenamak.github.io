@@ -6,7 +6,7 @@ order: 1
 
 American Operator acquires small businesses through an ownership model designed to keep them locally owned and operated. $50M Series B, led by 8VC and Human Capital.
 
-I led the growth function across paid acquisition, lifecycle marketing and CRM, PR, social, and content. Key initiatives included (1) launching Operator Network, a community platform for entrepreneurs looking to buy a small business, (2) setting up operations for Locally Owned and Operated, a certification program for small business owners, and (3) managing PR and communications in-house to secure national media coverage.
+I led the growth function through a business model pivot, helping American Operator build a repeatable way to find qualified buyers and sellers and turn that demand into a pipeline of small-business acquisitions. Channels I owned included: paid acquisition, lifecycle marketing and CRM, PR, social, and content. Explore some key highlights below.
 
 ---
 

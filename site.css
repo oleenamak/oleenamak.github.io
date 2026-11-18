@@ -186,3 +186,18 @@ dd p + p { margin-top: 12px; }
 .home .bot { width: 88px; height: 88px; margin-bottom: 14px; }
 .home-title { font-size: 18px; line-height: 1.3; }
 .home-hint { font: 12px/1.5 var(--sans); color: var(--muted); }
+
+/* Collapsible sections inside an entry ("### Heading" in Markdown) */
+.entry-content details.toggle { border-bottom: 1px dotted #bbb; }
+.entry-content details.toggle:first-of-type { margin-top: 24px; border-top: 1px dotted #bbb; }
+.entry-content summary {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+  padding: 13px 0; cursor: pointer; list-style: none; font-weight: 600;
+}
+.entry-content summary::-webkit-details-marker { display: none; }
+.entry-content summary::after { content: "+"; flex: none; font: 14px var(--sans); color: var(--muted); }
+.entry-content details[open] > summary::after { content: "\2212"; }
+.entry-content summary:hover::after { color: var(--ink); }
+.entry-content summary:focus-visible { outline-offset: 2px; }
+.toggle-body { padding-bottom: 16px; }
+.toggle-body > p + p { margin-top: 14px; }

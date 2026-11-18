@@ -9,7 +9,7 @@ This is a static personal website. Its text lives in Markdown files under `conte
 - `content/team/<section>/_category.md` contains a section's title, team role, short description, icon, and status.
 - `content/team/<section>/<entry>.md` contains an entry's title, label, and body. Write the body in Markdown.
 
-For example, edit `content/team/work/american-operator.md`, then commit and push to `main`. The deploy workflow turns the Markdown into the website automatically. Markdown supports paragraphs, headings, lists, links, and emphasis.
+For example, edit `content/team/work/american-operator.md`, then commit and push to `main`. The deploy workflow turns the Markdown into the website automatically. Markdown supports paragraphs, headings, lists, links, and emphasis. Start a line with `### ` to make a collapsible section: everything under it, up to the next `### ` heading, opens and closes when the heading is clicked.
 
 ## Preview a change locally
 

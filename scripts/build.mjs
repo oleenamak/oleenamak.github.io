@@ -34,11 +34,27 @@ function entrySlug(file) {
   return path.basename(file, '.md');
 }
 
+// A "### Heading" in an entry starts a collapsible section that runs until the next
+// heading of that level, a horizontal rule, or the end of the entry.
+function collapsibleSections(html) {
+  const parts = html.split(/(<h3>[\s\S]*?<\/h3>)/);
+  let out = parts[0];
+  for (let i = 1; i < parts.length; i += 2) {
+    const title = parts[i].replace(/^<h3>|<\/h3>$/g, '');
+    const rest = parts[i + 1] ?? '';
+    const cut = rest.search(/<hr\s*\/?>/);
+    const body = cut === -1 ? rest : rest.slice(0, cut);
+    const after = cut === -1 ? '' : rest.slice(cut);
+    out += `<details class="toggle"><summary>${title}</summary><div class="toggle-body">${body.trim()}</div></details>${after}`;
+  }
+  return out;
+}
+
 function renderEntry(category, entry) {
   const slug = entrySlug(entry.file);
   const body = entry.body === 'Under construction.'
     ? '<p class="soon">Under construction.</p>'
-    : marked.parse(entry.body);
+    : collapsibleSections(marked.parse(entry.body));
   return `
         <article id="${category.slug}/${slug}">
           <a class="back" href="#${category.slug}">${escapeHtml(category.data.title)}</a>

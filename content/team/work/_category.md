@@ -1,8 +1,8 @@
 ---
 title: Work
 agent: Chief of Staff
-description: Keeps the record of what I've built.
+description: A record of my personal and professional experience. 
 icon: work
-status: Under construction
+status: In-progress
 order: 1
 ---

@@ -10,9 +10,7 @@ I led the growth function through a business model pivot, helping American Opera
 
 ### Launching and growing Operator Network
 
-Aspiring business buyers needed practical guidance long before they were ready to finance a deal. To find out what would bring them into Operator Network, I tested audience segments and messaging across channels, including paid media, third-party sponsorship and content. Practical education consistently outperformed community-focused messaging, so we invested more in webinars, office hours, and learning resources.
-
-I built lifecycle campaigns and worked with Product to refine onboarding so we could identify qualified operators after signup. The network grew to 6,000+ qualified operators, and became the backbone of the Operator Talent Pool and Advisor Network today. 
+When I first joined American Operator (Mainshares at the time), I was immediately tasked with figuring out how to grow the Operator Network, a new community platform for aspiring buyers to help drive the supply side of the two-sided marketplace. There are two main questions we needed to answer (a) what was the core value of the product that would drive qualified buyers to join the platform, and (b) who even is our ideal buyer profile? 
 
 ### Scaling Locally Owned and Operated
 

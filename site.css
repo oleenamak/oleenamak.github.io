@@ -171,6 +171,11 @@ dd p + p { margin-top: 12px; }
 .intro h1 small { display: block; margin-top: 3px; font: 11px/1.2 var(--sans); color: var(--muted); }
 
 .soon { margin-top: 22px; padding-top: 14px; border-top: 1px dotted #bbb; font: 12px/1.5 var(--sans); color: var(--muted); }
+.entry-content > p, .entry-content > ul, .entry-content > ol { margin-top: 18px; }
+.entry-content ul, .entry-content ol { padding-left: 20px; }
+.entry-content li { margin-top: 7px; }
+.entry-content h4 { margin-top: 28px; font-size: 16px; }
+.entry-content a { text-underline-offset: 3px; }
 
 /* ---- First arrival: nothing selected yet ---- */
 .home { display: none; }

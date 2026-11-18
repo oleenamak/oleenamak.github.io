@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Oleena Mak</title>
-<meta name="description" content="Growth operator, 0-1 builder, bet taker. I enter early-stage startups and build the systems and playbooks that take them to market and drive revenue.">
+<title>{{home.title}}</title>
+<meta name="description" content="{{home.description}}">
 <script>document.documentElement.classList.add('js')</script>
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="stylesheet" href="site.css?v=a7762c0f">
+<link rel="stylesheet" href="site.css?v={{cssVersion}}">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
@@ -31,19 +31,12 @@
 
   <aside class="side">
     <header class="intro">
-      <h1><a href="#"><svg class="bot" aria-hidden="true"><use href="#bot-founder"/></svg><span class="who-text"><span>Oleena Mak</span><small>Chief Bets Officer</small></span></a></h1>
-      <p class="lede">Growth operator, 0-1 builder, bet taker</p>
-      <p>I enter early-stage startups and build the systems and playbooks that take them to market and drive revenue. Previously operated across SaaS, crypto, marketplaces and private equity.</p>
-      <p>I believe in taking bets on ambitious ideas and builders. Currently experimenting and looking to take my next big swings.</p>
+      <h1><a href="#"><svg class="bot" aria-hidden="true"><use href="#bot-founder"/></svg><span class="who-text"><span>{{profile.name}}</span><small>{{profile.role}}</small></span></a></h1>
+      <p class="lede">{{profile.lede}}</p>
+      <div class="profile-copy">{{profile.body}}</div>
     </header>
 
-    <nav class="folders" aria-label="My team">
-      <p class="team-label">My team</p>
-      <a href="#work" data-folder="work"><span class="who"><svg class="bot" aria-hidden="true"><use href="#bot-work"/></svg><span class="who-text"><span>Work</span><small>Chief of Staff</small></span></span><span class="count">2</span></a>
-      <a href="#side-bets" data-folder="side-bets"><span class="who"><svg class="bot" aria-hidden="true"><use href="#bot-side-bets"/></svg><span class="who-text"><span>Side bets</span><small>Bets Engineer</small></span></span><span class="count">2</span></a>
-      <a href="#training" data-folder="training"><span class="who"><svg class="bot" aria-hidden="true"><use href="#bot-training"/></svg><span class="who-text"><span>Training</span><small>Head Coach</small></span></span><span class="count">3</span></a>
-      <a href="#writing" data-folder="writing"><span class="who"><svg class="bot" aria-hidden="true"><use href="#bot-writing"/></svg><span class="who-text"><span>Writing</span><small>Editor-in-Chief</small></span></span><span class="count">1</span></a>
-    </nav>
+{{teamNavigation}}
 
     <footer class="contact">
       <a href="https://x.com/ohmaak_">X</a>
@@ -56,132 +49,14 @@
 
     <section class="home" id="home" aria-label="Welcome">
       <svg class="bot" aria-hidden="true"><use href="#bot-founder"/></svg>
-      <p class="home-title">Welcome</p>
-      <p class="home-hint"><span class="arrow" aria-hidden="true">&larr; </span>Meet my team to see what we've been working on</p>
+      <p class="home-title">{{home.welcome}}</p>
+      <p class="home-hint"><span class="arrow" aria-hidden="true">&larr; </span>{{home.hint}}</p>
     </section>
 
-    <section class="folder" id="work" data-folder="work">
-      <header class="agent">
-        <svg class="bot" aria-hidden="true"><use href="#bot-work"/></svg>
-        <div class="agent-id"><p class="agent-name">Chief of Staff</p><p class="agent-job">Keeps the record of what I've built.</p></div>
-        <p class="agent-status"><i></i>Under construction</p>
-      </header>
-      <div class="list">
-        <a class="back" href="#">My team</a>
-        <h2 class="folder-title" tabindex="-1">Work</h2>
-        <ul>
-          <li><a href="#work/american-operator"><span class="row-title">American Operator</span><span class="row-meta">Growth Lead</span></a></li>
-          <li><a href="#work/boost"><span class="row-title">Boost</span><span class="row-meta">Growth Lead</span></a></li>
-        </ul>
-      </div>
-      <div class="entries">
-        <article id="work/american-operator">
-          <a class="back" href="#work">Work</a>
-          <h3 tabindex="-1">American Operator</h3>
-          <p class="meta">Growth Lead</p>
-          <p class="soon">Under construction.</p>
-        </article>
-        <article id="work/boost">
-          <a class="back" href="#work">Work</a>
-          <h3 tabindex="-1">Boost</h3>
-          <p class="meta">Growth Lead</p>
-          <p class="soon">Under construction.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="folder" id="side-bets" data-folder="side-bets">
-      <header class="agent">
-        <svg class="bot" aria-hidden="true"><use href="#bot-side-bets"/></svg>
-        <div class="agent-id"><p class="agent-name">Bets Engineer</p><p class="agent-job">Builds the bets.</p></div>
-        <p class="agent-status"><i></i>Under construction</p>
-      </header>
-      <div class="list">
-        <a class="back" href="#">My team</a>
-        <h2 class="folder-title" tabindex="-1">Side bets</h2>
-        <ul>
-          <li><a href="#side-bets/chief-bets-officer"><span class="row-title">Chief Bets Officer</span><span class="row-meta">Side bet</span></a></li>
-          <li><a href="#side-bets/locksmith-directory"><span class="row-title">Locksmith directory</span><span class="row-meta">Side bet</span></a></li>
-        </ul>
-      </div>
-      <div class="entries">
-        <article id="side-bets/chief-bets-officer">
-          <a class="back" href="#side-bets">Side bets</a>
-          <h3 tabindex="-1">Chief Bets Officer</h3>
-          <p class="meta">Side bet</p>
-          <p class="soon">Under construction.</p>
-        </article>
-        <article id="side-bets/locksmith-directory">
-          <a class="back" href="#side-bets">Side bets</a>
-          <h3 tabindex="-1">Locksmith directory</h3>
-          <p class="meta">Side bet</p>
-          <p class="soon">Under construction.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="folder" id="training" data-folder="training">
-      <header class="agent">
-        <svg class="bot" aria-hidden="true"><use href="#bot-training"/></svg>
-        <div class="agent-id"><p class="agent-name">Head Coach</p><p class="agent-job">Tracks what I'm getting better at.</p></div>
-        <p class="agent-status"><i></i>Under construction</p>
-      </header>
-      <div class="list">
-        <a class="back" href="#">My team</a>
-        <h2 class="folder-title" tabindex="-1">Training</h2>
-        <ul>
-          <li><a href="#training/running"><span class="row-title">Running</span><span class="row-meta">Training</span></a></li>
-          <li><a href="#training/poker"><span class="row-title">Poker</span><span class="row-meta">Training</span></a></li>
-          <li><a href="#training/basketball"><span class="row-title">Basketball</span><span class="row-meta">Training</span></a></li>
-        </ul>
-      </div>
-      <div class="entries">
-        <article id="training/running">
-          <a class="back" href="#training">Training</a>
-          <h3 tabindex="-1">Running</h3>
-          <p class="meta">Training</p>
-          <p class="soon">Under construction.</p>
-        </article>
-        <article id="training/poker">
-          <a class="back" href="#training">Training</a>
-          <h3 tabindex="-1">Poker</h3>
-          <p class="meta">Training</p>
-          <p class="soon">Under construction.</p>
-        </article>
-        <article id="training/basketball">
-          <a class="back" href="#training">Training</a>
-          <h3 tabindex="-1">Basketball</h3>
-          <p class="meta">Training</p>
-          <p class="soon">Under construction.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="folder" id="writing" data-folder="writing">
-      <header class="agent">
-        <svg class="bot" aria-hidden="true"><use href="#bot-writing"/></svg>
-        <div class="agent-id"><p class="agent-name">Editor-in-Chief</p><p class="agent-job">Publishes what I write.</p></div>
-        <p class="agent-status"><i></i>Under construction</p>
-      </header>
-      <div class="list">
-        <a class="back" href="#">My team</a>
-        <h2 class="folder-title" tabindex="-1">Writing</h2>
-        <ul>
-          <li><a href="#writing/a-series-of-bets"><span class="row-title">A series of bets</span><span class="row-meta">Essay</span></a></li>
-        </ul>
-      </div>
-      <div class="entries">
-        <article id="writing/a-series-of-bets">
-          <a class="back" href="#writing">Writing</a>
-          <h3 tabindex="-1">A series of bets</h3>
-          <p class="meta">Essay</p>
-          <p class="soon">Under construction.</p>
-        </article>
-      </div>
-    </section>
+{{teamSections}}
 
   </main>
 </div>
-<script src="site.js?v=d4717ee0"></script>
+<script src="site.js?v={{jsVersion}}"></script>
 </body>
 </html>

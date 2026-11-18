@@ -1,2 +1,4 @@
 .DS_Store
 preview/
+node_modules/
+_site/

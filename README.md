@@ -28,4 +28,4 @@ keys:
 ---
 ```
 
-Visitors type a password into "Unlock your prototype" under Prototypes and go straight to the page. Capitals, spaces and punctuation don't matter. The site never lists the passwords or addresses, but this repository is public, so anyone reading it on GitHub can see the folder.
+Visitors type a password into "Unlock your prototype" under Prototypes and go straight to the page, which lives at `oleenamak.ca/<folder>/` (for example `oleenamak.ca/minoan/`). Capitals, spaces and punctuation don't matter. Extra passwords each get a short page that forwards to the folder. Nothing on the site links to these pages, but this repository is public, so anyone reading it on GitHub can see them.

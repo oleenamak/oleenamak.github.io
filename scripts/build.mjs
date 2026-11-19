@@ -149,22 +149,30 @@ for (const file of ['site.css', 'site.js', 'favicon.png', 'apple-touch-icon.png'
 await cp(path.join(root, 'assets'), path.join(output, 'assets'), { recursive: true });
 // Pages that are served but never linked from the site, such as the gated buyer funnel map.
 await cp(path.join(root, 'unlisted'), output, { recursive: true });
-// Locked prototypes: each folder in locked/ is published once per password listed in its
-// _unlock.md, at p/<hash of the password>/. site.js hashes what a visitor types the same way,
-// so the site never lists the passwords or the addresses. Keep in step with unlockKey in site.js.
-const unlockKey = (value) => createHash('sha256')
-  .update('oleenamak.ca/' + String(value).toLowerCase().replace(/[^a-z0-9]/g, ''))
-  .digest('hex').slice(0, 24);
+// Locked prototypes: locked/<company>/ is published at /<company>/ and never linked from the site.
+// Every other password in its _unlock.md gets a short page at /<password>/ that forwards there.
+// site.js opens /<what the visitor typed>/ only if that page carries the marker below.
+// Keep unlockKey in step with site.js.
+const unlockKey = (value) => String(value).toLowerCase().replace(/[^a-z0-9]/g, '');
+const marker = '<meta name="locked-prototype" content="yes">';
 const lockedDirectory = path.join(root, 'locked');
 let lockedCount = 0;
 for (const folder of (await readdir(lockedDirectory, { withFileTypes: true }).catch(() => [])).filter((entry) => entry.isDirectory())) {
-  const source = path.join(lockedDirectory, folder.name);
+  const slug = folder.name;
+  if (!/^[a-z0-9-]+$/.test(slug)) throw new Error(`Invalid locked folder name: ${slug}`);
+  const source = path.join(lockedDirectory, slug);
+  const destination = path.join(output, slug);
   const { data } = await readMarkdown(path.join(source, '_unlock.md'));
-  const keys = (data.keys ?? []).map(String).filter((key) => key.replace(/[^a-z0-9]/gi, ''));
-  if (!keys.length) throw new Error(`No keys in locked/${folder.name}/_unlock.md`);
+  const keys = new Set([slug, ...(data.keys ?? [])].map(unlockKey).filter(Boolean));
+  await cp(source, destination, { recursive: true, errorOnExist: true, force: false, filter: (file) => path.basename(file) !== '_unlock.md' });
+  const page = path.join(destination, 'index.html');
+  await writeFile(page, (await readFile(page, 'utf8')).replace('<head>', `<head>\n${marker}`));
   for (const key of keys) {
-    const destination = path.join(output, 'p', unlockKey(key));
-    await cp(source, destination, { recursive: true, filter: (file) => path.basename(file) !== '_unlock.md' });
+    if (key === slug) continue;
+    const forward = path.join(output, key, 'index.html');
+    if (await readFile(forward).then(() => true, () => false)) throw new Error(`Password "${key}" clashes with an existing page`);
+    await mkdir(path.dirname(forward), { recursive: true });
+    await writeFile(forward, `<!doctype html><meta charset="utf-8">${marker}<meta name="robots" content="noindex"><meta http-equiv="refresh" content="0; url=/${slug}/"><title>Opening your prototype</title><a href="/${slug}/">Open your prototype</a>`);
   }
   lockedCount += 1;
 }

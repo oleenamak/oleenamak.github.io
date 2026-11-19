@@ -111,8 +111,8 @@
   });
 })();
 
-// Unlock your prototype: hash what the visitor typed and open p/<hash>/ if it exists.
-// Keep the hash in step with unlockKey in scripts/build.mjs.
+// Unlock your prototype: open /<what the visitor typed>/ if it is a locked prototype.
+// Keep the clean-up in step with unlockKey in scripts/build.mjs.
 (() => {
   const form = document.querySelector('.unlock');
   if (!form) return;
@@ -120,22 +120,19 @@
   const button = form.querySelector('button');
   const status = form.querySelector('.unlock-status');
   const say = (text, state = '') => { status.textContent = text; form.dataset.state = state; };
-
-  async function unlockKey(value) {
-    const clean = 'oleenamak.ca/' + value.toLowerCase().replace(/[^a-z0-9]/g, '');
-    const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(clean));
-    return [...new Uint8Array(digest)].map(byte => byte.toString(16).padStart(2, '0')).join('').slice(0, 24);
-  }
+  const unlockKey = value => value.toLowerCase().replace(/[^a-z0-9]/g, '');
 
   input.addEventListener('input', () => { if (form.dataset.state === 'wrong') say(''); });
   form.addEventListener('submit', async event => {
     event.preventDefault();
-    if (!input.value.replace(/[^a-z0-9]/gi, '')) { say('Type a name first.', 'wrong'); return; }
+    const key = unlockKey(input.value);
+    if (!key) { say('Type a name first.', 'wrong'); return; }
     button.disabled = true;
     say('Checking with the Bets Engineer…', 'checking');
     try {
-      const address = `p/${await unlockKey(input.value)}/`;
-      const found = (await fetch(address, { method: 'HEAD', cache: 'no-store' })).ok;
+      const address = `${key}/`;
+      const response = await fetch(address, { cache: 'no-store' });
+      const found = response.ok && (await response.text()).includes('name="locked-prototype"');
       if (found) {
         say('Unlocked. Opening your prototype…', 'open');
         setTimeout(() => { location.href = address; }, 450);

@@ -1,5 +1,5 @@
 ---
-title: Side bets
+title: Prototypes
 agent: Bets Engineer
 description: Builds the bets.
 icon: side-bets

@@ -1,6 +1,6 @@
 ---
 title: Locksmith directory
-meta: Side bet
+meta: Prototype
 order: 2
 ---
 

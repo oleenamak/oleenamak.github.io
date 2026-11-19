@@ -1,6 +1,6 @@
 ---
 title: Chief Bets Officer
-meta: Side bet
+meta: Prototype
 order: 1
 ---
 

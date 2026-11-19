@@ -246,3 +246,8 @@ dd p + p { margin-top: 12px; }
 }
 .gate-form button:disabled { opacity: .6; cursor: default; }
 .gate-status { min-height: 1.4em; font: 11.5px/1.4 var(--sans); }
+
+/* Screenshots and images inside an entry */
+.entry-content > p > img, .entry-content > p > a > img { display: block; width: 100%; height: auto; border: 1px solid var(--rule); border-radius: 6px; }
+.entry-content > p > a:has(> img) { display: block; }
+.entry-content > p > a:hover > img { border-color: #bbb; }

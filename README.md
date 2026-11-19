@@ -16,3 +16,16 @@ For example, edit `content/team/work/american-operator.md`, then commit and push
 Install the dependencies once with `npm install`, then run `npm run build`. Open `_site/index.html` in a browser to see the generated page.
 
 The visual layout and interactions are in `src/index.template.html`, `site.css`, and `site.js`.
+
+## Add a locked prototype
+
+A prototype made for one company lives in its own folder under `locked/`, for example `locked/minoan/`. Put the page in it as `index.html` (link back to the site with `../../`), plus any files it uses. Add an `_unlock.md` listing the passwords that open it:
+
+```
+---
+keys:
+  - minoan
+---
+```
+
+Visitors type a password into "Unlock your prototype" under Prototypes and go straight to the page. Capitals, spaces and punctuation don't matter. The site never lists the passwords or addresses, but this repository is public, so anyone reading it on GitHub can see the folder.

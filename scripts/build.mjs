@@ -149,4 +149,24 @@ for (const file of ['site.css', 'site.js', 'favicon.png', 'apple-touch-icon.png'
 await cp(path.join(root, 'assets'), path.join(output, 'assets'), { recursive: true });
 // Pages that are served but never linked from the site, such as the gated buyer funnel map.
 await cp(path.join(root, 'unlisted'), output, { recursive: true });
+// Locked prototypes: each folder in locked/ is published once per password listed in its
+// _unlock.md, at p/<hash of the password>/. site.js hashes what a visitor types the same way,
+// so the site never lists the passwords or the addresses. Keep in step with unlockKey in site.js.
+const unlockKey = (value) => createHash('sha256')
+  .update('oleenamak.ca/' + String(value).toLowerCase().replace(/[^a-z0-9]/g, ''))
+  .digest('hex').slice(0, 24);
+const lockedDirectory = path.join(root, 'locked');
+let lockedCount = 0;
+for (const folder of (await readdir(lockedDirectory, { withFileTypes: true }).catch(() => [])).filter((entry) => entry.isDirectory())) {
+  const source = path.join(lockedDirectory, folder.name);
+  const { data } = await readMarkdown(path.join(source, '_unlock.md'));
+  const keys = (data.keys ?? []).map(String).filter((key) => key.replace(/[^a-z0-9]/gi, ''));
+  if (!keys.length) throw new Error(`No keys in locked/${folder.name}/_unlock.md`);
+  for (const key of keys) {
+    const destination = path.join(output, 'p', unlockKey(key));
+    await cp(source, destination, { recursive: true, filter: (file) => path.basename(file) !== '_unlock.md' });
+  }
+  lockedCount += 1;
+}
+console.log(`Built ${lockedCount} locked prototype${lockedCount === 1 ? '' : 's'}.`);
 console.log(`Built ${path.relative(root, output)} with ${categories.length} sections and ${categories.reduce((sum, category) => sum + category.entries.length, 0)} entries.`);

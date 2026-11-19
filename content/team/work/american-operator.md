@@ -8,9 +8,18 @@ American Operator acquires small businesses through an ownership model designed 
 
 I led the growth function through a business model pivot, helping American Operator build a repeatable way to find qualified buyers and sellers and turn that demand into a pipeline of small-business acquisitions. Channels I owned included: paid acquisition, lifecycle marketing and CRM, PR, social, and content. Explore some of my favorite moments below.
 
-### Launching and growing Operator Network
+### Building the buyer funnel and acquisition
 
-When I first joined American Operator (Mainshares at the time), I was immediately tasked with figuring out how to grow the Operator Network, a new community platform for aspiring buyers to help drive the supply side of the two-sided marketplace. There are two main questions we needed to answer (a) what was the core value of the product that would drive qualified buyers to join the platform, and (b) who even is our ideal buyer profile? 
+When I joined Mainshares, growth depended on supply: more acquisition deals on the platform for investors to back. Buyers can spend years searching before they acquire a business, so we decided to engage them much earlier in that journey. Operator Network, a community we launched on Circle, was built to do that. It attracted aspiring buyers early, kept them engaged through a long search, and moved them to Mainshares once they were ready to raise capital.
+
+I led the launch, starting with positioning. Through rapid testing across channels and messaging, I worked out what buyers valued, where we stood apart from competitors, and what turned interest into sign-ups. With that in place, I owned lifecycle and CRM and designed the buyer journey end to end, from acquisition and onboarding through nurture to the handoff to Sales.
+
+Within a quarter, Operator Network grew to 6,000+ members. We ran 25+ webinars, workshops and office hours with outside experts and internal specialists, and the network drove two deals into the opportunity pipeline, an early sign that the community could produce deal flow.
+
+<!-- Buyer funnel preview. Clicking it asks for an email, emails it to Oleena through FormSubmit, then opens the full map.
+     data-form: where emails are sent (FormSubmit)
+     data-map: the unlisted address of the full map (the unlisted/ folder) -->
+<button type="button" class="map-gate" data-form="https://formsubmit.co/ajax/oleenamak@gmail.com" data-map="buyer-funnel-2yj85l/"><img src="assets/buyer-funnel-preview.jpg" alt="Preview of the Operator Network buyer funnel map" width="1400" height="683" loading="lazy"><span class="map-gate-label">View the full buyer funnel</span></button>
 
 ### Scaling Locally Owned and Operated
 

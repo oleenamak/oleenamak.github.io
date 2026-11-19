@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import { readdir, readFile, mkdir, rm, copyFile, writeFile } from 'node:fs/promises';
+import { readdir, readFile, mkdir, rm, copyFile, writeFile, cp } from 'node:fs/promises';
 import path from 'node:path';
 import matter from 'gray-matter';
 import { marked } from 'marked';
@@ -146,4 +146,7 @@ await writeFile(path.join(output, 'index.html'), html);
 for (const file of ['site.css', 'site.js', 'favicon.png', 'apple-touch-icon.png', '404.html', 'CNAME', '.nojekyll']) {
   await copyFile(path.join(root, file), path.join(output, file));
 }
+await cp(path.join(root, 'assets'), path.join(output, 'assets'), { recursive: true });
+// Pages that are served but never linked from the site, such as the gated buyer funnel map.
+await cp(path.join(root, 'unlisted'), output, { recursive: true });
 console.log(`Built ${path.relative(root, output)} with ${categories.length} sections and ${categories.reduce((sum, category) => sum + category.entries.length, 0)} entries.`);

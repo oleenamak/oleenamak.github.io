@@ -8,8 +8,6 @@ American Operator acquires small businesses through an ownership model designed 
 
 I led the growth function through a business model pivot, helping American Operator build a repeatable way to find qualified buyers and sellers and turn that demand into a pipeline of small-business acquisitions. Channels I owned included: paid acquisition, lifecycle marketing and CRM, PR, social, and content. 
 
-Explore some highlight initiatives below.
-
 ### Building the buyer funnel and acquisition engine
 
 <!-- Buyer funnel preview. Clicking it asks for an email, emails it to Oleena through FormSubmit, then opens the full map.

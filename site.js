@@ -58,8 +58,7 @@
   dialog.setAttribute('aria-labelledby', 'gate-title');
   dialog.innerHTML = `
     <form method="dialog"><button class="gate-close" aria-label="Close">&times;</button></form>
-    <h2 id="gate-title">View the full map</h2>
-    <p>Enter your email and the full buyer funnel will open in a new tab.</p>
+    <h2 id="gate-title">Enter your email to view the full map.</h2>
     <form class="gate-form">
       <label for="gate-email">Email</label>
       <input id="gate-email" name="email" type="email" required autocomplete="email" placeholder="you@company.com">

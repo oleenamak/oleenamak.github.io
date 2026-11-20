@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Celsius Onboarding Flow</title>
+<style>
+:root{font:16px/1.45 system-ui,sans-serif;color:#202721;background:#f5f6f3;--green:#285846;--line:#bcc9be}*{box-sizing:border-box}body{margin:0}button{font:inherit;color:inherit;cursor:pointer}button:focus-visible{outline:3px solid #507e6b;outline-offset:3px}.viewport{position:fixed;inset:0;overflow:hidden;touch-action:none;cursor:grab;background:radial-gradient(#ccd4ca 1px,transparent 1px) 0 0/15px 15px}.dragging{cursor:grabbing}.board{position:absolute;width:2990px;height:880px;transform-origin:0 0}.board svg{position:absolute;inset:0;pointer-events:none}.heading,.result,.lane,.node{position:absolute}.heading{margin:0;font:normal 38px Georgia,serif}.result{font-weight:650;color:var(--green);margin:0}.lane{font-weight:750;color:var(--green);margin:0}.node{width:194px;min-height:68px;padding:8px 11px;text-align:left;background:#fff;border:1px solid var(--line);border-radius:7px;box-shadow:0 2px 5px #1e39200b}.node strong,.node span{display:block}.node span{font-size:.82rem;color:#48564b}.investor-label{font-size:1.35rem}.return-label{font-size:.82rem;color:#4a6654}.node.example{background:#f8faf7;border-left:3px solid #b2c7b7}.node strong{line-height:1.2}.journey-label{font-size:.8rem;letter-spacing:.05em;text-transform:uppercase}.lane.stage{background:#29483d;color:white;width:194px;padding:6px 9px;border-radius:5px;font-size:.9rem}.node.support{border-style:dashed;background:#f8f9ff;border-color:#8794b9}.node.signal{background:#fff5e4;border-color:#ae8548}.node .kind{color:#354a81;font-size:.68rem;font-weight:760;letter-spacing:.04em;text-transform:uppercase;margin-bottom:3px}.node.signal .kind{color:#725018}.node.key.signal{background:#fff5e4;border-color:#ae8548}.node.key{border-color:#65937a;background:#e8f1e9}.node[aria-pressed=true]{border-color:var(--green);outline:2px solid var(--green);outline-offset:2px}.toolbar,.panel{position:fixed;z-index:2;background:#fff;border:1px solid var(--line);border-radius:9px;box-shadow:0 4px 18px #1c2e1717}.toolbar{top:12px;left:12px;display:flex;gap:6px;flex-wrap:wrap;padding:6px;max-width:calc(100% - 24px)}.toolbar button,.close{background:white;border:1px solid var(--line);border-radius:5px;padding:5px 10px}.panel{right:12px;bottom:12px;width:min(400px,calc(100% - 24px));max-height:45dvh;overflow:auto;padding:16px 48px 14px 18px}.panel h2{margin:0;font:normal 1.5rem Georgia,serif}.panel p{margin:.5rem 0}.close{position:absolute;top:8px;right:8px}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+[data-kind="channel"]{--type:#385e86;--wash:#eef5fc}
+[data-kind="offer"]{--type:#62538d;--wash:#f4f0fb}
+[data-kind="action"]{--type:#236247;--wash:#edf7ef}
+[data-kind="criteria"]{--type:#785323;--wash:#fff6e8}
+[data-kind="automation"]{--type:#3c5e90;--wash:#eef3ff}
+[data-kind="program"]{--type:#46652f;--wash:#f1f6eb}
+[data-kind="signal"]{--type:#8a471d;--wash:#fff1e6}
+[data-kind="operations"]{--type:#4d5a55;--wash:#f1f4f2}
+.node[data-kind]{padding:6px 9px;border:1px solid var(--type);border-left-width:4px;background:var(--wash)}
+.node[data-kind="automation"]{border-style:dashed;border-left-style:solid}
+.node[data-kind="criteria"]{border-style:dotted;border-left-style:solid}
+.node .kind{color:var(--type);font-size:.66rem;line-height:1.15;margin-bottom:2px}
+.node[data-kind] strong{font-size:.94rem}
+.node[data-kind] span:not(.kind){line-height:1.18}
+.legend{position:fixed;z-index:2;bottom:12px;left:12px;padding:6px 10px;border:1px solid var(--line);border-radius:7px;background:white;max-width:calc(100% - 24px);font-size:.85rem}
+.legend summary{cursor:pointer;font-weight:650}
+.legend ul{padding:0;margin:6px 0 0;display:flex;flex-wrap:wrap;gap:5px;list-style:none}
+.legend li{border:1px solid var(--type);border-left-width:4px;border-radius:4px;background:var(--wash);padding:2px 6px}
+.legend li[data-kind="automation"]{border-style:dashed;border-left-style:solid}
+.legend li[data-kind="criteria"]{border-style:dotted;border-left-style:solid}
+[data-kind="decision"]{--type:#355d77;--wash:#e5f1f8}
+.node[data-kind="decision"]{border:0;background:transparent;box-shadow:none;isolation:isolate;height:96px;padding:12px 36px;text-align:center}
+.node[data-kind="decision"]::before,.node[data-kind="decision"]::after{content:"";position:absolute;inset:0;z-index:-2;background:var(--type);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
+.node[data-kind="decision"]::after{inset:2px 4px;z-index:-1;background:var(--wash)}
+.node[data-kind="decision"] .kind{margin-bottom:4px}
+.node[data-kind="decision"] strong{max-width:120px;margin:auto}
+.edge-label{font:650 13px system-ui,sans-serif;fill:#355344;stroke:#f5f6f3;stroke-width:5px;paint-order:stroke;stroke-linejoin:round;text-anchor:middle}
+.edge-label.no{fill:#785323}
+/* The canvas uses a quiet grid, with color reserved for card types. */
+:root{--ink:#202b3c;--muted:#47566b;--line:#c0cbd9;--green:#215c58;--canvas:#f4f7fa;--mono:ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--ink);background:var(--canvas)}
+.viewport{background-color:var(--canvas);background-image:radial-gradient(#c7d3df 1px,transparent 1px);background-size:16px 16px}
+.heading{font:650 36px/1.12 system-ui,sans-serif;letter-spacing:-.045em}
+.result{font:650 14px/1.3 var(--mono);color:#32635e}
+.journey-label,.investor-label{font:650 14px/1.3 var(--mono);letter-spacing:.025em;text-transform:uppercase;color:#465770}
+.lane.stage{box-sizing:border-box;color:#fff;background:#26364d;border:1px solid #26364d;border-radius:5px;padding:6px 9px;font:650 14px/1.3 system-ui,sans-serif;letter-spacing:.015em}
+.lane-band{position:absolute;z-index:-2;pointer-events:none;border:1px solid #d9e2ec;border-radius:8px;background:#ffffff82}
+.board{isolation:isolate}
+.board svg{z-index:0}
+.node{border-radius:5px}
+.node[data-kind]{border-color:#c0cbd9;border-left-color:var(--type);background:#fff;box-shadow:0 2px 5px #22364c0a}
+.node[data-kind] .kind{font:700 10px/1.2 var(--mono);letter-spacing:.035em}
+.node[data-kind] strong{font-size:.98rem;color:var(--ink)}
+.node[data-kind] span:not(.kind){color:var(--muted)}
+.node[data-kind="decision"]{border:0;background:transparent;box-shadow:none}
+.node[data-kind="decision"]::after{background:#e9f1fb}
+.node[data-kind="signal"]{background:#fff7ed;border-color:#b77b45}
+.node[data-kind]:hover:not([data-kind="decision"]){background:var(--wash);border-color:var(--type)}
+.node[data-kind="decision"]:hover::after{background:#dbe9f9}
+.node[aria-pressed=true]{outline:2px solid #235c83;outline-offset:3px}
+#edges{stroke:#546d88;stroke-width:1.8}
+.edge-label{font:700 12px var(--mono);fill:#215c58;stroke:var(--canvas)}
+.edge-label.no{fill:#774524}
+.toolbar,.panel,.legend{border-color:var(--line);box-shadow:0 6px 22px #23334b14}
+.toolbar button,.close{background:#f8fafc;color:var(--ink);font-size:.9rem;font-weight:600}
+.toolbar button:hover,.close:hover{background:#e8f0fa}
+.panel h2{font:650 1.3rem/1.25 system-ui,sans-serif;letter-spacing:-.02em}
+.panel p{color:var(--muted)}
+.detail-kind{display:block;margin-bottom:6px;color:#465770;font:700 .72rem var(--mono);text-transform:uppercase}
+/* Stage headers connect the overview. Card links describe actual transitions. */
+.lane.stage:not(.last-stage)::after{content:"";position:absolute;left:100%;top:50%;width:53px;border-top:2px solid #7991aa}
+.lane.stage:not(.last-stage)::before{content:"";position:absolute;left:calc(100% + 46px);top:calc(50% - 4px);border-left:7px solid #7991aa;border-top:5px solid transparent;border-bottom:5px solid transparent}
+.lane-band{background:linear-gradient(to bottom,#e9f0f8 0 124px,#ffffffb8 124px);border-color:#cdd9e6}
+.node[data-kind="offer"]{border-radius:12px}
+.node[data-kind="criteria"]{background:#fff9ef}
+.legend{max-width:calc(100% - 24px);padding:5px 8px}
+.legend ul{margin:0;gap:4px}
+.legend li{font-size:.73rem;white-space:nowrap}
+@media(max-width:650px){.legend li{font-size:.65rem;padding:1px 4px}}
+.node.email-marker[data-kind="automation"]{width:44px;height:36px;min-height:0;padding:0;border:1px dashed var(--type);border-radius:8px;background:var(--wash);color:var(--type);font:700 21px/1 system-ui,sans-serif;text-align:center}
+.node.email-marker[data-kind="automation"]:hover{background:#dce9ff}
+.toolbar select{max-width:calc(100vw - 140px);font:600 .9rem system-ui,sans-serif;color:var(--ink);background:#f8fafc;border:1px solid var(--line);border-radius:5px;padding:5px 8px}
+.node[data-kind] .kind{font-size:11px}
+.node[data-kind] strong{font-size:1rem}
+.node[data-kind] span:not(.kind){font-size:.86rem;line-height:1.22}
+.edge-label{stroke-width:7px}
+.edge-automation{stroke:#5073a4;stroke-dasharray:5 4}
+.edge-return{stroke:#896533;stroke-dasharray:5 4}
+.node.email-marker::after,.legend li[data-kind="automation"]::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#c73843}
+.node.email-marker::after{position:absolute;top:-4px;right:-4px;box-shadow:0 0 0 2px var(--canvas)}
+.legend li[data-kind="automation"]::before{margin-right:5px;vertical-align:1px}
+.nurture-group{position:absolute;z-index:-1;border:1px dashed #8fa4bb;border-radius:8px;background:#f3f7fbcc}
+.lane.stage.transition{background:#fff;color:#26364d;border:1.5px dashed #26364d;font-style:italic}
+.lane-band.transition{border-style:dashed;background:#ffffff80}
+.pipeline-group{border-style:solid;border-color:#9fb6b6;background:#f2f8f8cc}
+.funnel-group{border-style:solid;border-color:#c3cfdc;background:#f7f9fccc}
+.funnel-group p{margin:0;padding:8px 10px 0;font:700 11px/1.2 var(--mono);letter-spacing:.035em;text-transform:uppercase;color:#465770}
+.pipeline-group p{margin:0;padding:8px 10px 0;font:700 11px/1.2 var(--mono);letter-spacing:.035em;text-transform:uppercase;color:#2d5f5f}
+.pipeline-group p span{display:block;margin-top:2px;font-weight:500;text-transform:none;letter-spacing:0;color:#47566b}
+[data-kind="task"]{--type:#7a3f63;--wash:#f8eef4}
+[data-kind="stage"]{--type:#2d6a6a;--wash:#ebf5f5}
+[data-kind="content"]{--type:#7a6326;--wash:#f8f3e4}
+.lane.stage.lifecycle{background:#2d5f5f;border-color:#2d5f5f;border-radius:14px}
+.lane-band.lifecycle{border-color:#b8d0d0;background:linear-gradient(to bottom,#e3f0f0 0 124px,#ffffffb8 124px)}
+.qual-span.lifecycle-span{color:#2d5f5f}
+.qual-span.lifecycle-span::after{border-color:#8fb5b5}
+.qual-span{position:absolute;margin:0;text-align:center;font:700 11px/1.2 var(--mono);letter-spacing:.035em;text-transform:uppercase;color:#465770}
+.qual-span::after{content:"";display:block;height:6px;margin-top:4px;border:1.5px solid #9fb0c4;border-bottom:0;border-radius:3px 3px 0 0}
+.node.email-marker.drip{box-shadow:3px 3px 0 -1px var(--wash),3px 3px 0 0 var(--type),6px 6px 0 -1px var(--wash),6px 6px 0 0 var(--type)}
+.legend li.drip{box-shadow:2px 2px 0 -1px var(--wash),2px 2px 0 0 var(--type)}
+.node[data-kind="action"] .kind::before,.legend li[data-kind="action"]::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--type);margin-right:5px;vertical-align:1px}
+[data-kind="segment"]{--type:#7a3f63;--wash:#f8eef4}
+.row-band{position:absolute;z-index:-2;pointer-events:none;border:1px solid #cdd9e6;border-radius:8px;background:#ffffffb8}
+.row-band.after{border-color:#b8d0d0;background:#ffffffcc}
+.row-label{position:absolute;margin:0;font:650 14px/1.3 var(--mono);letter-spacing:.025em;text-transform:uppercase;color:#465770}
+.row-label.after{color:#2d5f5f}
+.row-label span{display:block;margin-top:3px;font:500 14px/1.3 system-ui,sans-serif;letter-spacing:0;text-transform:none;color:#47566b}
+.node[data-kind="automation"] .kind::before{content:"✉ "}
+/* oleenamak.ca theme: white paper, mono interface text, small serif prose */
+:root{--ink:#171717;--muted:#666;--rule:#e5e5e5;--line:#e0e0e0;--serif:Georgia,"Times New Roman",serif;--mono:"SF Mono",ui-monospace,Menlo,Consolas,monospace;color:var(--ink);background:#fff;font:14px/1.4 var(--serif)}
+body{background:#fff}
+:focus-visible,button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.viewport{background:#fff radial-gradient(#e4e4e4 1px,transparent 1px) 0 0/16px 16px}
+.heading{font:400 32px/1.1 var(--serif);letter-spacing:-.01em;color:var(--ink)}
+.lane.stage,.lane.stage.lifecycle{background:var(--ink);border:1px solid var(--ink);border-radius:3px;font:500 11.5px/1.4 var(--mono);letter-spacing:0;padding:8px 10px;color:#fff}
+.lane.stage:not(.last-stage)::after{border-top-color:#bbb}
+.lane.stage:not(.last-stage)::before{border-left-color:#bbb}
+.lane-band,.lane-band.lifecycle{background:#fffffff2;border:1px solid var(--rule);border-radius:4px}
+.qual-span,.qual-span.lifecycle-span{font:400 11px/1.3 var(--mono);letter-spacing:0;text-transform:none;color:var(--muted)}
+.qual-span::after,.qual-span.lifecycle-span::after{border-color:#ccc}
+[data-kind="channel"]{--type:#63528a;--wash:#f6f3fa}
+[data-kind="action"]{--type:#3d6b52;--wash:#f3f7f4}
+[data-kind="decision"]{--type:#4a6175;--wash:#f2f5f8}
+[data-kind="automation"],[data-kind="push"]{--type:#4d6390;--wash:#f4f6fb}
+[data-kind="program"]{--type:#5d6b3a;--wash:#f5f7ef}
+[data-kind="segment"]{--type:#8a5a26;--wash:#fbf5ec}
+[data-kind="product"]{--type:#3d6868;--wash:#f1f6f6}
+[data-kind="content"]{--type:#7a6326;--wash:#f9f5ea}
+.node[data-kind]{border:1px solid var(--line);border-left:4px solid var(--type);border-radius:4px;box-shadow:none;background:#fff}
+.node[data-kind="automation"]:not(.email-marker){border-style:dashed;border-left-style:solid}
+.node[data-kind] .kind{font:400 10.5px/1.3 var(--mono);letter-spacing:.02em;text-transform:none;color:var(--type)}
+.node[data-kind] strong{font:400 15px/1.2 var(--serif);color:var(--ink)}
+.node[data-kind] span:not(.kind){font:13px/1.3 var(--serif);color:var(--muted)}
+.node[data-kind]:hover:not([data-kind="decision"]){background:var(--wash);border-color:var(--line);border-left-color:var(--type)}
+.node.key[data-kind]{background:var(--wash)}
+.node[data-kind="decision"]{border:0;background:transparent}
+.node[data-kind="decision"]::after{background:var(--wash)}
+.node[data-kind="decision"] strong{font-size:14px}
+.node[aria-pressed=true]{outline:2px solid var(--ink);outline-offset:2px}
+.node.email-marker[data-kind]{border:1px dashed var(--type);border-radius:4px;background:var(--wash);color:var(--type)}
+.node.email-marker[data-kind="push"]{border-radius:18px}
+.node.email-marker::after,.legend li[data-kind="automation"]::before{background:#b8433a}
+#edges path{stroke:#a3a3a3;stroke-width:1.5}
+#edges path.edge-automation{stroke:#a3a3a3;stroke-dasharray:4 4}
+#edges path.edge-return{stroke:#b08a55;stroke-dasharray:4 4}
+.edge-label{font:400 11.5px var(--mono);fill:#3d6b52;stroke:#fff;stroke-width:6px}
+.edge-label.no{fill:#8a5a26}
+.nurture-group,.funnel-group,.pipeline-group{border:1px dashed #ccc;border-radius:4px;background:#fafafae6}
+.funnel-group p,.pipeline-group p{font:400 11px/1.3 var(--mono);letter-spacing:0;text-transform:none;color:var(--muted)}
+.pipeline-group p span{font:12px var(--serif);color:var(--muted)}
+.row-band,.row-band.after{border:1px solid var(--rule);border-radius:4px;background:#fffffff2}
+.row-label,.row-label.after{font:400 12px/1.3 var(--mono);letter-spacing:0;text-transform:none;color:var(--ink)}
+.row-label span{font:14px/1.4 var(--serif);color:var(--muted)}
+.toolbar,.legend,.panel{border-color:var(--rule);border-radius:4px;box-shadow:0 12px 40px #00000012}
+.toolbar button,.toolbar select,.close{border:1px solid #ccc;border-radius:3px;background:#fff;color:var(--ink);font:400 12px/1.3 var(--mono);padding:6px 10px}
+.toolbar button:hover,.close:hover{background:#f5f5f5}
+.legend li{border-radius:3px;font:400 11px/1.4 var(--mono)}
+.panel h2{font:400 18px/1.3 var(--serif);letter-spacing:0}
+.panel p{color:var(--muted);font:14.5px/1.6 var(--serif)}
+.detail-kind{font:400 11px var(--mono);text-transform:none;color:var(--muted)}
+.close{font-size:16px;line-height:1;padding:4px 8px;color:var(--muted)}
+</style>
+<main>
+<nav class="toolbar" aria-label="Map controls">
+<button id="out" aria-label="Zoom out">−</button><button id="in" aria-label="Zoom in">+</button><button id="fit">Fit map</button>
+</nav>
+<div class="viewport" id="viewport" tabindex="0" aria-label="Onboarding flow map. Drag or use arrow keys to pan.">
+<div class="board" id="board" style="width:2210px;height:770px">
+<h1 class="heading" style="left:36px;top:12px">Onboarding Flow: Before and After</h1>
+<p class="row-label" style="left:36px;top:92px">Before<span>Two emails, the same for everyone</span></p>
+<p class="row-label after" style="left:36px;top:322px">After<span>Segmented by experience, and each email sends only until the first deposit</span></p>
+<p class="qual-span lifecycle-span" style="left:560px;top:370px;width:1314px">Critical window: first 10 days</p>
+<svg width="2210" height="770" aria-hidden="true"><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M1 1l6 3-6 3" fill="none" stroke="context-stroke"/></marker></defs><g id="edges" fill="none"></g></svg>
+</div>
+</div>
+<aside class="legend" aria-label="Map key"><ul id="legend-items"></ul></aside>
+<section class="panel" id="panel" aria-labelledby="detail-title" hidden>
+<button class="close" id="close" aria-label="Close details">×</button><span class="detail-kind" id="detail-kind"></span><h2 id="detail-title"></h2><p id="detail-copy"></p>
+</section>
+</main>
+<script>
+const cards = {
+  bApproved: [36, 166, 'Account approved', 'Any new user', 'Every approved user got the same two emails, whatever their experience with crypto.'],
+  bWelcome: [560, 166, 'Email 1: Welcome', 'Onboarding steps', 'A simple welcome with the onboarding steps: click here to deposit your first crypto and start earning.'],
+  bPromo: [840, 166, 'Email 2: $50 in Bitcoin', 'First-deposit offer', 'The first-deposit promotion: deposit your first crypto and get $50 in Bitcoin.'],
+  bGoal: [1960, 166, 'First deposit', 'Or nothing further', 'After the second email there was no follow-up for users who still had not deposited.', true],
+  aVerified: [36, 420, 'KYC verified', 'Any new user', 'Once a user was verified, they were split by their experience with crypto.'],
+  segment: [282, 408, 'New to crypto?', '', 'I split onboarding into two tracks: first-time crypto users and experienced crypto users.'],
+  aWelcome: [560, 420, 'Email 1: Welcome and deposit guide', 'How to make a first deposit', 'A welcome with a deposit guide and video. It taught first-time users how to make their first deposit and walked through the options: ACH bank deposit, credit card, or buying crypto on another platform and transferring it in.'],
+  aPromo: [840, 420, 'Email 2: $50 in Bitcoin', 'Claim your first-deposit bonus', 'The incentive was what people cared about most, so this was a critical email and performed well. It reminded users they could claim $50 in Bitcoin with their first deposit.'],
+  aSupport: [1120, 420, 'Email 3: Talk to our team', 'From the support call center', 'Some users needed more help and wanted someone to talk to. We launched a 24-hour customer support call center, one of our differentiators. This email came from the support team: thanks for joining, we noticed you have not made your first deposit, and if you need help, call us on this number.'],
+  aProof: [1400, 420, 'Email 4: Proof of community', 'Stories, case studies, our numbers', 'Social proof and transparency. Stories, videos and case studies from the community about how Celsius and crypto helped them, such as funding a new home or a business. It also shared our numbers: assets under management and the rewards paid back to users.'],
+  aRefer: [1680, 420, 'Email 5: Refer a friend', 'Get $50 in Bitcoin', 'The last email in the flow. For users still having trouble depositing, or without crypto, a referral earned them $50 in Bitcoin, enough to start earning weekly rewards.'],
+  aGoal: [1960, 420, 'First deposit', 'Weekly rewards begin', 'The goal of the whole flow. Once users had even $50 earning, the weekly rewards started, and that is where the magic moment happened.', true],
+  experienced: [282, 560, 'Experienced crypto users', 'Their own flow', 'Experienced users who already held crypto elsewhere got a separate flow.'],
+};
+const types = {
+  action: ['Event', 'bApproved bGoal aVerified aGoal'],
+  decision: ['Logic', 'segment'],
+  automation: ['Email', 'bWelcome bPromo aWelcome aPromo aSupport aProof aRefer'],
+  segment: ['Segment track', 'experienced'],
+};
+const cardTypes = Object.fromEntries(Object.entries(types).flatMap(([kind,[label, ids]]) =>
+  ids.split(' ').map(id => [id, {kind,label}])
+));
+const links = [
+  ['bApproved','bWelcome'], ['bWelcome','bPromo'], ['bPromo','bGoal','long','No more follow-up'],
+  ['aVerified','segment'], ['segment','aWelcome','straight','First time'], ['segment','experienced','down','Experienced'],
+  ['aWelcome','aPromo','straight','No deposit'], ['aPromo','aSupport','straight','No deposit'], ['aSupport','aProof','straight','No deposit'],
+  ['aProof','aRefer','straight','No deposit'], ['aRefer','aGoal'],
+  ...['aWelcome','aPromo','aSupport','aProof'].map(id => [id,'aGoal','exit'])
+];
+const board = document.querySelector('#board');
+const viewport = document.querySelector('#viewport');
+const panel = document.querySelector('#panel');
+const edgeGroup = document.querySelector('#edges');
+const buttons = {};
+const legend = document.querySelector('#legend-items');
+for (const [kind,[label]] of Object.entries(types)) {
+  const item = document.createElement('li');
+  item.dataset.kind = kind;
+  item.textContent = label;
+  legend.append(item);
+}
+for (const [cls,top,height] of [['row-band',80,190],['row-band after',310,430]]) {
+  const band = document.createElement('div');
+  band.className = cls;
+  band.style.cssText = `left:20px;top:${top}px;width:2160px;height:${height}px`;
+  board.append(band);
+}
+for (const [id,[left,top,title,subtitle,,key]] of Object.entries(cards)) {
+  const node = document.createElement('button');
+  node.type = 'button';
+  node.className = key ? 'node key' : 'node';
+  const type = cardTypes[id];
+  node.dataset.kind = type.kind;
+  const badge = document.createElement('span');
+  badge.className = 'kind';
+  badge.textContent = type.label;
+  const name = document.createElement('strong');
+  name.textContent = title;
+  node.append(badge, name);
+  if (subtitle) { const s = document.createElement('span'); s.textContent = subtitle; node.append(s); }
+  node.style.cssText = `left:${left}px;top:${top}px`;
+  node.setAttribute('aria-pressed','false');
+  node.onclick = () => select(id);
+  board.append(node);
+  buttons[id] = node;
+}
+function drawLinks() {
+  edgeGroup.replaceChildren();
+  // Each sequence email has its own exit to the goal, drawn as a shared rail under the row.
+  const rail = 668;
+  for (const [from,to,route,text] of links) {
+    let label = text;
+    const a = buttons[from], b = buttons[to];
+    const ax = a.offsetLeft, ay = a.offsetTop, bx = b.offsetLeft, by = b.offsetTop;
+    const aMid = ay + a.offsetHeight / 2, bMid = by + b.offsetHeight / 2;
+    let d, lx, ly, cls = '';
+    if (route === 'exit') {
+      const x = ax + a.offsetWidth / 2, gx = bx + b.offsetWidth / 2;
+      d = from === 'aWelcome'
+        ? `M${x} ${ay+a.offsetHeight} V${rail} H${gx} V${by+b.offsetHeight+4}`
+        : `M${x} ${ay+a.offsetHeight} V${rail}`;
+      if (from === 'aWelcome') { lx = 1810; ly = rail - 9; label = 'Exit criteria: first deposit made'; }
+      cls = 'edge-label';
+    } else if (route === 'down') {
+      const x = bx + b.offsetWidth / 2;
+      d = `M${x} ${ay+a.offsetHeight} V${by-4}`;
+      lx = x; ly = (ay + a.offsetHeight + by) / 2 + 4;
+    } else {
+      d = `M${ax+a.offsetWidth} ${aMid} H${bx-4}`;
+      lx = (ax + a.offsetWidth + bx) / 2; ly = aMid - 9;
+      if (route === 'long') lx = 1390;
+    }
+    const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('d',d);
+    if (route !== 'exit' || from === 'aWelcome') path.setAttribute('marker-end','url(#arrow)');
+    path.setAttribute('class', route === 'exit' ? 'edge-return' : route === 'long' ? 'edge-automation' : '');
+    path.setAttribute('stroke', route === 'exit' ? '#2d6a6a' : '#546d88');
+    path.setAttribute('stroke-width', route === 'exit' ? '1.8' : '2.15');
+    edgeGroup.append(path);
+    if (label && lx) {
+      const t = document.createElementNS('http://www.w3.org/2000/svg','text');
+      t.setAttribute('x',lx); t.setAttribute('y',ly);
+      t.setAttribute('class', ['First time','Exit criteria: first deposit made'].includes(label) ? 'edge-label' : 'edge-label no');
+      t.textContent = label;
+      edgeGroup.append(t);
+    }
+  }
+}
+let scale = 1, x = 0, y = 0, drag, selected;
+function draw() { board.style.transform = `translate(${x}px,${y}px) scale(${scale})`; }
+function fit() {
+  const width = 2210, height = 750;
+  scale = Math.max(.12, Math.min(1.1,(viewport.clientWidth-24)/width,(viewport.clientHeight-84)/height));
+  x = (viewport.clientWidth-width*scale)/2;
+  y = 56+(viewport.clientHeight-56-height*scale)/2;
+  draw();
+}
+function zoom(factor,cx,cy) {
+  const next = Math.max(.12,Math.min(2,scale*factor));
+  x = cx-(cx-x)*next/scale; y = cy-(cy-y)*next/scale; scale = next; draw();
+}
+document.querySelector('#fit').onclick = fit;
+for (const [id,factor] of [['in',1.25],['out',.8]]) {
+  document.querySelector('#'+id).onclick = () => zoom(factor,viewport.clientWidth/2,viewport.clientHeight/2);
+}
+viewport.addEventListener('pointerdown',event => {
+  if (event.button !== 0 || event.target.closest('button')) return;
+  drag = {x:event.clientX-x,y:event.clientY-y};
+  viewport.setPointerCapture(event.pointerId);
+  viewport.classList.add('dragging');
+});
+viewport.addEventListener('pointermove',event => { if (!drag) return; x = event.clientX-drag.x; y = event.clientY-drag.y; draw(); });
+for (const type of ['pointerup','pointercancel','lostpointercapture']) {
+  viewport.addEventListener(type,() => { drag = undefined; viewport.classList.remove('dragging'); });
+}
+viewport.addEventListener('wheel',event => {
+  event.preventDefault();
+  if (event.ctrlKey || event.metaKey) zoom(Math.exp(-event.deltaY*.007),event.clientX,event.clientY);
+  else { x -= event.deltaX; y -= event.deltaY; draw(); }
+},{passive:false});
+viewport.addEventListener('keydown',event => {
+  const offset = {ArrowLeft:[55,0],ArrowRight:[-55,0],ArrowUp:[0,55],ArrowDown:[0,-55]}[event.key];
+  if (!offset || event.target !== viewport) return;
+  event.preventDefault(); x += offset[0]; y += offset[1]; draw();
+});
+function select(id) {
+  if (selected) buttons[selected].setAttribute('aria-pressed','false');
+  selected = id;
+  buttons[id].setAttribute('aria-pressed','true');
+  document.querySelector('#detail-kind').textContent = cardTypes[id].label;
+  document.querySelector('#detail-title').textContent = cards[id][2];
+  document.querySelector('#detail-copy').textContent = cards[id][4];
+  panel.hidden = false;
+  document.querySelector('#close').focus({preventScroll:true});
+}
+function closeDetails() {
+  if (panel.hidden) return;
+  panel.hidden = true;
+  buttons[selected].setAttribute('aria-pressed','false');
+  buttons[selected].focus({preventScroll:true});
+  selected = undefined;
+}
+document.querySelector('#close').onclick = closeDetails;
+window.addEventListener('keydown',event => { if (event.key === 'Escape') closeDetails(); });
+window.addEventListener('resize',fit);
+function layout() { if (buttons.aWelcome.offsetWidth) drawLinks(); }
+layout();
+fit();
+new ResizeObserver(layout).observe(board);
+document.fonts?.ready.then(layout);
+window.addEventListener('load', layout);
+</script>
+</html>

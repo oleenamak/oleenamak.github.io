@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Celsius Retail User Funnel</title>
+<style>
+:root{font:16px/1.45 system-ui,sans-serif;color:#202721;background:#f5f6f3;--green:#285846;--line:#bcc9be}*{box-sizing:border-box}body{margin:0}button{font:inherit;color:inherit;cursor:pointer}button:focus-visible{outline:3px solid #507e6b;outline-offset:3px}.viewport{position:fixed;inset:0;overflow:hidden;touch-action:none;cursor:grab;background:radial-gradient(#ccd4ca 1px,transparent 1px) 0 0/15px 15px}.dragging{cursor:grabbing}.board{position:absolute;width:2990px;height:880px;transform-origin:0 0}.board svg{position:absolute;inset:0;pointer-events:none}.heading,.result,.lane,.node{position:absolute}.heading{margin:0;font:normal 38px Georgia,serif}.result{font-weight:650;color:var(--green);margin:0}.lane{font-weight:750;color:var(--green);margin:0}.node{width:194px;min-height:68px;padding:8px 11px;text-align:left;background:#fff;border:1px solid var(--line);border-radius:7px;box-shadow:0 2px 5px #1e39200b}.node strong,.node span{display:block}.node span{font-size:.82rem;color:#48564b}.investor-label{font-size:1.35rem}.return-label{font-size:.82rem;color:#4a6654}.node.example{background:#f8faf7;border-left:3px solid #b2c7b7}.node strong{line-height:1.2}.journey-label{font-size:.8rem;letter-spacing:.05em;text-transform:uppercase}.lane.stage{background:#29483d;color:white;width:194px;padding:6px 9px;border-radius:5px;font-size:.9rem}.node.support{border-style:dashed;background:#f8f9ff;border-color:#8794b9}.node.signal{background:#fff5e4;border-color:#ae8548}.node .kind{color:#354a81;font-size:.68rem;font-weight:760;letter-spacing:.04em;text-transform:uppercase;margin-bottom:3px}.node.signal .kind{color:#725018}.node.key.signal{background:#fff5e4;border-color:#ae8548}.node.key{border-color:#65937a;background:#e8f1e9}.node[aria-pressed=true]{border-color:var(--green);outline:2px solid var(--green);outline-offset:2px}.toolbar,.panel{position:fixed;z-index:2;background:#fff;border:1px solid var(--line);border-radius:9px;box-shadow:0 4px 18px #1c2e1717}.toolbar{top:12px;left:12px;display:flex;gap:6px;flex-wrap:wrap;padding:6px;max-width:calc(100% - 24px)}.toolbar button,.close{background:white;border:1px solid var(--line);border-radius:5px;padding:5px 10px}.panel{right:12px;bottom:12px;width:min(400px,calc(100% - 24px));max-height:45dvh;overflow:auto;padding:16px 48px 14px 18px}.panel h2{margin:0;font:normal 1.5rem Georgia,serif}.panel p{margin:.5rem 0}.close{position:absolute;top:8px;right:8px}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+[data-kind="channel"]{--type:#385e86;--wash:#eef5fc}
+[data-kind="offer"]{--type:#62538d;--wash:#f4f0fb}
+[data-kind="action"]{--type:#236247;--wash:#edf7ef}
+[data-kind="criteria"]{--type:#785323;--wash:#fff6e8}
+[data-kind="automation"]{--type:#3c5e90;--wash:#eef3ff}
+[data-kind="program"]{--type:#46652f;--wash:#f1f6eb}
+[data-kind="signal"]{--type:#8a471d;--wash:#fff1e6}
+[data-kind="operations"]{--type:#4d5a55;--wash:#f1f4f2}
+.node[data-kind]{padding:6px 9px;border:1px solid var(--type);border-left-width:4px;background:var(--wash)}
+.node[data-kind="automation"]{border-style:dashed;border-left-style:solid}
+.node[data-kind="criteria"]{border-style:dotted;border-left-style:solid}
+.node .kind{color:var(--type);font-size:.66rem;line-height:1.15;margin-bottom:2px}
+.node[data-kind] strong{font-size:.94rem}
+.node[data-kind] span:not(.kind){line-height:1.18}
+.legend{position:fixed;z-index:2;bottom:12px;left:12px;padding:6px 10px;border:1px solid var(--line);border-radius:7px;background:white;max-width:calc(100% - 24px);font-size:.85rem}
+.legend summary{cursor:pointer;font-weight:650}
+.legend ul{padding:0;margin:6px 0 0;display:flex;flex-wrap:wrap;gap:5px;list-style:none}
+.legend li{border:1px solid var(--type);border-left-width:4px;border-radius:4px;background:var(--wash);padding:2px 6px}
+.legend li[data-kind="automation"]{border-style:dashed;border-left-style:solid}
+.legend li[data-kind="criteria"]{border-style:dotted;border-left-style:solid}
+[data-kind="decision"]{--type:#355d77;--wash:#e5f1f8}
+.node[data-kind="decision"]{border:0;background:transparent;box-shadow:none;isolation:isolate;height:96px;padding:12px 36px;text-align:center}
+.node[data-kind="decision"]::before,.node[data-kind="decision"]::after{content:"";position:absolute;inset:0;z-index:-2;background:var(--type);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
+.node[data-kind="decision"]::after{inset:2px 4px;z-index:-1;background:var(--wash)}
+.node[data-kind="decision"] .kind{margin-bottom:4px}
+.node[data-kind="decision"] strong{max-width:120px;margin:auto}
+.edge-label{font:650 13px system-ui,sans-serif;fill:#355344;stroke:#f5f6f3;stroke-width:5px;paint-order:stroke;stroke-linejoin:round;text-anchor:middle}
+.edge-label.no{fill:#785323}
+/* The canvas uses a quiet grid, with color reserved for card types. */
+:root{--ink:#202b3c;--muted:#47566b;--line:#c0cbd9;--green:#215c58;--canvas:#f4f7fa;--mono:ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--ink);background:var(--canvas)}
+.viewport{background-color:var(--canvas);background-image:radial-gradient(#c7d3df 1px,transparent 1px);background-size:16px 16px}
+.heading{font:650 36px/1.12 system-ui,sans-serif;letter-spacing:-.045em}
+.result{font:650 14px/1.3 var(--mono);color:#32635e}
+.journey-label,.investor-label{font:650 14px/1.3 var(--mono);letter-spacing:.025em;text-transform:uppercase;color:#465770}
+.lane.stage{box-sizing:border-box;color:#fff;background:#26364d;border:1px solid #26364d;border-radius:5px;padding:6px 9px;font:650 14px/1.3 system-ui,sans-serif;letter-spacing:.015em}
+.lane-band{position:absolute;z-index:-2;pointer-events:none;border:1px solid #d9e2ec;border-radius:8px;background:#ffffff82}
+.board{isolation:isolate}
+.board svg{z-index:0}
+.node{border-radius:5px}
+.node[data-kind]{border-color:#c0cbd9;border-left-color:var(--type);background:#fff;box-shadow:0 2px 5px #22364c0a}
+.node[data-kind] .kind{font:700 10px/1.2 var(--mono);letter-spacing:.035em}
+.node[data-kind] strong{font-size:.98rem;color:var(--ink)}
+.node[data-kind] span:not(.kind){color:var(--muted)}
+.node[data-kind="decision"]{border:0;background:transparent;box-shadow:none}
+.node[data-kind="decision"]::after{background:#e9f1fb}
+.node[data-kind="signal"]{background:#fff7ed;border-color:#b77b45}
+.node[data-kind]:hover:not([data-kind="decision"]){background:var(--wash);border-color:var(--type)}
+.node[data-kind="decision"]:hover::after{background:#dbe9f9}
+.node[aria-pressed=true]{outline:2px solid #235c83;outline-offset:3px}
+#edges{stroke:#546d88;stroke-width:1.8}
+.edge-label{font:700 12px var(--mono);fill:#215c58;stroke:var(--canvas)}
+.edge-label.no{fill:#774524}
+.toolbar,.panel,.legend{border-color:var(--line);box-shadow:0 6px 22px #23334b14}
+.toolbar button,.close{background:#f8fafc;color:var(--ink);font-size:.9rem;font-weight:600}
+.toolbar button:hover,.close:hover{background:#e8f0fa}
+.panel h2{font:650 1.3rem/1.25 system-ui,sans-serif;letter-spacing:-.02em}
+.panel p{color:var(--muted)}
+.detail-kind{display:block;margin-bottom:6px;color:#465770;font:700 .72rem var(--mono);text-transform:uppercase}
+/* Stage headers connect the overview. Card links describe actual transitions. */
+.lane.stage:not(.last-stage)::after{content:"";position:absolute;left:100%;top:50%;width:53px;border-top:2px solid #7991aa}
+.lane.stage:not(.last-stage)::before{content:"";position:absolute;left:calc(100% + 46px);top:calc(50% - 4px);border-left:7px solid #7991aa;border-top:5px solid transparent;border-bottom:5px solid transparent}
+.lane-band{background:linear-gradient(to bottom,#e9f0f8 0 124px,#ffffffb8 124px);border-color:#cdd9e6}
+.node[data-kind="offer"]{border-radius:12px}
+.node[data-kind="criteria"]{background:#fff9ef}
+.legend{max-width:calc(100% - 24px);padding:5px 8px}
+.legend ul{margin:0;gap:4px}
+.legend li{font-size:.73rem;white-space:nowrap}
+@media(max-width:650px){.legend li{font-size:.65rem;padding:1px 4px}}
+.node.email-marker[data-kind="automation"]{width:44px;height:36px;min-height:0;padding:0;border:1px dashed var(--type);border-radius:8px;background:var(--wash);color:var(--type);font:700 21px/1 system-ui,sans-serif;text-align:center}
+.node.email-marker[data-kind="automation"]:hover{background:#dce9ff}
+.toolbar select{max-width:calc(100vw - 140px);font:600 .9rem system-ui,sans-serif;color:var(--ink);background:#f8fafc;border:1px solid var(--line);border-radius:5px;padding:5px 8px}
+.node[data-kind] .kind{font-size:11px}
+.node[data-kind] strong{font-size:1rem}
+.node[data-kind] span:not(.kind){font-size:.86rem;line-height:1.22}
+.edge-label{stroke-width:7px}
+.edge-automation{stroke:#5073a4;stroke-dasharray:5 4}
+.edge-return{stroke:#896533;stroke-dasharray:5 4}
+.node.email-marker::after,.legend li[data-kind="automation"]::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#c73843}
+.node.email-marker::after{position:absolute;top:-4px;right:-4px;box-shadow:0 0 0 2px var(--canvas)}
+.legend li[data-kind="automation"]::before{margin-right:5px;vertical-align:1px}
+.nurture-group{position:absolute;z-index:-1;border:1px dashed #8fa4bb;border-radius:8px;background:#f3f7fbcc}
+.lane.stage.transition{background:#fff;color:#26364d;border:1.5px dashed #26364d;font-style:italic}
+.lane-band.transition{border-style:dashed;background:#ffffff80}
+.pipeline-group{border-style:solid;border-color:#9fb6b6;background:#f2f8f8cc}
+.funnel-group{border-style:solid;border-color:#c3cfdc;background:#f7f9fccc}
+.funnel-group p{margin:0;padding:8px 10px 0;font:700 11px/1.2 var(--mono);letter-spacing:.035em;text-transform:uppercase;color:#465770}
+.pipeline-group p{margin:0;padding:8px 10px 0;font:700 11px/1.2 var(--mono);letter-spacing:.035em;text-transform:uppercase;color:#2d5f5f}
+.pipeline-group p span{display:block;margin-top:2px;font-weight:500;text-transform:none;letter-spacing:0;color:#47566b}
+[data-kind="task"]{--type:#7a3f63;--wash:#f8eef4}
+[data-kind="stage"]{--type:#2d6a6a;--wash:#ebf5f5}
+[data-kind="content"]{--type:#7a6326;--wash:#f8f3e4}
+.lane.stage.lifecycle{background:#2d5f5f;border-color:#2d5f5f;border-radius:14px}
+.lane-band.lifecycle{border-color:#b8d0d0;background:linear-gradient(to bottom,#e3f0f0 0 124px,#ffffffb8 124px)}
+.qual-span.lifecycle-span{color:#2d5f5f}
+.qual-span.lifecycle-span::after{border-color:#8fb5b5}
+.qual-span{position:absolute;margin:0;text-align:center;font:700 11px/1.2 var(--mono);letter-spacing:.035em;text-transform:uppercase;color:#465770}
+.qual-span::after{content:"";display:block;height:6px;margin-top:4px;border:1.5px solid #9fb0c4;border-bottom:0;border-radius:3px 3px 0 0}
+.node.email-marker.drip{box-shadow:3px 3px 0 -1px var(--wash),3px 3px 0 0 var(--type),6px 6px 0 -1px var(--wash),6px 6px 0 0 var(--type)}
+.legend li.drip{box-shadow:2px 2px 0 -1px var(--wash),2px 2px 0 0 var(--type)}
+.node[data-kind="action"] .kind::before,.legend li[data-kind="action"]::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--type);margin-right:5px;vertical-align:1px}
+[data-kind="segment"]{--type:#7a3f63;--wash:#f8eef4}
+[data-kind="product"]{--type:#2d6a6a;--wash:#ebf5f5}
+[data-kind="push"]{--type:#3c5e90;--wash:#eef3ff}
+.node.email-marker[data-kind="push"]{width:44px;height:36px;min-height:0;padding:0;border:1px dashed var(--type);border-radius:18px;background:var(--wash);font:17px/1 system-ui,sans-serif;text-align:center}
+.legend li.push{border-style:dashed;border-left-style:solid;border-radius:10px}
+.legend li.push::before{content:"🔔 ";font-size:.65rem}
+/* oleenamak.ca theme: white paper, mono interface text, small serif prose */
+:root{--ink:#171717;--muted:#666;--rule:#e5e5e5;--line:#e0e0e0;--serif:Georgia,"Times New Roman",serif;--mono:"SF Mono",ui-monospace,Menlo,Consolas,monospace;color:var(--ink);background:#fff;font:14px/1.4 var(--serif)}
+body{background:#fff}
+:focus-visible,button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.viewport{background:#fff radial-gradient(#e4e4e4 1px,transparent 1px) 0 0/16px 16px}
+.heading{font:400 32px/1.1 var(--serif);letter-spacing:-.01em;color:var(--ink)}
+.lane.stage,.lane.stage.lifecycle{background:var(--ink);border:1px solid var(--ink);border-radius:3px;font:500 11.5px/1.4 var(--mono);letter-spacing:0;padding:8px 10px;color:#fff}
+.lane.stage:not(.last-stage)::after{border-top-color:#bbb}
+.lane.stage:not(.last-stage)::before{border-left-color:#bbb}
+.lane-band,.lane-band.lifecycle{background:#fffffff2;border:1px solid var(--rule);border-radius:4px}
+.qual-span,.qual-span.lifecycle-span{font:400 11px/1.3 var(--mono);letter-spacing:0;text-transform:none;color:var(--muted)}
+.qual-span::after,.qual-span.lifecycle-span::after{border-color:#ccc}
+[data-kind="channel"]{--type:#63528a;--wash:#f6f3fa}
+[data-kind="action"]{--type:#3d6b52;--wash:#f3f7f4}
+[data-kind="decision"]{--type:#4a6175;--wash:#f2f5f8}
+[data-kind="automation"],[data-kind="push"]{--type:#4d6390;--wash:#f4f6fb}
+[data-kind="program"]{--type:#5d6b3a;--wash:#f5f7ef}
+[data-kind="segment"]{--type:#8a5a26;--wash:#fbf5ec}
+[data-kind="product"]{--type:#3d6868;--wash:#f1f6f6}
+[data-kind="content"]{--type:#7a6326;--wash:#f9f5ea}
+.node[data-kind]{border:1px solid var(--line);border-left:4px solid var(--type);border-radius:4px;box-shadow:none;background:#fff}
+.node[data-kind="automation"]:not(.email-marker){border-style:dashed;border-left-style:solid}
+.node[data-kind] .kind{font:400 10.5px/1.3 var(--mono);letter-spacing:.02em;text-transform:none;color:var(--type)}
+.node[data-kind] strong{font:400 15px/1.2 var(--serif);color:var(--ink)}
+.node[data-kind] span:not(.kind){font:13px/1.3 var(--serif);color:var(--muted)}
+.node[data-kind]:hover:not([data-kind="decision"]){background:var(--wash);border-color:var(--line);border-left-color:var(--type)}
+.node.key[data-kind]{background:var(--wash)}
+.node[data-kind="decision"]{border:0;background:transparent}
+.node[data-kind="decision"]::after{background:var(--wash)}
+.node[data-kind="decision"] strong{font-size:14px}
+.node[aria-pressed=true]{outline:2px solid var(--ink);outline-offset:2px}
+.node.email-marker[data-kind]{border:1px dashed var(--type);border-radius:4px;background:var(--wash);color:var(--type)}
+.node.email-marker[data-kind="push"]{border-radius:18px}
+.node.email-marker::after,.legend li[data-kind="automation"]::before{background:#b8433a}
+#edges path{stroke:#a3a3a3;stroke-width:1.5}
+#edges path.edge-automation{stroke:#a3a3a3;stroke-dasharray:4 4}
+#edges path.edge-return{stroke:#b08a55;stroke-dasharray:4 4}
+.edge-label{font:400 11.5px var(--mono);fill:#3d6b52;stroke:#fff;stroke-width:6px}
+.edge-label.no{fill:#8a5a26}
+.nurture-group,.funnel-group,.pipeline-group{border:1px dashed #ccc;border-radius:4px;background:#fafafae6}
+.funnel-group p,.pipeline-group p{font:400 11px/1.3 var(--mono);letter-spacing:0;text-transform:none;color:var(--muted)}
+.pipeline-group p span{font:12px var(--serif);color:var(--muted)}
+.row-band,.row-band.after{border:1px solid var(--rule);border-radius:4px;background:#fffffff2}
+.row-label,.row-label.after{font:400 12px/1.3 var(--mono);letter-spacing:0;text-transform:none;color:var(--ink)}
+.row-label span{font:14px/1.4 var(--serif);color:var(--muted)}
+.toolbar,.legend,.panel{border-color:var(--rule);border-radius:4px;box-shadow:0 12px 40px #00000012}
+.toolbar button,.toolbar select,.close{border:1px solid #ccc;border-radius:3px;background:#fff;color:var(--ink);font:400 12px/1.3 var(--mono);padding:6px 10px}
+.toolbar button:hover,.close:hover{background:#f5f5f5}
+.legend li{border-radius:3px;font:400 11px/1.4 var(--mono)}
+.panel h2{font:400 18px/1.3 var(--serif);letter-spacing:0}
+.panel p{color:var(--muted);font:14.5px/1.6 var(--serif)}
+.detail-kind{font:400 11px var(--mono);text-transform:none;color:var(--muted)}
+.close{font-size:16px;line-height:1;padding:4px 8px;color:var(--muted)}
+</style>
+<main>
+<nav class="toolbar" aria-label="Map controls">
+<button id="out" aria-label="Zoom out">−</button><button id="in" aria-label="Zoom in">+</button><button id="fit">Fit map</button><label class="sr" for="jump">Jump to section</label><select id="jump"><option value="">Jump to section</option><option value="start">Acquisition</option><option value="activation">Sign-up to activation</option><option value="expansion">Nurture and expansion</option><option value="loyalty">Loyalty and advocacy</option></select>
+</nav>
+<div class="viewport" id="viewport" tabindex="0" aria-label="Growth map. Drag or use arrow keys to pan.">
+<div class="board" id="board" style="width:2250px;height:800px">
+<h1 class="heading" style="left:36px;top:12px">Retail User Funnel</h1>
+<p class="qual-span" style="left:36px;top:97px;width:194px">Acquisition</p>
+<p class="qual-span" style="left:774px;top:68px;width:194px">Critical: first 10 days</p>
+<p class="qual-span lifecycle-span" style="left:282px;top:97px;width:1916px">Lifecycle: sign-up to advocacy</p>
+<svg width="2250" height="800" aria-hidden="true"><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M1 1l6 3-6 3" fill="none" stroke="context-stroke"/></marker></defs><g id="edges" fill="none" stroke="#7b8c7f" stroke-width="1.7"></g></svg>
+</div>
+</div>
+<aside class="legend" aria-label="Map key"><ul id="legend-items"></ul></aside>
+<section class="panel" id="panel" aria-labelledby="detail-title" hidden>
+<button class="close" id="close" aria-label="Close details">×</button><span class="detail-kind" id="detail-kind"></span><h2 id="detail-title"></h2><p id="detail-copy"></p>
+</section>
+</main>
+<script>
+const columns = [
+  [36, 126, 'Channels'], [282, 126, 'Sign-up'], [528, 126, 'Onboarding'],
+  [774, 126, 'Activation'], [1020, 126, 'Nurture and expansion'], [1266, 126, 'Product expansion'],
+  [1512, 126, 'High net worth'], [1758, 126, 'Loyalty'], [2004, 126, 'Advocacy']
+];
+const cards = {
+  referrals: [0, 166, 'Referrals', 'One of the biggest channels', 'Existing users referred friends to Celsius. Referrals were one of the largest sources of new users, and the ambassador program fed them.', true],
+  promos: [0, 262, 'Incentive promotions', 'Our main lever instead of paid ads', 'We ran no paid ads. Incentive promotions did that job and were one of the main acquisition channels.', true],
+  founder: [0, 358, 'Founder and PR', 'The founder’s public profile', 'Much of our reach rode on the founder’s public presence and press coverage.'],
+  social: [0, 454, 'Organic social', 'YouTube, Twitter, Instagram', 'Organic content on YouTube, Twitter and Instagram brought people to the app.'],
+  seo: [0, 550, 'Website and SEO', 'Organic search', 'The website and organic search brought in people researching where to earn on their crypto.'],
+  signup: [1, 166, 'Account created', 'Lifecycle starts here', 'Acquisition was owned by other teams. From sign-up onward, the lifecycle was mine: onboarding, activation, expansion, loyalty and advocacy.'],
+  kycStart: [1, 262, 'KYC started', 'Identity verification', 'Users had to verify their identity (KYC) before they could deposit.'],
+  kycCheck: [1, 360, 'KYC complete?', '', 'Verified users moved into onboarding. Users who started but did not finish KYC entered a reminder flow.'],
+  kycReminders: [1, 520, 'KYC reminders', '', 'Users who had not completed KYC received reminders until they finished verifying.'],
+  welcomeEmail: [2, 172, 'Welcome email', '', 'The first email after verification, sent to every new user.'],
+  promoEmail: [2, 244, 'First-deposit bonus email', '', 'The second email: make your first deposit and get $50 in Bitcoin. The offer was always on for every first-time depositor, with no deadline.'],
+  segment: [2, 316, 'New to crypto?', '', 'After the welcome and bonus emails, onboarding split by experience into two tracks, each with its own flow.'],
+  firstTime: [2, 470, 'First-time crypto users', 'Educational track', 'Users new to crypto got an educational track on how to make a first deposit: by ACH bank deposit or credit card. Card purchases carried a percentage fee, so we also covered buying crypto on another platform for lower fees and transferring it in.'],
+  experienced: [2, 590, 'Experienced crypto users', 'Prompted to transfer crypto in', 'Users who already held crypto on another platform were prompted to transfer it in and start earning.'],
+  depositCheck: [3, 166, 'Deposited by day 10?', '', 'Activation meant a first deposit. The first 10 days after joining were the critical window: after that, the likelihood of depositing dropped significantly, so most onboarding effort went into those 10 days.'],
+  firstDeposit: [3, 320, 'First deposit', 'Earns $50 in Bitcoin', 'The first deposit was the activation event and paid out the $50 in Bitcoin bonus. Once users started earning, even on a small balance, they were far more likely to stay.', true],
+  reminders: [3, 470, 'Deposit reminders', '', 'Users who had not deposited received reminders through the first 10 days, repeating the $50 in Bitcoin offer.'],
+  weeklyEmail: [4, 192, 'Weekly rewards email', '', 'The core of nurture. Every week, each depositor got an email with the rewards they earned and their balance, plus upcoming events, new promotions and incentives.'],
+  weeklyPush: [4, 192, 'Weekly rewards push', '', 'A transactional push notification on the same day every week: your weekly rewards are in, see how much you earned. A moment users came to expect.'],
+  amaReminder: [4, 434, 'AMA reminders', '', 'Email and push reminders for each Friday AMA, including one an hour before the stream started.'],
+  ama: [4, 494, 'Friday AMA', 'Live with the CEO on YouTube', 'Every Friday, the CEO hosted a live AMA on YouTube, often with guests.'],
+  earnRates: [4, 252, 'Weekly earn rates', 'Rates set each week per coin', 'Users earned rewards on the crypto they deposited. Rates changed every week for each coin.'],
+  depositPromos: [4, 356, 'Deposit promotions', 'Incentives to deposit more', 'Users rarely withdrew once they deposited, since most were holding. So nurture was about expansion: campaigns and incentives to grow their balances and win a bigger share of their wallet.'],
+  borrow: [5, 166, 'Borrow', 'Loans backed by your crypto', 'Users could borrow against the crypto they held with us, without selling it. Moving depositors into borrowing was one form of expansion.'],
+  accreditedApply: [5, 270, 'Accredited investor application', 'Separate application flow', 'High net worth users, including family offices, investment managers and institutions, could apply to become accredited investors through a separate application flow.'],
+  accreditedCheck: [5, 382, 'Accredited?', '', 'Approved applicants became high net worth clients. Everyone else stayed in the retail nurture track.'],
+  whiteGlove: [6, 214, 'White-glove team', 'Direct access for quick trades', 'Accredited clients got a dedicated, white-glove relationship with our team, including direct access for fast trades.'],
+  otc: [6, 316, 'OTC trading desk', 'Large trades', 'Accredited clients could trade on the over-the-counter (OTC) desk.'],
+  vipPromos: [6, 418, 'Exclusive promotions', 'Campaigns for accredited clients', 'Accredited clients received their own campaigns and promotions.'],
+  buyCel: [7, 166, 'CEL purchased', 'Entry to the loyalty program', 'CEL, our own token, was the loyalty and rewards program. Buying CEL was the move into loyalty.', true],
+  tiers: [7, 270, 'Loyalty tiers', 'More CEL, higher tier', 'The more CEL a user held, the higher their tier and the more they could earn.'],
+  boosted: [7, 374, 'Boosted earn rates', 'Promotions for CEL holders', 'We often ran promotions where CEL holders earned more on their crypto than regular users.'],
+  ambassador: [8, 166, 'Ambassador program', 'Users who post about Celsius', 'Ambassadors created and shared content about Celsius.'],
+  ambassadorContent: [8, 270, 'Ambassador content', 'Posts and videos', 'Ambassador content drove referrals and new sign-ups, feeding acquisition.'],
+};
+const types = {
+  channel: ['Channel', 'referrals promos founder social seo'],
+  action: ['Event', 'signup kycStart firstDeposit accreditedApply buyCel'],
+  decision: ['Logic', 'kycCheck segment depositCheck accreditedCheck'],
+  segment: ['Segment track', 'firstTime experienced'],
+  automation: ['Automation', 'kycReminders welcomeEmail promoEmail reminders weeklyEmail amaReminder'],
+  push: ['Push notification', 'weeklyPush'],
+  program: ['Program', 'ama earnRates depositPromos whiteGlove vipPromos tiers boosted ambassador'],
+  product: ['Product', 'borrow otc'],
+  content: ['Content', 'ambassadorContent'],
+};
+const cardTypes = Object.fromEntries(Object.entries(types).flatMap(([kind,[label, ids]]) =>
+  ids.split(' ').map(id => [id, {kind,label}])
+));
+const links = [
+  ...['referrals','promos','founder','social','seo'].map(id => [id,'signup','capture-input']),
+  ['signup','kycStart'], ['kycStart','kycCheck'], ['kycCheck','kycReminders','side','No'], ['kycReminders','kycCheck',false,'Resume'],
+  ['kycCheck','welcomeEmail','handoff','Verified'], ['welcomeEmail','promoEmail'], ['promoEmail','segment'],
+  ['segment','firstTime',false,'Yes'], ['segment','experienced','side','No'],
+  ['firstTime','depositCheck','handoff'], ['experienced','depositCheck','handoff'],
+  ['depositCheck','firstDeposit',false,'Yes'], ['depositCheck','reminders','side','No'],
+  ['reminders','firstDeposit',false,'Deposited'],
+  ['firstDeposit','nurture','handoff'], ['amaReminder','ama'],
+  ['nurture','borrow','handoff'], ['nurture','accreditedApply','handoff'],
+  ['accreditedApply','accreditedCheck'], ['accreditedCheck','hnw','handoff','Yes'], ['accreditedCheck','nurture','back','No'],
+  ['hnw','buyCel','handoff'], ['nurture','buyCel','under','CEL promotions'],
+  ['buyCel','tiers'], ['tiers','boosted'],
+  ['tiers','ambassador','handoff'], ['ambassador','ambassadorContent'],
+  ['ambassadorContent','referrals','flywheel','Drives referrals and sign-ups']
+];
+const greenLabels = ['Yes','Deposited','Verified','Resume'];
+const board = document.querySelector('#board');
+const viewport = document.querySelector('#viewport');
+const panel = document.querySelector('#panel');
+const edgeGroup = document.querySelector('#edges');
+const buttons = {};
+const legend = document.querySelector('#legend-items');
+for (const [kind,[label]] of Object.entries(types)) {
+  const item = document.createElement('li');
+  item.dataset.kind = kind;
+  item.textContent = kind === 'automation' ? 'Email trigger' : label;
+  if (kind === 'push') item.classList.add('push');
+  legend.append(item);
+}
+// Groups: nurture is a stream of programs, and accredited clients got their own track.
+const groupColumns = {};
+for (const [id,column,top,height,name] of [['nurture',4,162,420,'Grow deposits'],['hnw',6,162,358,'Accredited investors']]) {
+  const group = document.createElement('div');
+  group.className = id === 'hnw' ? 'nurture-group pipeline-group' : 'nurture-group funnel-group';
+  group.style.cssText = `left:${columns[column][0]-10}px;top:${top}px;width:214px;height:${height}px`;
+  group.innerHTML = id === 'hnw' ? `<p>${name}<span>White-glove treatment</span></p>` : `<p>${name}</p>`;
+  board.append(group);
+  buttons[id] = group;
+  groupColumns[id] = column;
+}
+const bands = [];
+for (const [x,y,title] of columns) {
+  const band = document.createElement('div');
+  band.className = 'lane-band';
+  band.style.cssText = `left:${x-10}px;top:${y-6}px;width:214px`;
+  bands.push(band);
+  band.setAttribute('aria-hidden','true');
+  board.append(band);
+  const label = document.createElement('p');
+  label.className = x === columns.at(-1)[0] ? 'lane stage last-stage' : 'lane stage';
+  if (['Loyalty','Advocacy'].includes(title)) { label.classList.add('lifecycle'); band.classList.add('lifecycle'); }
+  label.style.cssText = `left:${x}px;top:${y}px`;
+  label.textContent = title;
+  board.append(label);
+}
+for (const [id,[column,y,title,subtitle,,key]] of Object.entries(cards)) {
+  const node = document.createElement('button');
+  node.type = 'button';
+  node.className = key ? 'node key' : 'node';
+  const type = cardTypes[id];
+  node.dataset.kind = type.kind;
+  const badge = document.createElement('span');
+  badge.className = 'kind';
+  badge.textContent = type.label;
+  node.append(badge);
+  const compact = type.kind === 'automation' || type.kind === 'push';
+  const offset = {weeklyEmail:45, weeklyPush:105}[id] ?? 75;
+  node.style.cssText = `left:${columns[column][0] + (compact ? offset : 0)}px;top:${y}px`;
+  node.setAttribute('aria-pressed','false');
+  const name = document.createElement('strong');
+  const description = document.createElement('span');
+  name.textContent = title;
+  description.textContent = subtitle;
+  node.append(name);
+  if (subtitle) node.append(description);
+  if (compact) {
+    node.classList.add('email-marker');
+    
+    node.title = title;
+    node.setAttribute('aria-label', title + (type.kind === 'push' ? ' · View push notification' : ' · View email automation'));
+    node.textContent = type.kind === 'push' ? '🔔' : '✉';
+  }
+  node.onclick = () => select(id);
+  board.append(node);
+  buttons[id] = node;
+}
+function drawLinks() {
+  edgeGroup.replaceChildren();
+  for (const [from,to,route,label] of links) {
+    const a = buttons[from], b = buttons[to];
+    const ax = a.offsetLeft, ay = a.offsetTop, bx = b.offsetLeft, by = b.offsetTop;
+    let start = ay + a.offsetHeight / 2, end = by + b.offsetHeight / 2;
+    // Lines leaving a group start level with their target, so each branch reads as its own path.
+    if (from === 'nurture' && route === 'handoff') start = end;
+    let d, labelX, labelY;
+    if (route === 'capture-input') {
+      const right = ax + a.offsetWidth, gutter = (right + bx) / 2;
+      d = `M${right} ${start} H${gutter} V${end} H${bx-4}`;
+    } else if (route === 'side') {
+      const right = ax + a.offsetWidth, targetRight = bx + b.offsetWidth;
+      const gutter = Math.max(right, targetRight) + 16;
+      d = `M${right} ${start} H${gutter} V${end} H${targetRight+4}`;
+      labelX = gutter;
+      labelY = start + 44;
+    } else if (route === 'handoff') {
+      const right = ax + a.offsetWidth, middle = (right + bx) / 2;
+      d = `M${right} ${start} H${middle} V${end} H${bx-4}`;
+      labelX = middle;
+      labelY = (start + end) / 2;
+    } else if (route === 'back') {
+      d = `M${ax} ${start} H${bx+b.offsetWidth+4}`;
+      labelX = (ax + bx + b.offsetWidth) / 2;
+      labelY = start - 8;
+    } else if (route === 'under') {
+      // Runs below the expansion lanes and climbs into CEL from the left.
+      const gutter = (columns[6][0] + 194 + columns[7][0]) / 2;
+      d = `M${ax+a.offsetWidth/2} ${ay+a.offsetHeight} V662 H${gutter} V${end} H${bx-4}`;
+      labelX = 1480;
+      labelY = 654;
+    } else if (route === 'flywheel') {
+      d = `M${ax+a.offsetWidth/2} ${ay+a.offsetHeight} V740 H14 V${end} H${bx-4}`;
+      labelX = 1100;
+      labelY = 732;
+    } else if (cards[from] && cards[to] && cards[from][0] === cards[to][0]) {
+      const x = bx + b.offsetWidth / 2;
+      labelX = x;
+      labelY = by > ay ? (ay + a.offsetHeight + by) / 2 + 4 : (by + b.offsetHeight + ay) / 2 + 4;
+      d = by > ay ? `M${x} ${ay+a.offsetHeight} V${by-3}` : `M${x} ${ay} V${by+b.offsetHeight+3}`;
+    } else {
+      const x = ax + a.offsetWidth, middle = (x + bx) / 2;
+      d = `M${x} ${start} C${middle} ${start} ${middle} ${end} ${bx-3} ${end}`;
+    }
+    const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('d',d);
+    if (route !== 'capture-input' || from === 'seo') path.setAttribute('marker-end','url(#arrow)');
+    if (route === 'back' || route === 'flywheel') {
+      path.setAttribute('class','edge-return');
+    } else if (['automation','push'].includes(cardTypes[from]?.kind) || ['automation','push'].includes(cardTypes[to]?.kind)) {
+      path.setAttribute('class','edge-automation');
+    } else {
+      path.setAttribute('stroke-width','2.15');
+    }
+    edgeGroup.append(path);
+    if (label) {
+      const annotation = document.createElementNS('http://www.w3.org/2000/svg','text');
+      annotation.setAttribute('x',labelX);
+      annotation.setAttribute('y',labelY);
+      annotation.setAttribute('class',greenLabels.includes(label) ? 'edge-label' : 'edge-label no');
+      annotation.textContent = label;
+      edgeGroup.append(annotation);
+    }
+  }
+}
+let scale = 1, x = 0, y = 0, drag, selected;
+function draw() { board.style.transform = `translate(${x}px,${y}px) scale(${scale})`; }
+function frame(left,top,width,height) {
+  scale = Math.max(.12, Math.min(1.25,(viewport.clientWidth-24)/width,(viewport.clientHeight-84)/height));
+  x = (viewport.clientWidth-width*scale)/2-left*scale;
+  y = 56+(viewport.clientHeight-56-height*scale)/2-top*scale;
+  draw();
+}
+function fit() { frame(4,10,2226,760); }
+function zoom(factor,cx,cy) {
+  const next = Math.max(.12,Math.min(2,scale*factor));
+  x = cx-(cx-x)*next/scale;
+  y = cy-(cy-y)*next/scale;
+  scale = next;
+  draw();
+}
+function showStart() {
+  scale = Math.min(1, Math.max(.78, (viewport.clientWidth - 24) / 980));
+  x = 14 - 30 * scale;
+  y = 64;
+  draw();
+}
+document.querySelector('#fit').onclick = fit;
+const sections = {
+  start: showStart,
+  activation: () => frame(270,90,730,620),
+  expansion: () => frame(1000,90,730,600),
+  loyalty: () => frame(1740,90,480,600)
+};
+document.querySelector('#jump').onchange = event => {
+  sections[event.target.value]?.();
+  event.target.value = '';
+};
+for (const [id,factor] of [['in',1.25],['out',.8]]) {
+  document.querySelector('#'+id).onclick = () => zoom(factor,viewport.clientWidth/2,viewport.clientHeight/2);
+}
+viewport.addEventListener('pointerdown',event => {
+  if (event.button !== 0 || event.target.closest('button')) return;
+  drag = {x:event.clientX-x,y:event.clientY-y};
+  viewport.setPointerCapture(event.pointerId);
+  viewport.classList.add('dragging');
+});
+viewport.addEventListener('pointermove',event => {
+  if (!drag) return;
+  x = event.clientX-drag.x;
+  y = event.clientY-drag.y;
+  draw();
+});
+for (const type of ['pointerup','pointercancel','lostpointercapture']) {
+  viewport.addEventListener(type,() => { drag = undefined; viewport.classList.remove('dragging'); });
+}
+viewport.addEventListener('wheel',event => {
+  event.preventDefault();
+  if (event.ctrlKey || event.metaKey) zoom(Math.exp(-event.deltaY*.007),event.clientX,event.clientY);
+  else { x -= event.deltaX; y -= event.deltaY; draw(); }
+},{passive:false});
+viewport.addEventListener('keydown',event => {
+  const offset = {ArrowLeft:[55,0],ArrowRight:[-55,0],ArrowUp:[0,55],ArrowDown:[0,-55]}[event.key];
+  if (!offset || event.target !== viewport) return;
+  event.preventDefault();
+  x += offset[0];
+  y += offset[1];
+  draw();
+});
+function select(id) {
+  if (selected) buttons[selected].setAttribute('aria-pressed','false');
+  selected = id;
+  buttons[id].setAttribute('aria-pressed','true');
+  document.querySelector('#detail-kind').textContent = cardTypes[id].label;
+  document.querySelector('#detail-title').textContent = cards[id][2];
+  document.querySelector('#detail-copy').textContent = cards[id][4];
+  panel.hidden = false;
+  document.querySelector('#close').focus({preventScroll:true});
+}
+function closeDetails() {
+  if (panel.hidden) return;
+  panel.hidden = true;
+  buttons[selected].setAttribute('aria-pressed','false');
+  buttons[selected].focus({preventScroll:true});
+  selected = undefined;
+}
+document.querySelector('#close').onclick = closeDetails;
+window.addEventListener('keydown',event => { if (event.key === 'Escape') closeDetails(); });
+window.addEventListener('resize',fit);
+// Each lane ends just below its own content; lanes the CEL route crosses extend to cover it.
+const laneFloor = {1:650, 2:650, 3:650, 4:680, 5:680, 6:680, 7:680, 8:650};
+function sizeBands() {
+bands.forEach((band,column) => {
+  let bottom = laneFloor[column] || 0;
+  for (const [id,node] of Object.entries(buttons)) {
+    const inLane = id in groupColumns ? groupColumns[id] === column : cards[id][0] === column;
+    if (inLane) bottom = Math.max(bottom, node.offsetTop + node.offsetHeight);
+  }
+  band.style.height = `${bottom + 22 - (columns[column][1] - 6)}px`;
+});
+}
+// Lines are measured from the cards, so redraw whenever the cards can be measured.
+function layout() {
+  if (!buttons.referrals.offsetWidth) return;
+  drawLinks();
+  sizeBands();
+}
+layout();
+showStart();
+new ResizeObserver(layout).observe(board);
+document.fonts?.ready.then(layout);
+window.addEventListener('load', layout);
+document.addEventListener('visibilitychange', layout);
+</script>
+</html>

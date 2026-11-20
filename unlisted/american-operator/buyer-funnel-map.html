@@ -1,0 +1,592 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>American Operator Buyer Funnel</title>
+<style>
+:root{font:16px/1.45 system-ui,sans-serif;color:#202721;background:#f5f6f3;--green:#285846;--line:#bcc9be}*{box-sizing:border-box}body{margin:0}button{font:inherit;color:inherit;cursor:pointer}button:focus-visible{outline:3px solid #507e6b;outline-offset:3px}.viewport{position:fixed;inset:0;overflow:hidden;touch-action:none;cursor:grab;background:radial-gradient(#ccd4ca 1px,transparent 1px) 0 0/15px 15px}.dragging{cursor:grabbing}.board{position:absolute;width:2990px;height:880px;transform-origin:0 0}.board svg{position:absolute;inset:0;pointer-events:none}.heading,.result,.lane,.node{position:absolute}.heading{margin:0;font:normal 38px Georgia,serif}.result{font-weight:650;color:var(--green);margin:0}.lane{font-weight:750;color:var(--green);margin:0}.node{width:194px;min-height:68px;padding:8px 11px;text-align:left;background:#fff;border:1px solid var(--line);border-radius:7px;box-shadow:0 2px 5px #1e39200b}.node strong,.node span{display:block}.node span{font-size:.82rem;color:#48564b}.investor-label{font-size:1.35rem}.return-label{font-size:.82rem;color:#4a6654}.node.example{background:#f8faf7;border-left:3px solid #b2c7b7}.node strong{line-height:1.2}.journey-label{font-size:.8rem;letter-spacing:.05em;text-transform:uppercase}.lane.stage{background:#29483d;color:white;width:194px;padding:6px 9px;border-radius:5px;font-size:.9rem}.node.support{border-style:dashed;background:#f8f9ff;border-color:#8794b9}.node.signal{background:#fff5e4;border-color:#ae8548}.node .kind{color:#354a81;font-size:.68rem;font-weight:760;letter-spacing:.04em;text-transform:uppercase;margin-bottom:3px}.node.signal .kind{color:#725018}.node.key.signal{background:#fff5e4;border-color:#ae8548}.node.key{border-color:#65937a;background:#e8f1e9}.node[aria-pressed=true]{border-color:var(--green);outline:2px solid var(--green);outline-offset:2px}.toolbar,.panel{position:fixed;z-index:2;background:#fff;border:1px solid var(--line);border-radius:9px;box-shadow:0 4px 18px #1c2e1717}.toolbar{top:12px;left:12px;display:flex;gap:6px;flex-wrap:wrap;padding:6px;max-width:calc(100% - 24px)}.toolbar button,.close{background:white;border:1px solid var(--line);border-radius:5px;padding:5px 10px}.panel{right:12px;bottom:12px;width:min(400px,calc(100% - 24px));max-height:45dvh;overflow:auto;padding:16px 48px 14px 18px}.panel h2{margin:0;font:normal 1.5rem Georgia,serif}.panel p{margin:.5rem 0}.close{position:absolute;top:8px;right:8px}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+[data-kind="channel"]{--type:#385e86;--wash:#eef5fc}
+[data-kind="offer"]{--type:#62538d;--wash:#f4f0fb}
+[data-kind="action"]{--type:#236247;--wash:#edf7ef}
+[data-kind="criteria"]{--type:#785323;--wash:#fff6e8}
+[data-kind="automation"]{--type:#3c5e90;--wash:#eef3ff}
+[data-kind="program"]{--type:#46652f;--wash:#f1f6eb}
+[data-kind="signal"]{--type:#8a471d;--wash:#fff1e6}
+[data-kind="operations"]{--type:#4d5a55;--wash:#f1f4f2}
+.node[data-kind]{padding:6px 9px;border:1px solid var(--type);border-left-width:4px;background:var(--wash)}
+.node[data-kind="automation"]{border-style:dashed;border-left-style:solid}
+.node[data-kind="criteria"]{border-style:dotted;border-left-style:solid}
+.node .kind{color:var(--type);font-size:.66rem;line-height:1.15;margin-bottom:2px}
+.node[data-kind] strong{font-size:.94rem}
+.node[data-kind] span:not(.kind){line-height:1.18}
+.legend{position:fixed;z-index:2;bottom:12px;left:12px;padding:6px 10px;border:1px solid var(--line);border-radius:7px;background:white;max-width:calc(100% - 24px);font-size:.85rem}
+.legend summary{cursor:pointer;font-weight:650}
+.legend ul{padding:0;margin:6px 0 0;display:flex;flex-wrap:wrap;gap:5px;list-style:none}
+.legend li{border:1px solid var(--type);border-left-width:4px;border-radius:4px;background:var(--wash);padding:2px 6px}
+.legend li[data-kind="automation"]{border-style:dashed;border-left-style:solid}
+.legend li[data-kind="criteria"]{border-style:dotted;border-left-style:solid}
+[data-kind="decision"]{--type:#355d77;--wash:#e5f1f8}
+.node[data-kind="decision"]{border:0;background:transparent;box-shadow:none;isolation:isolate;height:96px;padding:12px 36px;text-align:center}
+.node[data-kind="decision"]::before,.node[data-kind="decision"]::after{content:"";position:absolute;inset:0;z-index:-2;background:var(--type);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
+.node[data-kind="decision"]::after{inset:2px 4px;z-index:-1;background:var(--wash)}
+.node[data-kind="decision"] .kind{margin-bottom:4px}
+.node[data-kind="decision"] strong{max-width:120px;margin:auto}
+.edge-label{font:650 13px system-ui,sans-serif;fill:#355344;stroke:#f5f6f3;stroke-width:5px;paint-order:stroke;stroke-linejoin:round;text-anchor:middle}
+.edge-label.no{fill:#785323}
+/* The canvas uses a quiet grid, with color reserved for card types. */
+:root{--ink:#202b3c;--muted:#47566b;--line:#c0cbd9;--green:#215c58;--canvas:#f4f7fa;--mono:ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--ink);background:var(--canvas)}
+.viewport{background-color:var(--canvas);background-image:radial-gradient(#c7d3df 1px,transparent 1px);background-size:16px 16px}
+.heading{font:650 36px/1.12 system-ui,sans-serif;letter-spacing:-.045em}
+.result{font:650 14px/1.3 var(--mono);color:#32635e}
+.journey-label,.investor-label{font:650 14px/1.3 var(--mono);letter-spacing:.025em;text-transform:uppercase;color:#465770}
+.lane.stage{box-sizing:border-box;color:#fff;background:#26364d;border:1px solid #26364d;border-radius:5px;padding:6px 9px;font:650 14px/1.3 system-ui,sans-serif;letter-spacing:.015em}
+.lane-band{position:absolute;z-index:-2;pointer-events:none;border:1px solid #d9e2ec;border-radius:8px;background:#ffffff82}
+.board{isolation:isolate}
+.board svg{z-index:0}
+.node{border-radius:5px}
+.node[data-kind]{border-color:#c0cbd9;border-left-color:var(--type);background:#fff;box-shadow:0 2px 5px #22364c0a}
+.node[data-kind] .kind{font:700 10px/1.2 var(--mono);letter-spacing:.035em}
+.node[data-kind] strong{font-size:.98rem;color:var(--ink)}
+.node[data-kind] span:not(.kind){color:var(--muted)}
+.node[data-kind="decision"]{border:0;background:transparent;box-shadow:none}
+.node[data-kind="decision"]::after{background:#e9f1fb}
+.node[data-kind="signal"]{background:#fff7ed;border-color:#b77b45}
+.node[data-kind]:hover:not([data-kind="decision"]){background:var(--wash);border-color:var(--type)}
+.node[data-kind="decision"]:hover::after{background:#dbe9f9}
+.node[aria-pressed=true]{outline:2px solid #235c83;outline-offset:3px}
+#edges{stroke:#546d88;stroke-width:1.8}
+.edge-label{font:700 12px var(--mono);fill:#215c58;stroke:var(--canvas)}
+.edge-label.no{fill:#774524}
+.toolbar,.panel,.legend{border-color:var(--line);box-shadow:0 6px 22px #23334b14}
+.toolbar button,.close{background:#f8fafc;color:var(--ink);font-size:.9rem;font-weight:600}
+.toolbar button:hover,.close:hover{background:#e8f0fa}
+.panel h2{font:650 1.3rem/1.25 system-ui,sans-serif;letter-spacing:-.02em}
+.panel p{color:var(--muted)}
+.detail-kind{display:block;margin-bottom:6px;color:#465770;font:700 .72rem var(--mono);text-transform:uppercase}
+/* Stage headers connect the overview. Card links describe actual transitions. */
+.lane.stage:not(.last-stage)::after{content:"";position:absolute;left:100%;top:50%;width:53px;border-top:2px solid #7991aa}
+.lane.stage:not(.last-stage)::before{content:"";position:absolute;left:calc(100% + 46px);top:calc(50% - 4px);border-left:7px solid #7991aa;border-top:5px solid transparent;border-bottom:5px solid transparent}
+.lane-band{background:linear-gradient(to bottom,#e9f0f8 0 124px,#ffffffb8 124px);border-color:#cdd9e6}
+.node[data-kind="offer"]{border-radius:12px}
+.node[data-kind="criteria"]{background:#fff9ef}
+.legend{max-width:calc(100% - 24px);padding:5px 8px}
+.legend ul{margin:0;gap:4px}
+.legend li{font-size:.73rem;white-space:nowrap}
+@media(max-width:650px){.legend li{font-size:.65rem;padding:1px 4px}}
+.node.email-marker[data-kind="automation"]{width:44px;height:36px;min-height:0;padding:0;border:1px dashed var(--type);border-radius:8px;background:var(--wash);color:var(--type);font:700 21px/1 system-ui,sans-serif;text-align:center}
+.node.email-marker[data-kind="automation"]:hover{background:#dce9ff}
+.toolbar select{max-width:calc(100vw - 140px);font:600 .9rem system-ui,sans-serif;color:var(--ink);background:#f8fafc;border:1px solid var(--line);border-radius:5px;padding:5px 8px}
+.node[data-kind] .kind{font-size:11px}
+.node[data-kind] strong{font-size:1rem}
+.node[data-kind] span:not(.kind){font-size:.86rem;line-height:1.22}
+.edge-label{stroke-width:7px}
+.edge-automation{stroke:#5073a4;stroke-dasharray:5 4}
+.edge-return{stroke:#896533;stroke-dasharray:5 4}
+.node.email-marker::after,.legend li[data-kind="automation"]::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#c73843}
+.node.email-marker::after{position:absolute;top:-4px;right:-4px;box-shadow:0 0 0 2px var(--canvas)}
+.legend li[data-kind="automation"]::before{margin-right:5px;vertical-align:1px}
+.nurture-group{position:absolute;z-index:-1;border:1px dashed #8fa4bb;border-radius:8px;background:#f3f7fbcc}
+.lane.stage.transition{background:#fff;color:#26364d;border:1.5px dashed #26364d;font-style:italic}
+.lane-band.transition{border-style:dashed;background:#ffffff80}
+.pipeline-group{border-style:solid;border-color:#9fb6b6;background:#f2f8f8cc}
+.funnel-group{border-style:solid;border-color:#c3cfdc;background:#f7f9fccc}
+.funnel-group p{margin:0;padding:8px 10px 0;font:700 11px/1.2 var(--mono);letter-spacing:.035em;text-transform:uppercase;color:#465770}
+.pipeline-group p{margin:0;padding:8px 10px 0;font:700 11px/1.2 var(--mono);letter-spacing:.035em;text-transform:uppercase;color:#2d5f5f}
+.pipeline-group p span{display:block;margin-top:2px;font-weight:500;text-transform:none;letter-spacing:0;color:#47566b}
+[data-kind="task"]{--type:#7a3f63;--wash:#f8eef4}
+[data-kind="stage"]{--type:#2d6a6a;--wash:#ebf5f5}
+[data-kind="content"]{--type:#7a6326;--wash:#f8f3e4}
+.lane.stage.lifecycle{background:#2d5f5f;border-color:#2d5f5f;border-radius:14px}
+.lane-band.lifecycle{border-color:#b8d0d0;background:linear-gradient(to bottom,#e3f0f0 0 124px,#ffffffb8 124px)}
+.qual-span.lifecycle-span{color:#2d5f5f}
+.qual-span.lifecycle-span::after{border-color:#8fb5b5}
+.qual-span{position:absolute;margin:0;text-align:center;font:700 11px/1.2 var(--mono);letter-spacing:.035em;text-transform:uppercase;color:#465770}
+.qual-span::after{content:"";display:block;height:6px;margin-top:4px;border:1.5px solid #9fb0c4;border-bottom:0;border-radius:3px 3px 0 0}
+.node.email-marker.drip{box-shadow:3px 3px 0 -1px var(--wash),3px 3px 0 0 var(--type),6px 6px 0 -1px var(--wash),6px 6px 0 0 var(--type)}
+.legend li.drip{box-shadow:2px 2px 0 -1px var(--wash),2px 2px 0 0 var(--type)}
+.node[data-kind="action"] .kind::before,.legend li[data-kind="action"]::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--type);margin-right:5px;vertical-align:1px}
+/* oleenamak.ca theme: white paper, mono interface text, small serif prose */
+:root{--ink:#171717;--muted:#666;--rule:#e5e5e5;--line:#e0e0e0;--serif:Georgia,"Times New Roman",serif;--mono:"SF Mono",ui-monospace,Menlo,Consolas,monospace;color:var(--ink);background:#fff;font:14px/1.4 var(--serif)}
+body{background:#fff}
+:focus-visible,button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.viewport{background:#fff radial-gradient(#e4e4e4 1px,transparent 1px) 0 0/16px 16px}
+.heading{font:400 32px/1.1 var(--serif);letter-spacing:-.01em;color:var(--ink)}
+.lane.stage,.lane.stage.lifecycle{background:var(--ink);border:1px solid var(--ink);border-radius:3px;font:500 11.5px/1.4 var(--mono);letter-spacing:0;padding:8px 10px;color:#fff}
+.lane.stage:not(.last-stage)::after{border-top-color:#bbb}
+.lane.stage:not(.last-stage)::before{border-left-color:#bbb}
+.lane-band,.lane-band.lifecycle{background:#fffffff2;border:1px solid var(--rule);border-radius:4px}
+.qual-span,.qual-span.lifecycle-span{font:400 11px/1.3 var(--mono);letter-spacing:0;text-transform:none;color:var(--muted)}
+.qual-span::after,.qual-span.lifecycle-span::after{border-color:#ccc}
+[data-kind="channel"]{--type:#63528a;--wash:#f6f3fa}
+[data-kind="action"]{--type:#3d6b52;--wash:#f3f7f4}
+[data-kind="decision"]{--type:#4a6175;--wash:#f2f5f8}
+[data-kind="automation"],[data-kind="push"]{--type:#4d6390;--wash:#f4f6fb}
+[data-kind="program"]{--type:#5d6b3a;--wash:#f5f7ef}
+[data-kind="segment"]{--type:#8a5a26;--wash:#fbf5ec}
+[data-kind="product"]{--type:#3d6868;--wash:#f1f6f6}
+[data-kind="content"]{--type:#7a6326;--wash:#f9f5ea}
+.node[data-kind]{border:1px solid var(--line);border-left:4px solid var(--type);border-radius:4px;box-shadow:none;background:#fff}
+.node[data-kind="automation"]:not(.email-marker){border-style:dashed;border-left-style:solid}
+.node[data-kind] .kind{font:400 10.5px/1.3 var(--mono);letter-spacing:.02em;text-transform:none;color:var(--type)}
+.node[data-kind] strong{font:400 15px/1.2 var(--serif);color:var(--ink)}
+.node[data-kind] span:not(.kind){font:13px/1.3 var(--serif);color:var(--muted)}
+.node[data-kind]:hover:not([data-kind="decision"]){background:var(--wash);border-color:var(--line);border-left-color:var(--type)}
+.node.key[data-kind]{background:var(--wash)}
+.node[data-kind="decision"]{border:0;background:transparent}
+.node[data-kind="decision"]::after{background:var(--wash)}
+.node[data-kind="decision"] strong{font-size:14px}
+.node[aria-pressed=true]{outline:2px solid var(--ink);outline-offset:2px}
+.node.email-marker[data-kind]{border:1px dashed var(--type);border-radius:4px;background:var(--wash);color:var(--type)}
+.node.email-marker[data-kind="push"]{border-radius:18px}
+.node.email-marker::after,.legend li[data-kind="automation"]::before{background:#b8433a}
+#edges path{stroke:#a3a3a3;stroke-width:1.5}
+#edges path.edge-automation{stroke:#a3a3a3;stroke-dasharray:4 4}
+#edges path.edge-return{stroke:#b08a55;stroke-dasharray:4 4}
+.edge-label{font:400 11.5px var(--mono);fill:#3d6b52;stroke:#fff;stroke-width:6px}
+.edge-label.no{fill:#8a5a26}
+.nurture-group,.funnel-group,.pipeline-group{border:1px dashed #ccc;border-radius:4px;background:#fafafae6}
+.funnel-group p,.pipeline-group p{font:400 11px/1.3 var(--mono);letter-spacing:0;text-transform:none;color:var(--muted)}
+.pipeline-group p span{font:12px var(--serif);color:var(--muted)}
+.row-band,.row-band.after{border:1px solid var(--rule);border-radius:4px;background:#fffffff2}
+.row-label,.row-label.after{font:400 12px/1.3 var(--mono);letter-spacing:0;text-transform:none;color:var(--ink)}
+.row-label span{font:14px/1.4 var(--serif);color:var(--muted)}
+.toolbar,.legend,.panel{border-color:var(--rule);border-radius:4px;box-shadow:0 12px 40px #00000012}
+.toolbar button,.toolbar select,.close{border:1px solid #ccc;border-radius:3px;background:#fff;color:var(--ink);font:400 12px/1.3 var(--mono);padding:6px 10px}
+.toolbar button:hover,.close:hover{background:#f5f5f5}
+.legend li{border-radius:3px;font:400 11px/1.4 var(--mono)}
+.panel h2{font:400 18px/1.3 var(--serif);letter-spacing:0}
+.panel p{color:var(--muted);font:14.5px/1.6 var(--serif)}
+.detail-kind{font:400 11px var(--mono);text-transform:none;color:var(--muted)}
+.close{font-size:16px;line-height:1;padding:4px 8px;color:var(--muted)}
+[data-kind="offer"]{--type:#63528a;--wash:#f6f3fa}
+[data-kind="signal"]{--type:#8a5a26;--wash:#fbf5ec}
+[data-kind="task"]{--type:#7a3f63;--wash:#f8eef4}
+[data-kind="stage"]{--type:#3d6868;--wash:#f1f6f6}
+[data-kind="criteria"]{--type:#8a5a26;--wash:#fbf5ec}
+[data-kind="operations"]{--type:#666;--wash:#f5f5f5}
+.node[data-kind="offer"]{border-radius:10px}
+.node[data-kind="signal"]{background:#fff}
+.lane.stage.transition{background:#fff;color:var(--ink);border:1px dashed var(--ink);font-style:normal}
+.lane-band.transition{border-style:dashed}
+.journey-label,.investor-label,.result{font:400 12px/1.3 var(--mono);letter-spacing:0;text-transform:none;color:var(--muted)}
+</style>
+<main>
+<nav class="toolbar" aria-label="Map controls">
+<button id="out" aria-label="Zoom out">−</button><button id="in" aria-label="Zoom in">+</button><button id="fit">Fit map</button><label class="sr" for="jump">Jump to section</label><select id="jump"><option value="">Jump to section</option><option value="start">Acquisition</option><option value="capture">Interest</option><option value="activation">Onboarding &amp; activation</option><option value="readiness">Nurture &amp; consideration</option><option value="opportunity">Opportunity to advocacy</option></select>
+</nav>
+<div class="viewport" id="viewport" tabindex="0" aria-label="Growth map. Drag or use arrow keys to pan.">
+<div class="board" id="board">
+<h1 class="heading" style="left:36px;top:12px">Buyer Funnel</h1>
+<p class="qual-span" style="left:1512px;top:68px;width:440px">Marketing qualified → sales qualified</p>
+<p class="qual-span" style="left:36px;top:97px;width:1670px">Marketing-owned lifecycle stages</p>
+<p class="qual-span lifecycle-span" style="left:2004px;top:97px;width:686px">Deal lifecycle stages</p>
+
+<svg width="2990" height="880" aria-hidden="true"><defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M1 1l6 3-6 3" fill="none" stroke="context-stroke"/></marker></defs><g id="edges" fill="none" stroke="#7b8c7f" stroke-width="1.7"></g></svg>
+</div>
+</div>
+<aside class="legend" aria-label="Map key"><ul id="legend-items"></ul></aside>
+<section class="panel" id="panel" aria-labelledby="detail-title" hidden>
+<button class="close" id="close" aria-label="Close details">×</button><span class="detail-kind" id="detail-kind"></span><h2 id="detail-title"></h2><p id="detail-copy"></p>
+</section>
+</main>
+<script>
+const columns = [
+  [36, 126, 'Channels'], [282, 126, 'Acquisition funnels'], [528, 126, 'Interest'],
+  [774, 126, 'Onboarding'], [1020, 126, 'Activation'], [1266, 126, 'Nurture'],
+  [1512, 126, 'Consideration'], [1758, 126, 'Sales handoff'], [2004, 126, 'Opportunity'],
+  [2250, 126, 'Capital raise'], [2496, 126, 'Closed won or lost'],
+  [2742, 126, 'Advocacy']
+];
+const cards = {
+  meta: [0, 166, 'Meta Ads', 'Primary acquisition channel', 'Paid media was the main source of leads. We tested Meta ads aimed at aspiring business owners, broadly in their 30s through their 60s.', true],
+  sponsor: [0, 254, 'Third-party sponsorships', 'Newsletter and partner placements', 'We tested sponsorships in third-party newsletters to reach buyers through existing audiences.'],
+  social: [0, 370, 'Organic social', 'YouTube among the tests', 'We also explored social channels, including YouTube. Paid media drove most of the buyer leads.'],
+  guide: [1, 196, 'Downloadable guide', 'Lead magnet', 'We tested offering a downloadable guide in exchange for contact information.'],
+  course: [1, 284, 'Educational course', 'Video modules', 'We built an educational course and tested it as a reason for aspiring buyers to sign up.'],
+  community: [1, 372, 'Community', 'Meet other aspiring buyers', 'We tested whether access to peers and networking was a strong reason to join. Practical education consistently performed better than community-focused messaging.'],
+  workshops: [1, 460, 'Workshops and webinars', 'Live sessions and advisors', 'We tested live events as an offer, featuring workshops, webinars, and access to advisors and experts.'],
+  newsletter: [1, 562, 'Newsletter', 'An email-first offer', 'We tested a newsletter as another way to capture interest and build a relationship with buyers.'],
+  website: [0, 458, 'Website', 'Organic and returning traffic','Case studies and testimonials from closed deals were published on the website, bringing new buyers back into the funnel.'],
+  google: [0, 546, 'Google Ads', 'Search for capital', 'Google Ads drove the Mainshares funnel, reaching buyers who were looking for capital for a deal.'],
+  capitalRaise: [1, 712, 'Capital for your deal', 'Mainshares offer','The Mainshares funnel offered buyers capital for a deal they already had. These leads went straight into the opportunity pipeline.'],
+  capture: [2, 166, 'Form submitted', 'Intent and buyer profile', 'We collected buyers’ intent and readiness, target industries, and years of operating experience.'],
+  qualify: [2, 258, 'Qualification logic', '', 'We looked for U.S.-based applicants with intent to buy and sufficient operating experience. Qualified applicants were accepted and invited to create an account.'],
+  qualificationEmails: [2, 408, 'Qualification emails', '', 'A confirmation email went out after submission. About 24 hours later, applicants received a rejection email and entered the corporate newsletter nurture stream.'],
+  newsletterNurture: [5, 640, 'Corporate newsletter', 'Outside member nurture', 'A separate track from member nurture, with company updates. It took in applicants who did not qualify, applicants who never finished account setup, and members who stopped engaging. Applicants who did not qualify could apply again later.'],
+  reengage: [5, 536, 'Re-engagement emails', '', 'Members who stopped engaging with nurture received a short re-engagement sequence. Members who did not respond were moved out of member nurture and into the corporate newsletter.'],
+  account: [3, 166, 'Account setup started', 'Sign up with email', 'Qualified applicants were routed immediately to the account creation page.'],
+  completion: [3, 274, 'Account complete?', '', 'Completing account setup started the welcome drip flow and immediately opened the Circle community. Incomplete accounts entered a reminder flow.'],
+  incomplete: [3, 434, 'Account reminders', 'Started but incomplete', 'Applicants who started but did not finish account setup received reminders to complete it. Applicants who still had not finished after the last reminder moved to the corporate newsletter.'],
+  introEmail: [4, 254, 'Welcome onboarding flow', 'Drip sequence on completion', 'Completing account setup started a drip sequence of onboarding emails. Over several sends, it walked members through watching the intro video, introducing themselves, and registering for a webinar or workshop.'],
+  circle: [4, 166, 'Enter community', 'Community homepage opened', 'Members were routed directly to Circle after completing signup.'],
+  rsvp: [4, 626, 'Webinar RSVP', 'Webinar or workshop', 'The welcome email prompted members to register for an upcoming webinar or workshop.'],
+  introduce: [4, 515, 'Introduction posted', 'First community interaction', 'New members were encouraged to introduce themselves and start participating in the community.'],
+  welcome: [4, 297, 'Intro video watched', 'Required for access', 'Circle prompted new members to watch an introduction to the network. Watching it unlocked the community spaces.'],
+  unlocked: [4, 390, 'Community spaces unlocked', 'Access to member resources', 'Watching the intro video unlocked the rest of the community spaces.'],
+  modules: [5, 176, 'Education and expert Q&A', 'Video modules and questions', 'Members could go through the course, browse common questions, and ask experts for guidance.'],
+  live: [5, 306, 'Live programming', 'Weekly webinars and office hours', 'We hosted weekly office hours and webinars with experts, plus live workshops.'],
+  deals: [5, 436, 'Deal-sourcing newsletter', 'On- and off-market deals', 'We tested featuring on- and off-market deals in the newsletter as part of ongoing buyer nurture.'],
+  check: [6, 262, 'Quarterly check-in', 'Ask how the search is going', 'An automated email asked buyers if they were still searching and whether they had a deal under a letter of intent (LOI).'],
+  readiness: [6, 322, 'Deal under LOI?', '', 'The quarterly check-in surfaced the buyer’s status. A reported deal under a letter of intent moved to Sales. Buyers who were still searching went back to nurture.'],
+  mofu: [6, 166, 'Buyer tools', 'Templates such as an LOI', 'Members further along could use or request middle-of-funnel tools and templates, such as an LOI template.'],
+  loi: [7, 336, 'Deal under LOI', 'Signals readiness for Sales', 'If a buyer reported a deal under LOI, we updated their readiness and triggered a handoff to Sales.', true],
+  verbal: [7, 432, 'Mentioned on a call', 'Webinar, workshop, or office hours', 'Buyers sometimes told us they were ready on a live call, such as a webinar, workshop, or office hours. A verbal signal like this also triggered a handoff to Sales.', true],
+  portal: [7, 528, 'Deal uploaded for review', 'Straight to the Mainshares portal', 'Some buyers went straight to the Mainshares portal and uploaded their deal under LOI for review.', true],
+  toolSignal: [7, 166, 'Tool used or requested', 'Signals readiness for Sales', 'Using or requesting one of the buyer tools, such as the LOI template, signaled that a buyer was ready to buy and triggered a handoff to Sales.', true],
+  sales: [8, 166, 'Sales outreach', 'Task triggered by a signal', 'Any readiness signal triggered a task for Sales to reach out and see whether the buyer would bring their deal to Mainshares to raise capital.'],
+  oppReview: [8, 300, 'Under review', 'Initial deal screen', 'Deals entered the opportunity pipeline under review, either from Sales outreach or straight from the Mainshares funnel. Capital Markets reviewed the deal and the buyer to decide whether to pursue it.'],
+  oppDiligence: [8, 390, 'In diligence', 'Financials and terms', 'Capital Markets worked through the deal’s financials and terms in detail.'],
+  oppAccepted: [8, 480, 'Accepted', 'Approved for listing', 'Once everything was approved, we accepted the deal and it moved from the opportunity stage to the deal stage.'],
+  dealListed: [9, 166, 'Listed on the platform', 'Deal goes live', 'We listed the accepted deal on the Mainshares platform, opening the capital raise.'],
+  investorEmail: [9, 262, 'New opportunity email', 'Sent to all investors', 'Listing the deal triggered an automated email to all investors announcing the new investment opportunity. Investors are a separate audience, and their lifecycle is not shown on this map.'],
+  irOutreach: [9, 324, 'Investor relations outreach', '1:1 outreach', 'The new listing triggered a task for the investor relations team, who did most of the investor outreach 1:1.'],
+  caseStudies: [11, 166, 'Case studies and testimonials', 'Stories from closed deals', 'After a deal closed, we created case studies and testimonials. They fed back into acquisition through the website.'],
+  closedWon: [10, 166, 'Transaction complete', 'Deal marked closed won', 'Once the capital was raised and the transaction completed, the deal was marked closed won.', true],
+  closedLost: [10, 506, 'Deal closed lost', 'Back to nurture', 'Deals that were declined in review or diligence, including Mainshares-funnel deals that were not a fit, were marked closed lost. So were raises that did not fill, and buyers who were not ready when Sales reached out. All of them went back into nurture so they could bring their next deal.'],
+};
+const types = {
+  channel: ['Channel', 'meta sponsor social website google'],
+  offer: ['Offer', 'guide course community workshops newsletter mofu capitalRaise'],
+  action: ['Event', 'capture account circle welcome unlocked introduce rsvp dealListed closedWon closedLost'],
+  decision: ['Logic', 'qualify completion readiness'],
+  automation: ['Automation', 'qualificationEmails incomplete introEmail check investorEmail reengage'],
+  program: ['Program', 'newsletterNurture modules live deals'],
+  content: ['Content', 'caseStudies'],
+  signal: ['Readiness signal', 'loi toolSignal verbal portal'],
+  task: ['Triggered task', 'sales irOutreach'],
+  stage: ['Opportunity stage', 'oppReview oppDiligence oppAccepted'],
+};
+const cardTypes = Object.fromEntries(Object.entries(types).flatMap(([kind,[label, ids]]) =>
+  ids.split(' ').map(id => [id, {kind,label}])
+));
+const links = [
+  ...['meta','sponsor','social','website'].map(id => [id,'guide','channel-input']),
+  ...['guide','course','community','workshops','newsletter'].flatMap(id => [
+    ['meta',id,'offer-input'], [id,'capture','capture-input']
+  ]),
+  ['google','capitalRaise','drop'], ['capitalRaise','pipeline','mainshares-route','Straight to Opportunity'],
+  ['capture','qualify'], ['qualify','account','handoff','Qualified'],
+  ['qualify','qualificationEmails',true,'Not qualified'], ['qualificationEmails','newsletterNurture','newsletter-route'],
+  ['account','completion'],
+  ['completion','circle','handoff','Complete'], ['completion','incomplete',true,'Incomplete'],
+  ['incomplete','account','side'], ['circle','introEmail','down'],
+  ['circle','welcome'], ['welcome','unlocked'], ['unlocked','introduce'], ['unlocked','rsvp','rsvp-side'],
+  ['unlocked','nurture','handoff'],
+  ['nurture','mofu'], ['nurture','check',true], ['nurture','verbal'], ['nurture','portal'],
+  ['check','readiness',true], ['readiness','loi','handoff','Yes'], ['readiness','nurture','back','No'],
+  ['mofu','toolSignal'], ['toolSignal','sales'], ['loi','sales','handoff'], ['verbal','sales','handoff'], ['portal','sales','handoff'],
+  ['sales','pipeline','down'], ['oppReview','oppDiligence'], ['oppDiligence','oppAccepted'],
+  ['oppAccepted','dealListed','handoff'], ['dealListed','investorEmail'], ['investorEmail','irOutreach'], ['irOutreach','closedWon','handoff','Filled'], ['closedWon','caseStudies'],
+  ['incomplete','newsletterNurture','newsletter-route','No response'], ['reengage','newsletterNurture',true,'No response'],
+  ['pipeline','closedLost','lost','Declined'], ['sales','closedLost','not-ready','Not ready'], ['irOutreach','closedLost','handoff','Not filled'],
+  ['closedLost','nurture','recycle','Back to nurture'], ['caseStudies','website','flywheel','Feeds the website']
+];
+const board = document.querySelector('#board');
+const viewport = document.querySelector('#viewport');
+const panel = document.querySelector('#panel');
+const edgeGroup = document.querySelector('#edges');
+const buttons = {};
+const legend = document.querySelector('#legend-items');
+for (const [kind,[label]] of Object.entries(types)) {
+  const item = document.createElement('li');
+  item.dataset.kind = kind;
+  item.textContent = kind === 'automation' ? 'Email trigger' : label;
+  legend.append(item);
+  if (kind === 'automation') {
+    const drip = document.createElement('li');
+    drip.dataset.kind = kind;
+    drip.className = 'drip';
+    drip.textContent = 'Email drip flow';
+    legend.append(drip);
+  }
+}
+// "Nurture" is a stream of programs, not a program itself, so it is drawn as a group around them.
+const nurtureGroup = document.createElement('div');
+nurtureGroup.className = 'nurture-group';
+nurtureGroup.style.cssText = 'left:1256px;top:162px;width:214px;height:420px';
+board.append(nurtureGroup);
+buttons.nurture = nurtureGroup;
+// The opportunity pipeline is owned by Capital Markets, so its stages sit together in one box.
+const pipelineGroup = document.createElement('div');
+pipelineGroup.className = 'nurture-group pipeline-group';
+pipelineGroup.style.cssText = 'left:1994px;top:252px;width:214px;height:310px';
+pipelineGroup.innerHTML = '<p>Opportunity pipeline<span>Owned by Capital Markets</span></p>';
+board.append(pipelineGroup);
+buttons.pipeline = pipelineGroup;
+// Two acquisition funnels: Operator Network (buyer community) and Mainshares (capital raise).
+const groupColumns = {nurture:5, pipeline:8};
+for (const [id,top,height,name] of [['onFunnel',156,490,'Operator Network'],['msFunnel',672,106,'Mainshares']]) {
+  const group = document.createElement('div');
+  group.className = 'nurture-group funnel-group';
+  group.style.cssText = `left:272px;top:${top}px;width:214px;height:${height}px`;
+  group.innerHTML = `<p>${name}</p>`;
+  board.append(group);
+  buttons[id] = group;
+  groupColumns[id] = 1;
+}
+const bands = [];
+for (const [x,y,title] of columns) {
+  const band = document.createElement('div');
+  band.className = 'lane-band';
+  band.style.cssText = `left:${x-10}px;top:${y-6}px;width:214px`;
+  bands.push(band);
+  band.setAttribute('aria-hidden','true');
+  board.append(band);
+  const label = document.createElement('p');
+  label.className = x === columns.at(-1)[0] ? 'lane stage last-stage' : 'lane stage';
+  if (['Opportunity','Capital raise','Closed won or lost'].includes(title)) { label.classList.add('lifecycle'); band.classList.add('lifecycle'); }
+  if (title === 'Sales handoff') { label.classList.add('transition'); band.classList.add('transition'); label.title = 'A handoff between teams, not a lifecycle stage'; }
+  label.style.cssText = `left:${x}px;top:${y}px`;
+  label.textContent = title;
+  board.append(label);
+}
+for (const [id,[column,y,title,subtitle,,key]] of Object.entries(cards)) {
+  const node = document.createElement('button');
+  node.type = 'button';
+  node.className = key ? 'node key' : 'node';
+  const type = cardTypes[id];
+  if (type) {
+    node.dataset.kind = type.kind;
+    const badge = document.createElement('span');
+    badge.className = 'kind';
+    badge.textContent = type.kind === 'automation' ? '✉ ' + type.label : type.label;
+    node.append(badge);
+  }
+  const compact = type.kind === 'automation';
+  node.style.cssText = `left:${columns[column][0] + (id === 'introEmail' ? 140 : compact ? 75 : 0)}px;top:${y}px`;
+  node.setAttribute('aria-pressed','false');
+  const name = document.createElement('strong');
+  const description = document.createElement('span');
+  name.textContent = title;
+  description.textContent = subtitle;
+  node.append(name);
+  if (subtitle) node.append(description);
+  if (compact) {
+    node.classList.add('email-marker');
+    if (id === 'introEmail') node.classList.add('drip');
+    node.title = title;
+    node.setAttribute('aria-label', title + ' · View email automation');
+    node.textContent = '✉';
+  }
+  node.onclick = () => select(id);
+  board.append(node);
+  buttons[id] = node;
+}
+function drawLinks() {
+  edgeGroup.replaceChildren();
+  for (const [from,to,dashed,label] of links) {
+    const a = buttons[from], b = buttons[to];
+    const ax = a.offsetLeft, ay = a.offsetTop, bx = b.offsetLeft, by = b.offsetTop;
+    let start = ay + a.offsetHeight / 2, end = by + b.offsetHeight / 2;
+    // Leave the nurture group from its upper half and return to its lower half so the paths don't meet.
+    if (from === 'nurture') start = end;
+    if (to === 'nurture' && dashed === 'feedback') end = by + b.offsetHeight - 44;
+    let d, labelX, labelY;
+    if (dashed === 'newsletter-route') {
+      const source = ax + a.offsetWidth / 2, target = bx + b.offsetWidth / 2;
+      d = `M${source} ${ay+a.offsetHeight} V730 H${target} V${by+b.offsetHeight+4}`;
+      labelX = source;
+      labelY = 620;
+    } else if (dashed === 'lost') {
+      // Declined deals leave the pipeline box level with the closed-lost card.
+      d = `M${ax+a.offsetWidth} ${end} H${bx-4}`;
+      labelX = 2347;
+      labelY = end - 9;
+    } else if (dashed === 'not-ready') {
+      // Joins the declined line in the gap beside the Capital raise cards.
+      d = `M${ax+a.offsetWidth} ${ay+56} H2240 V${end} H${bx-4}`;
+      labelX = 2290;
+      labelY = 474;
+    } else if (dashed === 'recycle') {
+      d = `M${ax+a.offsetWidth/2} ${ay+a.offsetHeight} V770 H1490 V560 H${bx+b.offsetWidth+4}`;
+      labelX = 1800;
+      labelY = 762;
+    } else if (dashed === 'drop') {
+      const x = ax + a.offsetWidth / 2;
+      d = `M${x} ${ay+a.offsetHeight} V${end} H${bx-4}`;
+    } else if (dashed === 'flywheel') {
+      d = `M${ax+a.offsetWidth/2} ${ay+a.offsetHeight} V848 H14 V${end} H${bx-4}`;
+      labelX = 1400;
+      labelY = 840;
+    } else if (dashed === 'mainshares-route') {
+      const out = ax + a.offsetWidth + 14, target = bx + b.offsetWidth / 2;
+      d = `M${ax+a.offsetWidth} ${start} H${out} V810 H${target} V${by+b.offsetHeight+4}`;
+      labelX = 900;
+      labelY = 802;
+    } else if (dashed === 'back') {
+      d = `M${ax} ${start} H${bx+b.offsetWidth+4}`;
+      labelX = (ax + bx + b.offsetWidth) / 2;
+      labelY = start - 8;
+    } else if (dashed === 'down') {
+      const x = bx + b.offsetWidth / 2;
+      d = `M${x} ${ay+a.offsetHeight} V${by-3}`;
+    } else if (dashed === 'channel-input' || dashed === 'offer-input' || dashed === 'capture-input') {
+      const right = ax + a.offsetWidth, gutter = (right + bx) / 2;
+      if (dashed === 'channel-input') d = `M${right} ${start} H${gutter} V${end}`;
+      else if (dashed === 'offer-input') d = `M${gutter} ${a.offsetTop + a.offsetHeight / 2} V${end} H${bx-4}`;
+      else d = `M${right} ${start} H${gutter} V${end} H${bx-4}`;
+    } else if (dashed === 'side' || dashed === 'rsvp-side') {
+      const right = ax + a.offsetWidth, targetRight = bx + b.offsetWidth;
+      const gutter = Math.max(right, targetRight) + (dashed === 'rsvp-side' ? 24 : 13);
+      d = `M${right} ${start} H${gutter} V${end} H${targetRight+4}`;
+    } else if (dashed === 'handoff') {
+      const right = ax + a.offsetWidth, middle = (right + bx) / 2;
+      d = `M${right} ${start} H${middle} V${end} H${bx-4}`;
+      labelX = middle;
+      labelY = (start + end) / 2;
+    } else if (dashed === 'feedback') {
+      const left = bx + b.offsetWidth + 19;
+      const loop = Math.max(by+b.offsetHeight+24, ay+a.offsetHeight+32);
+      const route = ax + a.offsetWidth / 2;
+      d = `M${route} ${ay+a.offsetHeight} V${loop} H${left} V${end} H${bx+b.offsetWidth+4}`;
+      labelX = (route + left) / 2;
+      labelY = loop + 22;
+    } else if (cards[from] && cards[to] && cards[from][0] === cards[to][0]) {
+      const x = ax + a.offsetWidth / 2;
+      labelX = x;
+      labelY = (ay + a.offsetHeight + by) / 2 + 4;
+      d = by > ay ? `M${x} ${ay+a.offsetHeight} V${by-3}` : `M${x} ${ay} V${by+b.offsetHeight+3}`;
+    } else if (bx < ax) {
+      d = `M${ax} ${start} C${ax-30} ${start} ${bx+b.offsetWidth+30} ${end} ${bx+b.offsetWidth+3} ${end}`;
+    } else {
+      const x = ax + a.offsetWidth, middle = (x + bx) / 2;
+      d = `M${x} ${start} C${middle} ${start} ${middle} ${end} ${bx-3} ${end}`;
+    }
+    const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('d',d);
+    if (dashed !== 'channel-input') path.setAttribute('marker-end','url(#arrow)');
+    if (dashed === 'feedback' || dashed === 'back' || dashed === 'flywheel' || dashed === 'recycle') {
+      path.setAttribute('class','edge-return');
+    } else if (dashed === true || cardTypes[from]?.kind === 'automation' || cardTypes[to]?.kind === 'automation') {
+      path.setAttribute('class','edge-automation');
+    } else {
+      path.setAttribute('stroke-width','2.15');
+    }
+    edgeGroup.append(path);
+    const text = label || (dashed === 'feedback' ? 'Back to nurture' : '');
+    if (text) {
+      const annotation = document.createElementNS('http://www.w3.org/2000/svg','text');
+      annotation.setAttribute('x',labelX);
+      annotation.setAttribute('y',labelY);
+      annotation.setAttribute('class',['Yes','Qualified','Complete','Straight to Opportunity','Filled'].includes(text) ? 'edge-label' : 'edge-label no');
+      annotation.textContent = text;
+      edgeGroup.append(annotation);
+    }
+  }
+}
+let scale = 1, x = 0, y = 0, drag, selected;
+function draw() { board.style.transform = `translate(${x}px,${y}px) scale(${scale})`; }
+function frame(left,top,width,height) {
+  scale = Math.max(.12, Math.min(1.25,(viewport.clientWidth-24)/width,(viewport.clientHeight-84)/height));
+  x = (viewport.clientWidth-width*scale)/2-left*scale;
+  y = 56+(viewport.clientHeight-56-height*scale)/2-top*scale;
+  draw();
+}
+function fit() { frame(4,10,2966,850); }
+function zoom(factor,cx,cy) {
+  const next = Math.max(.12,Math.min(2,scale*factor));
+  x = cx-(cx-x)*next/scale;
+  y = cy-(cy-y)*next/scale;
+  scale = next;
+  draw();
+}
+function showStart() {
+  scale = Math.min(1, Math.max(.78, (viewport.clientWidth - 24) / 980));
+  x = 14 - 30 * scale;
+  y = 64;
+  draw();
+}
+document.querySelector('#fit').onclick = fit;
+const sections = {
+  start: showStart,
+  capture: () => frame(500,112,490,540),
+  activation: () => frame(750,112,480,610),
+  readiness: () => frame(1240,90,740,640),
+  opportunity: () => frame(1980,60,980,640)
+};
+document.querySelector('#jump').onchange = event => {
+  sections[event.target.value]?.();
+  event.target.value = '';
+};
+for (const [id,factor] of [['in',1.25],['out',.8]]) {
+  document.querySelector('#'+id).onclick = () => zoom(factor,viewport.clientWidth/2,viewport.clientHeight/2);
+}
+viewport.addEventListener('pointerdown',event => {
+  if (event.button !== 0 || event.target.closest('button')) return;
+  drag = {x:event.clientX-x,y:event.clientY-y};
+  viewport.setPointerCapture(event.pointerId);
+  viewport.classList.add('dragging');
+});
+viewport.addEventListener('pointermove',event => {
+  if (!drag) return;
+  x = event.clientX-drag.x;
+  y = event.clientY-drag.y;
+  draw();
+});
+for (const type of ['pointerup','pointercancel','lostpointercapture']) {
+  viewport.addEventListener(type,() => { drag = undefined; viewport.classList.remove('dragging'); });
+}
+viewport.addEventListener('wheel',event => {
+  event.preventDefault();
+  if (event.ctrlKey || event.metaKey) zoom(Math.exp(-event.deltaY*.007),event.clientX,event.clientY);
+  else { x -= event.deltaX; y -= event.deltaY; draw(); }
+},{passive:false});
+viewport.addEventListener('keydown',event => {
+  const offset = {ArrowLeft:[55,0],ArrowRight:[-55,0],ArrowUp:[0,55],ArrowDown:[0,-55]}[event.key];
+  if (!offset || event.target !== viewport) return;
+  event.preventDefault();
+  x += offset[0];
+  y += offset[1];
+  draw();
+});
+function select(id) {
+  if (selected) buttons[selected].setAttribute('aria-pressed','false');
+  selected = id;
+  buttons[id].setAttribute('aria-pressed','true');
+  document.querySelector('#detail-kind').textContent = id === 'introEmail' ? 'Email drip flow' : cardTypes[id].label;
+  document.querySelector('#detail-title').textContent = cards[id][2];
+  document.querySelector('#detail-copy').textContent = cards[id][4];
+  panel.hidden = false;
+  document.querySelector('#close').focus({preventScroll:true});
+}
+function closeDetails() {
+  if (panel.hidden) return;
+  panel.hidden = true;
+  buttons[selected].setAttribute('aria-pressed','false');
+  buttons[selected].focus({preventScroll:true});
+  selected = undefined;
+}
+document.querySelector('#close').onclick = closeDetails;
+window.addEventListener('keydown',event => { if (event.key === 'Escape') closeDetails(); });
+window.addEventListener('resize',fit);
+// Each lane ends just below its own content, so short lanes don't trail empty space.
+// Lanes the corporate-newsletter route and nurture loop cross extend to cover them.
+const laneFloor = {2:730, 3:730, 4:730, 5:730, 6:600};
+function sizeBands() {
+bands.forEach((band,column) => {
+  let bottom = laneFloor[column] || 0;
+  for (const [id,node] of Object.entries(buttons)) {
+    const inLane = id in groupColumns ? groupColumns[id] === column : cards[id][0] === column;
+    if (inLane) bottom = Math.max(bottom, node.offsetTop + node.offsetHeight);
+  }
+  band.style.height = `${bottom + 22 - (columns[column][1] - 6)}px`;
+});
+}
+// Lines are measured from the cards, so redraw them whenever the cards can be measured:
+// a page that loads hidden or before its fonts would otherwise draw every line at zero.
+function layout() {
+  if (!buttons.meta.offsetWidth) return;
+  drawLinks();
+  sizeBands();
+}
+layout();
+showStart();
+new ResizeObserver(layout).observe(board);
+document.fonts?.ready.then(layout);
+window.addEventListener('load', layout);
+document.addEventListener('visibilitychange', layout);
+</script>
+</html>
